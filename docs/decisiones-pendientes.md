@@ -7,7 +7,7 @@ Cada decisión registra contexto, resolución y fecha. Las difíciles de reverti
 | # | Decisión | Resolución |
 |---|---|---|
 | D1 | Sistema visual común | Un solo sistema basado en la paleta y componentes de P1/P2 (crema, jade, naranja). Títulos en Georgia, cuerpo en fuente del sistema. Los SVG de P3 se conservan con colores adaptados. Más adelante se probarán variantes cambiando valores CSS |
-| D2 | Datos demo canónicos | Historia de P2: Ana López Martínez (avatar Balam, Visitante) y Carlos KarKerKar (avatar Jaguar, Guía). Visita en curso del recorrido «El Castillo y la Gran Plaza», grupal, guía Carlos KarKerKar, 6 participantes. Zonas: Gran Plaza, El Castillo, Plataforma de Venus, Juego de Pelota. Zona actual Juego de Pelota, 2 de 4, 50 %. P3 se ajusta (María, Juan y Carla quedan como compañeros de visita). Grafía «Kukulcán». **Carlos Ek se renombra a Carlos KarKerKar** |
+| D2 | Datos demo canónicos | Historia de P2: Ana López Martínez (avatar Balam, Visitante) y Carlos KarKerKar (avatar Kan, Guía; antes «Jaguar», ver D30). Visita en curso del recorrido «El Castillo y la Gran Plaza», grupal, guía Carlos KarKerKar, 6 participantes. Zonas: Gran Plaza, El Castillo, Plataforma de Venus, Juego de Pelota. Zona actual Juego de Pelota, 2 de 4, 50 %. P3 se ajusta (María, Juan y Carla quedan como compañeros de visita). Grafía «Kukulcán». **Carlos Ek se renombra a Carlos KarKerKar** |
 | D5 | CRUD de zonas | Se agrega `admin/zonas.html` con el patrón de P1 |
 | D6 | Interactividad | **Solo HTML y CSS, sin JavaScript.** Acciones mediante anclas y paneles como en P1 |
 | D7 | Leyenda de marcadores de P2 | No existe; P2 entregó solo imágenes. Los marcadores se interpretan por su contenido |
@@ -28,7 +28,7 @@ Cada decisión registra contexto, resolución y fecha. Las difíciles de reverti
 | D19 | Tamaño de archivos | Código separable y fácil de cambiar; evitar archivos excesivamente grandes, aunque las páginas no estén pedidas expresamente en la consigna |
 
 | D20 | Páginas separadas | Públicas: `index.html`, `recorridos.html`, `como-funciona.html`, `acerca.html`, `login.html`, `registro.html`. Panel: `dashboard.html`, `mi-avatar.html`, `mi-perfil.html`. Visita: `recorrido.html`. Encabezados y menús se repiten en cada HTML (limitación documentada en ADR-0001) |
-| D21 | División del CSS | `tokens.css`, `base.css`, `componentes.css` en todas las páginas + uno por área: `publico.css`, `panel.css`, `admin.css`, `recorrido.css` |
+| D21 | División del CSS | `tokens.css`, `base.css`, `componentes.css` en todas las páginas + uno por área: `publico.css`, `panel.css`, `admin.css`, `recorrido.css`. `acceso.css` es el área de login y registro (pantallas sin menú ni pie del sitio) |
 | D22 | «Ver detalle» | En `recorridos.html`, ficha por recorrido con `:target`: descripción, modalidad, duración, zonas (marcando restringidas) y «Regístrate para visitarlo» |
 | D23 | «Mostrar» contraseña | Se quita del login; diferencia con el diseño de P2 por ADR-0001 |
 | D24 | Error de confirmación de contraseña | Validación nativa (`required`, `type=email`, `minlength=8`) + estado de error de ejemplo en `registro.html#error`, documentado como SIMULADO |
@@ -36,7 +36,9 @@ Cada decisión registra contexto, resolución y fecha. Las difíciles de reverti
 | D27 | Permisos de zona de ejemplo | Corrige la contradicción de P1 (Ana, Visitante, estaba en Juego de Pelota sin acceso). **Visitante**: todas las zonas de los recorridos abiertos. **Guía**: lo anterior + zonas del Grupo de las Mil Columnas. Las páginas de `admin/` usan estos datos, no los de `persona_1/` |
 | D28 | Catálogo de zonas (12) | El Castillo y la Gran Plaza: Gran Plaza, El Castillo, Plataforma de Venus, Juego de Pelota. Cenote Sagrado: Sacbé ceremonial, Cenote Sagrado. El Caracol y Las Monjas: El Caracol, Las Monjas, La Iglesia. Grupo de las Mil Columnas (solo Guía): Templo de los Guerreros, Grupo de las Mil Columnas, Mercado. Cada zona con descripción histórica breve |
 | D29 | Zona bloqueada en la visita | El mapa de la visita muestra zonas vecinas fuera del recorrido; el Grupo de las Mil Columnas aparece junto a la Gran Plaza con candado y «Requiere rol Guía»; su ficha se consulta pero sin acción de entrar |
-| D30 | Participantes de la visita (6) | Ana López Martínez (Visitante, Juego de Pelota), Carlos KarKerKar (Guía), María López, Juan Ramírez, Carla Pérez y **Jose Jose** (Plataforma de Venus). Cada uno con una apariencia de D16 y zona actual propia |
+| D30 | Participantes de la visita (6) | Ana López Martínez (Visitante, Juego de Pelota), Carlos KarKerKar (Guía), María López, Juan Ramírez, Carla Pérez y **Jose Jose** (Plataforma de Venus). Cada uno con una apariencia de D16 y zona actual propia. El nombre del avatar corresponde a su apariencia: **Balam** (jaguar) → jaguar de jade; **Kan** (serpiente) → serpiente emplumada; **Ixchel** → quetzal; **Muan** (búho) → búho; **Itzel** → jaguar de jade; **Kuk** (quetzal) → quetzal. Carlos deja el nombre «Jaguar» de P2 para no contradecir su apariencia ni repetir el jaguar de Ana. Avatar libre: **Itzamná** (Visitante). Todos los tickets usan esta tabla |
+| D31 | Datos de Mil Columnas | Recorrido «Grupo de las Mil Columnas»: grupal con guía, 40 min, 3 zonas, solo rol Guía (dato de demostración) |
+| D32 | Colores de apariencias | Los SVG de `img/apariencias/` se cargan con `<img>` (un `<use>` externo no funciona con `file://`), así que copian los colores de `tokens.css`: al cambiar la paleta hay que editarlos a mano. Aceptado |
 | D26 | ADRs | ADR-0001 (solo HTML y CSS) y ADR-0002 (administración fuera del modelo de roles) |
 
 ## Fuera de alcance por ahora
