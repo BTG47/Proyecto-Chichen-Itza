@@ -10,6 +10,7 @@
     «Zona 4 de 4» y «2 de 4 zonas visitadas» salen de contadores CSS que leen estas clases (recorrido.css).
   - Progreso 50 % (Participacion.calcularProgreso()) · inicio 17:20 (SesionRecorrido.fechaInicio) · 22 min de 45.
   - Participantes (D30): Ana/Balam, Carlos KarKerKar/Kan (guía), María/Ixchel, Juan/Muan, Carla/Itzel, Jose Jose/Kuk.
+  - Servidores (D35): Sureste (coordina; Ana, Carlos), Centro (María, Carla), Norte (Jose, Juan).
 -->
 <html lang="es">
 <head>
@@ -129,7 +130,7 @@
       <p class="cabecera__ceja"><span class="punto punto--vivo" aria-hidden="true"></span>En curso · Grupal con guía</p>
       <h1>El Castillo y la Gran Plaza</h1>
     </div>
-    <p class="cabecera__conexion" title="Servidor de la visita"><span class="punto punto--vivo" aria-hidden="true"></span><span>Región Sureste <small>Conectada</small></span></p>
+    <p class="cabecera__conexion" title="Tu servidor; también coordina la visita"><span class="punto punto--vivo" aria-hidden="true"></span><span>Región Sureste <small>Conectada</small></span></p>
     <a class="boton boton--contorno cabecera__salir" href="dashboard.html"><svg aria-hidden="true"><use href="#i-salir"/></svg>Salir<span class="visualmente-oculto"> de la visita</span></a>
   </header>
 
@@ -167,14 +168,17 @@
           </div>
           <!-- Reputación: campo de interfaz (no está en el UML); la consigna pide «gráficos de reputación» -->
           <div class="voz__rep">
+            <p class="voz__rep-titulo">Reputación</p>
             <p class="voz__nota"><strong>4.8</strong><small>/ 5</small></p>
-            <ul class="barritas" role="img" aria-label="Reputación del guía: 4.8 de 5. Valoraciones: 85 % cinco estrellas, 12 % cuatro, 2 % tres, 1 % dos.">
+            <div role="img" aria-label="Reputación del guía: 4.8 de 5. Valoraciones: 85 % cinco estrellas, 12 % cuatro, 2 % tres, 1 % dos.">
+            <ul class="barritas" aria-hidden="true">
               <li style="--valor: 85%"><span>5</span></li>
               <li style="--valor: 12%"><span>4</span></li>
               <li style="--valor: 2%"><span>3</span></li>
               <li style="--valor: 1%"><span>2</span></li>
               <li style="--valor: 0%"><span>1</span></li>
             </ul>
+            </div>
             <p class="voz__visitas">126 visitas guiadas</p>
           </div>
         </section>
@@ -381,7 +385,7 @@
       <label class="lado__cerrar" for="cajon"><svg aria-hidden="true"><use href="#i-cerrar"/></svg><span class="visualmente-oculto">Cerrar panel</span></label>
 
       <div class="pestanas">
-        <label for="tab-actividad">Actividad <b>7</b></label>
+        <label for="tab-actividad">Actividad <b>8</b></label>
         <label for="tab-grupo">Grupo <b>6</b></label>
       </div>
 
@@ -389,7 +393,7 @@
       <section class="bitacora" aria-labelledby="bitacora-titulo">
         <h2 id="bitacora-titulo" class="visualmente-oculto">Actividad del grupo</h2>
 
-        <ol class="feed" role="list" aria-label="Acciones, la más reciente primero">
+        <ol class="feed" role="list" aria-label="Acciones, la más reciente primero" tabindex="0">
           <!-- Entradas de tus acciones simuladas: aparecen al usarlas -->
           <li class="entrada entrada--guia entrada--respuesta">
             <img class="apariencia apariencia--mini" src="img/apariencias/serpiente-emplumada.svg" alt="">
@@ -477,10 +481,15 @@
             <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Cambio de zona</span><time>17:27</time></p>
             <p class="entrada__zona">Gran Plaza → El Castillo</p></div>
           </li>
+          <li class="entrada">
+            <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
+            <div><p class="entrada__meta"><strong>Kuk</strong> <span class="entrada__tipo">Conexión</span><time>17:22</time></p>
+            <p class="entrada__zona">Se unió desde el servidor Región Norte</p></div>
+          </li>
           <li class="entrada entrada--sistema">
             <span class="entrada__icono" aria-hidden="true">▶</span>
             <div><p class="entrada__meta"><strong>Visita iniciada</strong><time>17:20</time></p>
-            <p class="entrada__zona">Servidor Región Sureste · 6 participantes</p></div>
+            <p class="entrada__zona">Coordinada por el servidor Región Sureste · 6 participantes</p></div>
           </li>
         </ol>
 
@@ -498,45 +507,45 @@
       <!-- ===== Grupo: participantes y su Conexion (ESTADO: zona de cada uno) ===== -->
       <section class="grupo" aria-labelledby="grupo-titulo">
         <h2 id="grupo-titulo" class="grupo__titulo">Grupo de la visita</h2>
-        <p class="grupo__resumen"><span class="punto punto--vivo" aria-hidden="true"></span>6 participantes · 5 conectados · 1 inactivo</p>
+        <p class="grupo__resumen"><span class="punto punto--vivo" aria-hidden="true"></span>6 participantes · 3 servidores · 5 conectados · 1 inactivo</p>
         <ul class="participantes" role="list">
           <li class="participante participante--guia">
             <img class="apariencia apariencia--mini" src="img/apariencias/serpiente-emplumada.svg" alt="">
-            <span class="participante__texto"><strong>Carlos KarKerKar <span class="chip chip--guia">Guía</span></strong><small>Kan · Juego de Pelota · Explicando la zona</small></span>
+            <span class="participante__texto"><strong>Carlos KarKerKar <span class="chip chip--guia">Guía</span></strong><small>Kan · Juego de Pelota · Explicando la zona</small><small class="participante__rep"><span aria-hidden="true">★</span> Reputación 4.8 / 5</small></span>
             <label class="participante__saludo" for="sal-kan" title="Saludar a Kan"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Kan</span></label>
-            <span class="conexion conexion--on">desde 17:20</span>
+            <span class="conexion conexion--on"><span>Sureste<small>desde 17:20</small></span></span>
           </li>
           <li class="participante participante--yo">
             <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
             <span class="participante__texto"><strong>Ana López Martínez <span class="chip chip--yo">Tú</span></strong><small>Balam · Juego de Pelota · <span class="estado-normal">Explorando</span><span class="estado-ayuda">Solicitó ayuda</span></small></span>
-            <span class="conexion conexion--on">desde 17:20</span>
+            <span class="conexion conexion--on"><span>Sureste<small>desde 17:20</small></span></span>
           </li>
           <li class="participante">
             <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
             <span class="participante__texto"><strong>Carla Pérez</strong><small>Itzel · Juego de Pelota · Explorando</small></span>
             <label class="participante__saludo" for="sal-itzel" title="Saludar a Itzel"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Itzel</span></label>
-            <span class="conexion conexion--on">desde 17:21</span>
+            <span class="conexion conexion--on"><span>Centro<small>desde 17:21</small></span></span>
           </li>
           <li class="participante">
             <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
             <span class="participante__texto"><strong>María López</strong><small>Ixchel · El Castillo · Explorando</small></span>
             <label class="participante__saludo" for="sal-ixchel" title="Saludar a Ixchel"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Ixchel</span></label>
-            <span class="conexion conexion--on">desde 17:20</span>
+            <span class="conexion conexion--on"><span>Centro<small>desde 17:20</small></span></span>
           </li>
           <li class="participante participante--alerta">
             <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
             <span class="participante__texto"><strong>Jose Jose</strong><small>Kuk · Plataforma de Venus · <em>Solicitó ayuda</em></small></span>
             <label class="participante__saludo" for="sal-kuk" title="Saludar a Kuk"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Kuk</span></label>
-            <span class="conexion conexion--on">desde 17:22</span>
+            <span class="conexion conexion--on"><span>Norte<small>desde 17:22</small></span></span>
           </li>
           <li class="participante participante--inactivo">
             <img class="apariencia apariencia--mini" src="img/apariencias/buho.svg" alt="">
             <span class="participante__texto"><strong>Juan Ramírez</strong><small>Muan · Gran Plaza</small></span>
             <label class="participante__saludo" for="sal-muan" title="Saludar a Muan"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Muan</span></label>
-            <span class="conexion">Inactivo 3 min</span>
+            <span class="conexion"><span>Norte<small>inactivo 3 min</small></span></span>
           </li>
         </ul>
-        <p class="grupo__nota">Conectado: su conexión al servidor Región Sureste sigue abierta. 👋 saluda solo a esa persona (demostración: no se envía nada).</p>
+        <p class="grupo__nota">Cada participante se conecta al servidor de su región (Sureste, Centro o Norte). Región Sureste coordina la visita y sincroniza con los demás la zona y las acciones de cada uno (simulado). 👋 saluda solo a esa persona (demostración: no se envía nada).</p>
       </section>
     </aside>
   </div>
