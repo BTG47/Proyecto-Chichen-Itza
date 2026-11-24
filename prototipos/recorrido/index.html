@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROTOTIPO · Visita | Chichén Itzá Virtual</title>
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/componentes.css">
+  <link rel="stylesheet" href="prototipo.css">
+  <style>
+    .indice { padding-block: var(--espacio-7); }
+    .indice ol { display: grid; gap: var(--espacio-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
+  </style>
+</head>
+<body>
+  <main class="contenedor indice">
+    <p><span class="insignia insignia--naranja">Prototipo desechable · ticket #9</span></p>
+    <h1>Pantalla de la visita: cinco enfoques</h1>
+    <p>Pregunta: ¿cómo debe verse e interactuarse <code>recorrido.html</code>? Las variantes usan los mismos datos (<a href="DATOS.md">DATOS.md</a>), solo HTML y CSS. Cambia de variante con la barra negra inferior.</p>
+    <ol role="list">
+      <li class="tarjeta tarjeta--enlace">
+        <h2>A · Mapa protagonista</h2>
+        <p class="tarjeta__texto">El mapa del sitio ocupa la pantalla; las zonas son puntos que abren su ficha.</p>
+        <a class="tarjeta__enlace-principal enlace-flecha" href="a-mapa.html">Abrir variante A</a>
+      </li>
+      <li class="tarjeta tarjeta--enlace">
+        <h2>B · Ruta / línea de tiempo</h2>
+        <p class="tarjeta__texto">Las 4 zonas como camino: visitadas, actual y siguientes.</p>
+        <a class="tarjeta__enlace-principal enlace-flecha" href="b-ruta.html">Abrir variante B</a>
+      </li>
+      <li class="tarjeta tarjeta--enlace">
+        <h2>C · Escena inmersiva</h2>
+        <p class="tarjeta__texto">La zona actual a pantalla completa con paneles flotantes, tipo juego.</p>
+        <a class="tarjeta__enlace-principal enlace-flecha" href="c-escena.html">Abrir variante C</a>
+      </li>
+      <li class="tarjeta tarjeta--enlace">
+        <h2>D · Mapa + vista de zona</h2>
+        <p class="tarjeta__texto">Combinación: mapa como navegación, vista de zona ligera con objetos interactivos y bitácora de acciones.</p>
+        <a class="tarjeta__enlace-principal enlace-flecha" href="d-mapa-zona.html">Abrir variante D</a>
+      </li>
+      <li class="tarjeta tarjeta--enlace">
+        <h2>E · Camino + reproduciendo ahora</h2>
+        <p class="tarjeta__texto">Intermedio y escalable: camino de zonas tipo Duolingo, barra fija tipo Spotify, sobriedad de la Persona 3.</p>
+        <a class="tarjeta__enlace-principal enlace-flecha" href="e-camino.html">Abrir variante E</a>
+      </li>
+    </ol>
+  </main>
+
+  <nav class="barra-prototipo" aria-label="Variantes del prototipo">
+    <a href="e-camino.html" aria-label="Variante anterior">←</a>
+    <span class="barra-prototipo__actual"><span class="barra-prototipo__etiqueta">Prototipo</span>Índice</span>
+    <a href="a-mapa.html" aria-label="Variante siguiente">→</a>
+  </nav>
+</body>
+</html>

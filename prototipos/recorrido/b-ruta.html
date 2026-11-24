@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<!--
+  PROTOTIPO DESECHABLE · ticket #9 · Variante B «Ruta / línea de tiempo».
+  Pregunta: ¿se entiende mejor la visita si se cuenta como un viaje por un sacbé
+  (camino blanco maya) con etapas visitadas, actual y pendientes, en vez de un mapa o una escena?
+  Solo HTML y CSS (ADR-0001): <details> para las fichas, :target para las acciones simuladas
+  y :has() para mover el marcador de Ana al «cambiar de zona». Datos: DATOS.md.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROTOTIPO · B Ruta de la visita | Chichén Itzá Virtual</title>
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/componentes.css">
+  <link rel="stylesheet" href="prototipo.css">
+  <link rel="stylesheet" href="b-ruta.css">
+</head>
+<body class="ruta-visita">
+  <a class="saltar-al-contenido" href="#sacbe">Saltar al camino</a>
+
+  <!-- Ilustraciones de monumentos: Kukulcán y Juego de Pelota copiados de persona_3; plaza, Venus y columnas, nuevos -->
+  <svg class="visualmente-oculto" aria-hidden="true" focusable="false">
+    <symbol id="monumento-plaza" viewBox="0 0 400 260">
+      <path d="M30 222h340" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M163 192 193 132h14l30 60z" fill="#c9b892" stroke="#a8946e" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M178 162h44M170 177h60" stroke="#ead7af" stroke-width="3"/>
+      <path d="M48 216 92 188h216l44 28z" fill="#ece3cf" stroke="#a8946e" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M110 196h180M88 206h224" stroke="#d8c8a6" stroke-width="2.5"/>
+      <path d="M70 196v-22m262 22v-26" stroke="#6b4a2e" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="70" cy="160" r="20" fill="#5e8d4c"/>
+      <circle cx="332" cy="154" r="24" fill="#3f6b37"/>
+      <circle cx="196" cy="204" r="4" fill="#6b4a2e"/>
+      <circle cx="226" cy="200" r="4" fill="#6b4a2e"/>
+    </symbol>
+    <symbol id="monument-kukulkan" viewBox="0 0 400 260">
+      <path d="M45 220h310" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M76 213 190 64h20l114 149z" fill="#a88e63" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M200 65h10l114 148H200z" fill="#927a55"/>
+      <path d="M172 89h56M155 111h90M138 134h124M120 157h160M102 181h196M84 204h232" fill="none" stroke="#ead7af" stroke-width="5" stroke-linecap="square"/>
+      <path d="M172 89h-5m83 22h-10m-107 23h-12m150 0h-12m-139 23h-15m190 0h-15m-163 24h-18m220 0h-18m-181 23h-18m246 0h-18" fill="none" stroke="#6d5940" stroke-width="2"/>
+      <path d="M185 83h30l24 130h-78z" fill="#d4bd90" stroke="#725e43" stroke-width="3"/>
+      <path d="M200 86v124m-10-109h20m-17 18h14m-20 18h26m-22 18h18m-27 18h36m-31 18h26m-35 18h44" fill="none" stroke="#8c704a" stroke-width="2.5"/>
+      <path d="M179 83h42l-5-9h-32zM183 74V56h34v18m-39-18h44l-5-8h-34z" fill="#c5ab7d" stroke="#725e43" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M191 56V45h18v11m-9-11V34m-5 0h10" fill="none" stroke="#725e43" stroke-width="3" stroke-linecap="round"/>
+      <path d="M174 216h52" stroke="#594d3b" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="monumento-venus" viewBox="0 0 400 260">
+      <circle cx="312" cy="62" r="9" fill="#fdf3de"/>
+      <circle cx="312" cy="62" r="18" fill="#fdf3de" opacity=".35"/>
+      <path d="M50 222h300" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M86 214 102 150h196l16 64z" fill="#b59a6d" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M98 150h204v-14H98z" fill="#c9b184" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="m170 214 8-78h44l8 78z" fill="#d4bd90" stroke="#725e43" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M177 156h46M175 174h50M173 194h54" stroke="#9a8057" stroke-width="2.5"/>
+      <path d="m133 166 4 10h11l-9 7 4 11-10-7-10 7 4-11-9-7h11zm134 0 4 10h11l-9 7 4 11-10-7-10 7 4-11-9-7h11z" fill="#f3c77d" stroke="#725e43" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="monument-ballcourt" viewBox="0 0 400 260">
+      <path d="M56 222h288" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M69 213 113 85h48l28 128z" fill="#b79b6d" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M331 213 287 85h-48l-28 128z" fill="#a88c62" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M82 187h68m-59-27h59m-49-27h43m-33-27h24m181 81h-68m59-27h-59m49-27h-43m33-27h-24" fill="none" stroke="#e4d0a6" stroke-width="4" stroke-linecap="round"/>
+      <path d="m165 213-10-89h90l-10 89z" fill="#d6c197" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M177 129v81m46-81v81M169 153h62m-59 25h56m-53 24h50" fill="none" stroke="#9a8057" stroke-width="2"/>
+      <circle cx="266" cy="139" r="13" fill="#f1e4c5" stroke="#725e43" stroke-width="6"/>
+      <path d="M266 126v26" stroke="#725e43" stroke-width="3"/>
+      <path d="M92 218h216" stroke="#725e43" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="monumento-columnas" viewBox="0 0 400 260">
+      <path d="M40 222h320" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M56 214h288v-12H56z" fill="#b59a6d" stroke="#725e43" stroke-width="3"/>
+      <path d="M84 202v-86m40 86v-86m40 86v-70m40 70v-86m40 86v-56m40 56v-86m40 86v-86" stroke="#d4bd90" stroke-width="18"/>
+      <path d="M70 116h108m48 0h108" stroke="#a88e63" stroke-width="10" stroke-linecap="round"/>
+      <path d="M84 140v44m80-30v30m80 0v-20m80-24v44" stroke="#9a8057" stroke-width="2"/>
+    </symbol>
+  </svg>
+
+  <!-- Barra de la visita -->
+  <header class="visita-barra">
+    <div class="contenedor visita-barra__contenido">
+      <a class="marca visita-barra__marca" href="../../dashboard.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá</span>
+      </a>
+      <p class="visita-barra__servidor"><span class="punto punto--conectado" aria-hidden="true"></span>Región Sureste · Conectada</p>
+      <a class="boton visita-barra__salir" href="../../dashboard.html">Salir de la visita</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- Cabecera del viaje: quién soy, dónde estoy y cuánto llevo -->
+    <section class="viaje" aria-labelledby="viaje-titulo">
+      <div class="contenedor viaje__contenido">
+        <div class="viaje__intro">
+          <p class="viaje__antetitulo">Visita en curso · grupal con guía · inicio 17:20</p>
+          <h1 id="viaje-titulo">El Castillo y la Gran Plaza</h1>
+          <div class="viaje__yo">
+            <img class="apariencia viaje__avatar" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <p>
+              <strong>Balam</strong> · Ana López Martínez (tú) · Visitante<br>
+              Estás en <a href="#etapa-pelota"><strong>Juego de Pelota</strong></a>, etapa 4 del sacbé
+            </p>
+          </div>
+        </div>
+
+        <dl class="tablero" aria-label="Estadísticas de la visita">
+          <div class="tablero__item tablero__item--progreso" style="--avance: 50%">
+            <dt>Progreso</dt>
+            <dd>
+              <span class="tablero__anillo" aria-hidden="true"></span>
+              <span class="tablero__cifra">50 %</span>
+              <span class="tablero__nota">2 de 4 zonas visitadas</span>
+            </dd>
+          </div>
+          <div class="tablero__item tablero__item--tiempo" style="--avance: 48.9%">
+            <dt>Tiempo transcurrido</dt>
+            <dd>
+              <span class="tablero__cifra">22 <small>de 45 min</small></span>
+              <span class="tablero__barra" aria-hidden="true"><span></span></span>
+              <span class="tablero__nota">Quedan 23 min · fin 18:05</span>
+            </dd>
+          </div>
+          <div class="tablero__item">
+            <dt>Zonas visitadas</dt>
+            <dd><span class="tablero__cifra tablero__cifra--chica">2 de 4</span></dd>
+          </div>
+          <div class="tablero__item">
+            <dt>Participantes</dt>
+            <dd><span class="tablero__cifra tablero__cifra--chica">6</span> <span class="tablero__nota">5 conectados · 1 inactivo</span></dd>
+          </div>
+          <div class="tablero__item">
+            <dt>Reputación del guía</dt>
+            <dd><span class="tablero__cifra tablero__cifra--chica">4.8 <small>/ 5</small></span> <span class="tablero__nota">126 visitas guiadas</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="contenedor recorrido-cuerpo">
+      <!-- EL SACBÉ: las 4 zonas como etapas del camino -->
+      <section class="camino" aria-labelledby="sacbe-titulo">
+        <div class="camino__cabecera">
+          <h2 id="sacbe-titulo">Tu sacbé</h2>
+          <p>Recorrido libre: puedes ir a cualquier etapa. Ábrela para consultar su ficha.</p>
+          <ul class="leyenda" role="list" aria-label="Leyenda">
+            <li><span class="leyenda__muestra leyenda__muestra--visitada"></span>Visitada</li>
+            <li><span class="leyenda__muestra leyenda__muestra--actual"></span>Zona actual</li>
+            <li><span class="leyenda__muestra leyenda__muestra--pendiente"></span>Pendiente</li>
+            <li><span class="leyenda__muestra leyenda__muestra--bloqueada"></span>Requiere rol Guía</li>
+          </ul>
+        </div>
+
+        <ol class="sacbe" id="sacbe" role="list">
+          <li class="sacbe__inicio" aria-hidden="true"><span>17:20 · Inicio</span></li>
+
+          <!-- 1 · Gran Plaza -->
+          <li class="etapa etapa--visitada" id="etapa-plaza">
+            <details class="etapa__detalles">
+              <summary class="etapa__resumen">
+                <span class="etapa__hito" aria-hidden="true">✓</span>
+                <svg class="etapa__miniatura" viewBox="0 0 400 260" aria-hidden="true" focusable="false"><use href="#monumento-plaza"/></svg>
+                <span class="etapa__textos">
+                  <span class="etapa__numero">Etapa 1 · <span class="etapa__estado">Visitada</span></span>
+                  <span class="etapa__nombre">Gran Plaza</span>
+                  <span class="etapa__gente">
+                    <span class="persona persona--inactiva"><img class="apariencia apariencia--mini" src="../../img/apariencias/buho.svg" alt="">Muan · inactivo</span>
+                    <span class="persona persona--ana-fantasma"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">Balam (tú)</span>
+                  </span>
+                </span>
+                <span class="etapa__abrir" aria-hidden="true"></span>
+              </summary>
+              <div class="etapa__ficha">
+                <p>Explanada ceremonial alrededor de la cual se levantan los principales edificios del periodo Posclásico temprano.</p>
+                <p class="etapa__dato">Visitada a las 17:21 · 6 min</p>
+                <a class="boton boton--contorno etapa__ir" href="#ir-plaza">Volver a esta zona</a>
+              </div>
+            </details>
+
+            <!-- Desvío bloqueado (D29) -->
+            <div class="ramal">
+              <details class="ramal__detalles">
+                <summary class="ramal__resumen">
+                  <svg class="ramal__miniatura" viewBox="0 0 400 260" aria-hidden="true" focusable="false"><use href="#monumento-columnas"/></svg>
+                  <span class="etapa__textos">
+                    <span class="etapa__numero">Desvío fuera del recorrido</span>
+                    <span class="etapa__nombre">Grupo de las Mil Columnas</span>
+                    <span class="insignia insignia--restringida">
+                      <svg class="insignia__icono" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="8" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                      Requiere rol Guía
+                    </span>
+                  </span>
+                  <span class="etapa__abrir" aria-hidden="true"></span>
+                </summary>
+                <div class="etapa__ficha">
+                  <p>Gran espacio porticado al este de la Gran Plaza, donde cientos de columnas talladas con guerreros sostenían techos de madera y estuco. Columnatas que formaban galerías techadas para reuniones y actividades públicas.</p>
+                  <p class="ramal__aviso">Tu avatar tiene el rol Visitante: puedes consultar esta ficha, pero no entrar.</p>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- 2 · El Castillo -->
+          <li class="etapa etapa--visitada" id="etapa-castillo">
+            <details class="etapa__detalles">
+              <summary class="etapa__resumen">
+                <span class="etapa__hito" aria-hidden="true">✓</span>
+                <svg class="etapa__miniatura" viewBox="0 0 400 260" aria-hidden="true" focusable="false"><use href="#monument-kukulkan"/></svg>
+                <span class="etapa__textos">
+                  <span class="etapa__numero">Etapa 2 · <span class="etapa__estado">Visitada</span></span>
+                  <span class="etapa__nombre">El Castillo</span>
+                  <span class="etapa__gente">
+                    <span class="persona"><img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">Ixchel</span>
+                    <span class="persona persona--ana-fantasma"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">Balam (tú)</span>
+                  </span>
+                </span>
+                <span class="etapa__abrir" aria-hidden="true"></span>
+              </summary>
+              <div class="etapa__ficha">
+                <p>Templo de Kukulcán: nueve cuerpos escalonados y 365 escalones, uno por cada día del año solar. En cada equinoccio la luz dibuja una serpiente sobre la escalinata.</p>
+                <p class="etapa__dato">Visitada a las 17:27 · 9 min</p>
+                <a class="boton boton--contorno etapa__ir" href="#ir-castillo">Volver a esta zona</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 3 · Plataforma de Venus -->
+          <li class="etapa etapa--pendiente" id="etapa-venus">
+            <details class="etapa__detalles">
+              <summary class="etapa__resumen">
+                <span class="etapa__hito" aria-hidden="true">3</span>
+                <svg class="etapa__miniatura" viewBox="0 0 400 260" aria-hidden="true" focusable="false"><use href="#monumento-venus"/></svg>
+                <span class="etapa__textos">
+                  <span class="etapa__numero">Etapa 3 · <span class="etapa__estado">Pendiente</span></span>
+                  <span class="etapa__nombre">Plataforma de Venus</span>
+                  <span class="etapa__gente">
+                    <span class="persona persona--ayuda"><img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">Kuk · pidió ayuda</span>
+                    <span class="persona persona--ana-fantasma"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">Balam (tú)</span>
+                  </span>
+                </span>
+                <span class="etapa__abrir" aria-hidden="true"></span>
+              </summary>
+              <div class="etapa__ficha">
+                <p>Plataforma con escalinatas en sus cuatro lados y relieves del planeta Venus, usada para danzas y ceremonias.</p>
+                <p class="etapa__dato">La saltaste: sigue pendiente y cuenta para tu progreso cuando la termines.</p>
+                <a class="boton boton--primario etapa__ir" href="#ir-venus">Ir a esta zona</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 4 · Juego de Pelota: zona actual, ampliada -->
+          <li class="etapa etapa--actual" id="etapa-pelota">
+            <details class="etapa__detalles" open>
+              <summary class="etapa__resumen">
+                <span class="etapa__hito" aria-hidden="true"><img src="../../img/apariencias/jaguar-jade.svg" alt=""></span>
+                <span class="etapa__textos">
+                  <span class="etapa__numero">Etapa 4 · <span class="etapa__estado">Estás aquí</span></span>
+                  <span class="etapa__nombre">Juego de Pelota</span>
+                  <span class="etapa__gente">
+                    <span class="persona persona--ana"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">Balam (tú)</span>
+                    <span class="persona persona--guia"><img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">Kan · Guía</span>
+                    <span class="persona"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">Itzel</span>
+                  </span>
+                </span>
+                <span class="etapa__abrir" aria-hidden="true"></span>
+              </summary>
+              <div class="etapa__ficha">
+                <div class="escena" aria-hidden="true">
+                  <svg class="escena__monumento" viewBox="0 0 400 260" focusable="false"><use href="#monument-ballcourt"/></svg>
+                </div>
+                <p class="etapa__guia"><img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt=""> <span><strong>Kan (Carlos KarKerKar, guía)</strong> está explicando la zona.</span></p>
+                <p>La mayor cancha de Mesoamérica, con anillos de piedra en lo alto de sus muros y relieves de jugadores. El guía explica aquí las reglas del gran Juego de Pelota.</p>
+                <p class="etapa__dato">Llegaste a las 17:36 · al terminarla tu progreso sube a 75 %</p>
+                <div class="etapa__acciones">
+                  <a class="boton boton--primario" href="#saludar">Saludar al grupo</a>
+                  <a class="boton boton--contorno" href="#foto">Tomar fotografía</a>
+                </div>
+              </div>
+            </details>
+          </li>
+
+          <li class="sacbe__meta" aria-hidden="true"><span>18:05 · Fin de la visita</span></li>
+        </ol>
+      </section>
+
+      <!-- Acompañan al camino: participantes y acciones -->
+      <aside class="costado" aria-label="Grupo y acciones">
+        <section class="costado__bloque" aria-labelledby="grupo-titulo">
+          <h2 id="grupo-titulo">Grupo <span class="costado__cuenta">6</span></h2>
+          <ul class="grupo" role="list">
+            <li class="grupo__fila grupo__fila--tu">
+              <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+              <span><strong>Balam</strong> · Ana López Martínez (tú)<br><small>Juego de Pelota · Explorando</small></span>
+              <span class="punto punto--conectado" title="Conectada"></span>
+            </li>
+            <li class="grupo__fila grupo__fila--guia">
+              <img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+              <span><strong>Kan</strong> · Carlos KarKerKar <span class="insignia insignia--jade grupo__rol">Guía</span><br><small>Juego de Pelota · Explicando la zona</small></span>
+              <span class="punto punto--conectado" title="Conectado"></span>
+            </li>
+            <li class="grupo__fila">
+              <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+              <span><strong>Itzel</strong> · Carla Pérez<br><small>Juego de Pelota · Explorando</small></span>
+              <span class="punto punto--conectado" title="Conectada"></span>
+            </li>
+            <li class="grupo__fila">
+              <img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">
+              <span><strong>Ixchel</strong> · María López<br><small>El Castillo · Explorando</small></span>
+              <span class="punto punto--conectado" title="Conectada"></span>
+            </li>
+            <li class="grupo__fila grupo__fila--ayuda">
+              <img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">
+              <span><strong>Kuk</strong> · Jose Jose<br><small>Plataforma de Venus · Solicitó ayuda</small></span>
+              <span class="punto punto--ayuda" title="Solicitó ayuda"></span>
+            </li>
+            <li class="grupo__fila grupo__fila--inactivo">
+              <img class="apariencia apariencia--mini" src="../../img/apariencias/buho.svg" alt="">
+              <span><strong>Muan</strong> · Juan Ramírez<br><small>Gran Plaza · Inactivo 3 min</small></span>
+              <span class="punto punto--inactivo" title="Inactivo"></span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="costado__bloque" aria-labelledby="acciones-titulo">
+          <h2 id="acciones-titulo">Acciones</h2>
+          <ul class="acciones" role="list">
+            <li>
+              <details class="acciones__cambiar">
+                <summary class="accion"><span class="accion__icono" aria-hidden="true">⇄</span>Cambiar de zona</summary>
+                <ul class="acciones__zonas" role="list">
+                  <li><a href="#ir-plaza">Gran Plaza</a></li>
+                  <li><a href="#ir-castillo">El Castillo</a></li>
+                  <li><a href="#ir-venus">Plataforma de Venus</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a class="accion" href="#etapa-pelota"><span class="accion__icono" aria-hidden="true">i</span>Consultar información</a></li>
+            <li><a class="accion" href="#saludar"><span class="accion__icono" aria-hidden="true">☺</span>Saludar al grupo</a></li>
+            <li><a class="accion" href="#foto"><span class="accion__icono" aria-hidden="true">◎</span>Tomar fotografía</a></li>
+            <li><a class="accion accion--ayuda" href="#ayuda"><span class="accion__icono" aria-hidden="true">?</span>Solicitar ayuda al guía</a></li>
+            <li><a class="accion accion--salir" href="../../dashboard.html"><span class="accion__icono" aria-hidden="true">←</span>Salir de la visita</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <!-- Resultados de las acciones (simulados con :target, D15) -->
+    <div class="avisos">
+      <p class="aviso" id="saludar" role="status"><strong>Saludaste al grupo.</strong> Kan, Itzel y los demás ven tu saludo junto a Balam. <span class="aviso__demo">Demostración: no se envía nada.</span> <a class="aviso__cerrar" href="#cerrar">Cerrar</a></p>
+      <p class="aviso" id="foto" role="status"><strong>Fotografía tomada en el Juego de Pelota.</strong> Se guardaría en tu álbum de la visita. <span class="aviso__demo">Demostración: no se guarda nada.</span> <a class="aviso__cerrar" href="#cerrar">Cerrar</a></p>
+      <p class="aviso aviso--ayuda" id="ayuda" role="status"><strong>Solicitud enviada a Kan (guía).</strong> Te avisará cuando pueda atenderte. <span class="aviso__demo">Demostración: no se envía nada.</span> <a class="aviso__cerrar" href="#cerrar">Cerrar</a></p>
+      <p class="aviso" id="ir-plaza" role="status"><strong>Caminaste a la Gran Plaza.</strong> Mira tu marcador en la etapa 1. <span class="aviso__demo">Demostración: al recargar vuelves al Juego de Pelota.</span> <a class="aviso__cerrar" href="#cerrar">Cerrar</a></p>
+      <p class="aviso" id="ir-castillo" role="status"><strong>Caminaste a El Castillo.</strong> Mira tu marcador en la etapa 2. <span class="aviso__demo">Demostración: al recargar vuelves al Juego de Pelota.</span> <a class="aviso__cerrar" href="#cerrar">Cerrar</a></p>
+      <p class="aviso" id="ir-venus" role="status"><strong>Caminaste a la Plataforma de Venus.</strong> Mira tu marcador en la etapa 3. <span class="aviso__demo">Demostración: al recargar vuelves al Juego de Pelota.</span> <a class="aviso__cerrar" href="#cerrar">Cerrar</a></p>
+    </div>
+  </main>
+
+  <nav class="barra-prototipo" aria-label="Variantes del prototipo">
+    <a href="a-mapa.html" aria-label="Variante anterior">←</a>
+    <span class="barra-prototipo__actual"><span class="barra-prototipo__etiqueta">Prototipo</span>B · Ruta</span>
+    <a href="c-escena.html" aria-label="Variante siguiente">→</a>
+  </nav>
+</body>
+</html>
