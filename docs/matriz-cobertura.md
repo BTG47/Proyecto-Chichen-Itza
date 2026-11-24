@@ -13,9 +13,9 @@ Estados (plan §12): **IMPLEMENTADO** (funciona en el navegador), **SIMULADO** (
 | P2 `...PM (1).jpeg` | `index.html` | Nombre, imagen de Chichén Itzá, descripción, login/registro, info de recorridos | Frente P4 | IMPLEMENTADO |
 | P2 `...PM (2).jpeg` | `login.html` | Correo, contraseña, ingresar, enlace a registro | Frente P4 | IMPLEMENTADO (sesión SIMULADA, D25; sin «Mostrar» contraseña, D23) |
 | P2 `...PM (3).jpeg` | `registro.html` | Nombre, correo, contraseña, confirmación, botón | Frente P4 | IMPLEMENTADO (error de confirmación SIMULADO, D24) |
-| P2 `...PM.jpeg` | `dashboard.html` | Info del participante, avatar, recorridos disponibles y activos, perfil, menú | Frente P4 | IMPLEMENTADO («Iniciar visita» y «Unirme» PENDIENTE, I-02) |
+| P2 `...PM.jpeg` | `dashboard.html` | Info del participante, avatar, recorridos disponibles y activos, perfil, menú | Frente P4 | PENDIENTE: «Iniciar visita» y «Unirme» abren otra visita (I-02); el resto está implementado |
 | — | Navegación global | Cómo se desplaza el usuario entre páginas | Frente P4 | IMPLEMENTADO (D20; menú repetido en cada HTML, ADR-0001) |
-| — | `recorridos.html`, `mi-avatar.html`, `mi-perfil.html`, `como-funciona.html`, `acerca.html` | Enlaces del menú de P2 | Frente P4 | IMPLEMENTADO (guardado de perfil y avatar SIMULADO; botón de Mil Columnas PENDIENTE, I-03) |
+| — | `recorridos.html`, `mi-avatar.html`, `mi-perfil.html`, `como-funciona.html`, `acerca.html` | Enlaces del menú de P2 | Frente P4 | PENDIENTE: botón de Mil Columnas en el catálogo (I-03); el resto está implementado y el guardado de perfil y avatar es simulado |
 | P1 `participantes.html` | `admin/participantes.html` | Nombre, correo, fecha, rol asignado, avatar; CRUD; tabla | Frente P4 | IMPLEMENTADO (operaciones SIMULADAS) |
 | P1 `avatares.html` | `admin/avatares.html` | Nombre, participante, posición, estado, rol; CRUD; tabla | Frente P4 | IMPLEMENTADO con apariencia (D10; operaciones SIMULADAS) |
 | P1 `roles.html` | `admin/roles.html` | Nombre, descripción, permisos, zonas; CRUD; tabla | Frente P4 | IMPLEMENTADO (permisos de D27; operaciones SIMULADAS) |
@@ -30,14 +30,14 @@ Estados (plan §12): **IMPLEMENTADO** (funciona en el navegador), **SIMULADO** (
 | Imagen del sitio arqueológico | Bienvenida + mapa SVG | `recorrido.html` | IMPLEMENTADO (camino de zonas y vista general, D33) |
 | Avatar propio | — | `recorrido.html` | IMPLEMENTADO (Balam sobre la zona actual) |
 | Zona actual e indicador de ubicación | «Tu ubicación» en mapa | `recorrido.html` | IMPLEMENTADO |
-| Botones de navegación entre zonas | Tarjetas «Explorar lugar» (`alert`) | `recorrido.html` | IMPLEMENTADO para abrir fichas; el cambio de zona es SIMULADO |
+| Botones de navegación entre zonas | Tarjetas «Explorar lugar» (`alert`) | `recorrido.html` | SIMULADO: abren la ficha de cada zona, pero el cambio de zona solo muestra un aviso |
 | Ficha de zona: nombre, descripción histórica, imagen, info relevante | Tarjetas breves | `recorrido.html` | IMPLEMENTADO |
 | Restricciones de acceso / zona bloqueada | — | `recorrido.html` | IMPLEMENTADO (Mil Columnas, D29) |
-| Panel de participantes con nombres y avatares | Panel derecho (3 participantes) | `recorrido.html` | IMPLEMENTADO (6 participantes de D30; presencia SIMULADA) |
+| Panel de participantes con nombres y avatares | Panel derecho (3 participantes) | `recorrido.html` | SIMULADO (6 participantes fijos de D30) |
 | Guía identificado en el panel | Sección de guía separada | `recorrido.html` | IMPLEMENTADO |
 | Reputación del guía (gráfico) | Estrellas 4.9/5 | `recorrido.html` | SIMULADO (campo de interfaz, D33) |
 | Número de participantes | «12 en línea» | `recorrido.html` | SIMULADO (6, coherente con el resto del sitio) |
-| Zonas visitadas y progreso | Círculo 35 %, «3 de 8» | `recorrido.html` | IMPLEMENTADO el conteo de zonas (contadores CSS, D34); 50 % SIMULADO |
+| Zonas visitadas y progreso | Círculo 35 %, «3 de 8» | `recorrido.html` | SIMULADO: valores fijos; «N de M zonas» se calcula con contadores CSS a partir del marcado (D34) |
 | Tiempo transcurrido | Solo «tiempo estimado» | `recorrido.html` | SIMULADO (22 de 45 min) |
 | Datos de sesión (modalidad, estado) | — | `recorrido.html` | IMPLEMENTADO (grupal con guía, en curso, servidor) |
 | Consultar información | Tarjetas / dato curioso | `recorrido.html` | IMPLEMENTADO |
@@ -50,8 +50,8 @@ Estados (plan §12): **IMPLEMENTADO** (funciona en el navegador), **SIMULADO** (
 | Requisito | Estado |
 |---|---|
 | Sistema visual común (paleta, tipografía, componentes) | IMPLEMENTADO (D1, D18, D21) |
-| Datos demo coherentes entre páginas | IMPLEMENTADO (D2, D27, D28, D30; verificado en T06) |
+| Datos demo coherentes entre páginas | IMPLEMENTADO (D2, D27, D28, D30; verificado en T06). Ver también I-02 |
 | Dashboard → recorrido («Continuar visita») | IMPLEMENTADO (abre en la zona actual, D34) |
 | Recorrido → dashboard (salir) | IMPLEMENTADO |
 | Responsive en todas las páginas | IMPLEMENTADO (T09: 375, 768 y 1280 px) |
-| Pruebas T01–T12 y evidencias | IMPLEMENTADO: 10 aprobadas, 1 con observación (T07), 1 falla (T04, I-02). Ver `docs/pruebas.md` |
+| Pruebas T01–T12 y evidencias | IMPLEMENTADO: las 12 ejecutadas y registradas (10 aprobadas; T04 y T07 fallan por I-02 e I-03). Ver `docs/pruebas.md` |

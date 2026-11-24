@@ -53,7 +53,7 @@ Para quienes redactan el reporte. El sitio es **solo HTML y CSS** ([ADR-0001](ad
 | Funcionalidad | Motivo | Referencia |
 |---|---|---|
 | «Iniciar visita» (Cenote Sagrado) y «Unirme» (El Caracol y Las Monjas) abren la visita de El Castillo y la Gran Plaza | Solo existe una visita implementada; falta decidir cómo presentarlos | I-02 en `docs/pruebas.md` |
-| Botón de la ficha de Mil Columnas en el catálogo («Regístrate para visitarlo») | Registrarse da rol Visitante, que no puede entrar | I-03 en `docs/pruebas.md` |
+| Botón de la ficha de Mil Columnas en el catálogo («Regístrate para visitarlo») | Registrarse da rol Visitante, que no puede entrar (viene de D22) | I-03 en `docs/pruebas.md` |
 
 ## FUERA DE ALCANCE
 

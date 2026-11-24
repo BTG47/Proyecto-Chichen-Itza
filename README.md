@@ -15,7 +15,7 @@ Funciona directamente con `file://`. Si prefieres un servidor local:
 python3 -m http.server 8000   # y abre http://localhost:8000
 ```
 
-Navegadores probados: Chromium 153. Usa `:has()`, así que necesita un navegador actual (Chrome/Edge 105+, Firefox 121+, Safari 15.4+).
+Probado en Chromium 153. Usa el selector `:has()`, así que necesita un navegador que lo soporte (desde Chrome/Edge 105, Firefox 121 y Safari 15.4); en esos otros navegadores no se ha probado.
 
 ## Recorrido sugerido
 
