@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi avatar | Chichén Itzá Virtual</title>
+  <meta name="description" content="Elige la apariencia de tu avatar y revisa la vista previa antes de guardarla.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body class="area-panel">
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra lateral del panel: idéntica en dashboard, mi-avatar y mi-perfil (ADR-0001); solo cambia aria-current. -->
+  <header class="lateral">
+    <input class="lateral__interruptor" type="checkbox" id="lateral-interruptor">
+    <div class="lateral__cabecera">
+      <a class="marca lateral__marca" href="dashboard.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá</span>
+      </a>
+      <label class="lateral__boton" for="lateral-interruptor">
+        <span class="lateral__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú del panel</span>
+      </label>
+    </div>
+    <nav class="lateral__menu" aria-label="Panel del participante">
+      <ul class="lateral__enlaces" role="list">
+        <li><a href="dashboard.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Mi panel</a></li>
+        <li><a href="dashboard.html#recorridos-disponibles"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/></svg>Recorridos</a></li>
+        <li><a href="mi-avatar.html" aria-current="page"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9.8v.4M15 9.8v.4"/></svg>Mi avatar</a></li>
+        <li><a href="mi-perfil.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.4 3.4 0 0 1 6.4 0M14.5 10h3.5M14.5 14h3.5"/></svg>Mi perfil</a></li>
+      </ul>
+      <div class="lateral__pie">
+        <p class="lateral__usuario">
+          <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+          <span>Ana López<small>Balam · Visitante</small></span>
+        </p>
+        <a class="lateral__salir" href="index.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 8l-4 4 4 4M6 12h10"/></svg>Cerrar sesión</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="area-panel__principal">
+    <main id="contenido" class="tablero">
+      <div class="tablero__encabezado">
+        <div>
+          <p class="tablero__ruta"><a class="enlace-flecha enlace-flecha--atras" href="dashboard.html">Mi panel</a></p>
+          <h1 class="tablero__titulo">Mi avatar</h1>
+          <p class="tablero__subtitulo">Elige cómo te verán los demás participantes durante las visitas.</p>
+        </div>
+      </div>
+
+      <!-- Aviso que aparece al enviar el formulario (:target). Sesión SIMULADA: nada se guarda. -->
+      <div class="aviso-demo" id="guardado" role="status">
+        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg>
+        <div class="aviso-demo__cuerpo">
+          <p class="aviso-demo__titulo">Guardado de demostración</p>
+          <p>Este sitio es estático: la elección no se guarda y Balam conserva la apariencia de jaguar de jade.</p>
+        </div>
+        <a href="#contenido">Cerrar aviso</a>
+      </div>
+
+      <form class="selector-avatar" action="#guardado" method="get">
+        <section class="tarjeta vista-previa" aria-labelledby="vista-previa-titulo">
+          <h2 class="tarjeta__etiqueta" id="vista-previa-titulo">Vista previa</h2>
+          <div class="vista-previa__escena">
+            <figure class="vista-previa__opcion vista-previa__opcion--jaguar">
+              <img class="apariencia apariencia--grande" src="img/apariencias/jaguar-jade.svg" alt="Jaguar de jade">
+            </figure>
+            <figure class="vista-previa__opcion vista-previa__opcion--quetzal">
+              <img class="apariencia apariencia--grande" src="img/apariencias/quetzal.svg" alt="Quetzal">
+            </figure>
+            <figure class="vista-previa__opcion vista-previa__opcion--serpiente">
+              <img class="apariencia apariencia--grande" src="img/apariencias/serpiente-emplumada.svg" alt="Serpiente emplumada">
+            </figure>
+            <figure class="vista-previa__opcion vista-previa__opcion--buho">
+              <img class="apariencia apariencia--grande" src="img/apariencias/buho.svg" alt="Búho">
+            </figure>
+          </div>
+          <p class="vista-previa__nombre">Balam</p>
+          <p class="vista-previa__detalle">Avatar con rol Visitante</p>
+          <p class="vista-previa__estado">
+            <span class="insignia insignia--jade">Apariencia actual</span>
+            <span class="insignia insignia--naranja">Cambio sin guardar</span>
+          </p>
+        </section>
+
+        <fieldset class="tarjeta selector-avatar__opciones">
+          <legend>Elige una apariencia</legend>
+          <p class="tarjeta__texto">La apariencia cambia solo el aspecto de Balam; su rol y sus permisos de zona siguen igual.</p>
+
+          <ul class="opciones-apariencia" role="list">
+            <li>
+              <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-jaguar" value="jaguar-jade" checked>
+              <label class="opcion-apariencia" for="ap-jaguar">
+                <img class="apariencia" src="img/apariencias/jaguar-jade.svg" alt="">
+                <span class="opcion-apariencia__texto">
+                  <span class="opcion-apariencia__nombre">Jaguar de jade</span>
+                  <span class="opcion-apariencia__descripcion">Guardián de la noche y del inframundo.</span>
+                  <span class="insignia insignia--jade">Actual</span>
+                </span>
+              </label>
+            </li>
+            <li>
+              <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-quetzal" value="quetzal">
+              <label class="opcion-apariencia" for="ap-quetzal">
+                <img class="apariencia" src="img/apariencias/quetzal.svg" alt="">
+                <span class="opcion-apariencia__texto">
+                  <span class="opcion-apariencia__nombre">Quetzal</span>
+                  <span class="opcion-apariencia__descripcion">Ave sagrada de plumas verdes.</span>
+                </span>
+              </label>
+            </li>
+            <li>
+              <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-serpiente" value="serpiente-emplumada">
+              <label class="opcion-apariencia" for="ap-serpiente">
+                <img class="apariencia" src="img/apariencias/serpiente-emplumada.svg" alt="">
+                <span class="opcion-apariencia__texto">
+                  <span class="opcion-apariencia__nombre">Serpiente emplumada</span>
+                  <span class="opcion-apariencia__descripcion">Kukulcán, que desciende por El Castillo.</span>
+                </span>
+              </label>
+            </li>
+            <li>
+              <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-buho" value="buho">
+              <label class="opcion-apariencia" for="ap-buho">
+                <img class="apariencia" src="img/apariencias/buho.svg" alt="">
+                <span class="opcion-apariencia__texto">
+                  <span class="opcion-apariencia__nombre">Búho</span>
+                  <span class="opcion-apariencia__descripcion">Mensajero nocturno de la tradición maya.</span>
+                </span>
+              </label>
+            </li>
+          </ul>
+
+          <div class="acciones">
+            <button class="boton boton--primario" type="submit">Guardar apariencia</button>
+            <a class="boton boton--contorno" href="dashboard.html">Cancelar</a>
+          </div>
+          <p class="nota-demo">Demostración: al guardar verás la confirmación, pero la apariencia no se almacena.</p>
+        </fieldset>
+      </form>
+    </main>
+
+    <footer class="pie-panel">
+      <p>Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+      <nav aria-label="Agencia">
+        <a href="admin/participantes.html">Administración (demo)</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>
