@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo funciona | Chichén Itzá Virtual</title>
+  <meta name="description" content="Cómo registrarte, crear tu avatar, elegir un recorrido y hacer una visita individual o grupal con guía.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/publico.css">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <input class="menu-interruptor" type="checkbox" id="menu-interruptor">
+      <label class="menu-boton" for="menu-interruptor">
+        <span class="menu-boton__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú</span>
+      </label>
+      <nav class="menu" aria-label="Principal">
+        <ul class="menu__enlaces" role="list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="recorridos.html">Recorridos</a></li>
+          <li><a href="como-funciona.html" aria-current="page">Cómo funciona</a></li>
+          <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+        <div class="menu__acciones">
+          <a class="boton boton--contorno" href="login.html">Iniciar sesión</a>
+          <a class="boton boton--primario" href="registro.html">Registrarse</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="cabecera-pagina">
+      <div class="contenedor">
+        <p class="cabecera-pagina__etiqueta"><span class="insignia insignia--naranja">Guía rápida</span></p>
+        <h1 class="cabecera-pagina__titulo">Cómo funciona</h1>
+        <p class="cabecera-pagina__descripcion">
+          En cuatro pasos pasas de crear tu cuenta a caminar por la Gran Plaza con tu avatar,
+          por tu cuenta o junto a un grupo y su guía.
+        </p>
+      </div>
+    </section>
+
+    <section class="contenedor seccion" aria-labelledby="pasos-titulo">
+      <h2 class="visualmente-oculto" id="pasos-titulo">Pasos</h2>
+      <ol class="pasos" role="list">
+        <li class="paso">
+          <span class="paso__numero" aria-hidden="true">1</span>
+          <svg class="paso__icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="17" r="8"/>
+            <path d="M9 41c1.5-8 7.5-12 15-12s13.5 4 15 12"/>
+          </svg>
+          <h3>Regístrate</h3>
+          <p>Crea tu cuenta de participante con tu nombre, correo y una contraseña. Es gratis.</p>
+        </li>
+        <li class="paso">
+          <span class="paso__numero" aria-hidden="true">2</span>
+          <svg class="paso__icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path d="M10 18 L14 8 L20 15 H28 L34 8 L38 18 V28 C38 36 31 41 24 41 C17 41 10 36 10 28Z"/>
+            <circle cx="19" cy="25" r="1.6"/>
+            <circle cx="29" cy="25" r="1.6"/>
+            <path d="M21 32 q3 2.5 6 0"/>
+          </svg>
+          <h3>Crea tu avatar</h3>
+          <p>Cada participante controla un avatar. Elige su apariencia (jaguar de jade, quetzal o serpiente emplumada) y su rol: Visitante o Guía.</p>
+        </li>
+        <li class="paso">
+          <span class="paso__numero" aria-hidden="true">3</span>
+          <svg class="paso__icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path d="M6 12 L17 8 L31 13 L42 9 V36 L31 40 L17 35 L6 39Z"/>
+            <path d="M17 8 V35 M31 13 V40"/>
+          </svg>
+          <h3>Elige un recorrido</h3>
+          <p>Explora el <a href="recorridos.html">catálogo de recorridos</a> y revisa en cada ficha sus zonas, duración y modalidad.</p>
+        </li>
+        <li class="paso">
+          <span class="paso__numero" aria-hidden="true">4</span>
+          <svg class="paso__icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path d="M8 40 L24 8 L40 40Z"/>
+            <path d="M15 32 h18 M19 24 h10"/>
+          </svg>
+          <h3>Comienza la visita</h3>
+          <p>Recorre las zonas una a una, de forma individual o en un grupo coordinado por un guía, y consulta la historia de cada lugar.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="contenedor seccion" aria-labelledby="modalidades-titulo">
+      <div class="seccion__encabezado">
+        <h2 id="modalidades-titulo">Dos formas de visitar</h2>
+      </div>
+      <div class="comparativa">
+        <article class="tarjeta tarjeta--modalidad">
+          <p><span class="insignia insignia--naranja">Individual</span></p>
+          <h3>A tu ritmo</h3>
+          <p class="tarjeta__texto">Inicias la visita cuando quieras y avanzas de zona en zona sin esperar a nadie.</p>
+          <ul class="lista-marcas" role="list">
+            <li>Ideal para recorridos cortos, como el Cenote Sagrado</li>
+            <li>Tu progreso se muestra zona por zona</li>
+            <li>Puedes consultar la información histórica en cualquier momento</li>
+          </ul>
+        </article>
+        <article class="tarjeta tarjeta--modalidad">
+          <p><span class="insignia insignia--jade">Grupal · con guía</span></p>
+          <h3>En compañía</h3>
+          <p class="tarjeta__texto">Te unes a una visita con otros participantes; un avatar con rol Guía coordina al grupo y explica cada zona.</p>
+          <ul class="lista-marcas" role="list">
+            <li>Ves a los demás participantes y en qué zona está cada uno</li>
+            <li>Puedes solicitar ayuda al guía durante la visita</li>
+            <li>El guía decide cuándo avanzar a la siguiente zona</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="contenedor seccion" aria-labelledby="roles-titulo">
+      <div class="seccion__encabezado">
+        <h2 id="roles-titulo">Roles del avatar</h2>
+      </div>
+      <p class="seccion__intro">El rol pertenece al avatar y define qué acciones puede realizar y a qué zonas puede entrar.</p>
+      <div class="tabla-contenedor">
+        <table class="tabla tabla--roles">
+          <caption class="visualmente-oculto">Permisos de cada rol</caption>
+          <thead>
+            <tr>
+              <th scope="col">Permiso</th>
+              <th scope="col">Visitante</th>
+              <th scope="col">Guía</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Explorar las zonas de los recorridos abiertos</th>
+              <td><span class="permiso permiso--si">Sí</span></td>
+              <td><span class="permiso permiso--si">Sí</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Consultar la información histórica de cada zona</th>
+              <td><span class="permiso permiso--si">Sí</span></td>
+              <td><span class="permiso permiso--si">Sí</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Coordinar a un grupo y explicar las zonas</th>
+              <td><span class="permiso permiso--no">No</span></td>
+              <td><span class="permiso permiso--si">Sí</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Entrar al Grupo de las Mil Columnas</th>
+              <td><span class="permiso permiso--no">No</span></td>
+              <td><span class="permiso permiso--si">Sí</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="contenedor seccion" aria-labelledby="preguntas-titulo">
+      <div class="seccion__encabezado">
+        <h2 id="preguntas-titulo">Preguntas frecuentes</h2>
+      </div>
+      <div class="preguntas">
+        <details class="pregunta">
+          <summary>¿Qué diferencia hay entre un recorrido y una visita?</summary>
+          <p>Un <strong>recorrido</strong> es una ruta del catálogo, como «El Castillo y la Gran Plaza». Una <strong>visita</strong> es cada vez que alguien lo realiza, con su fecha, su modalidad y sus participantes. Un mismo recorrido puede visitarse muchas veces.</p>
+        </details>
+        <details class="pregunta">
+          <summary>¿Puedo tener más de un avatar?</summary>
+          <p>No. Cada participante controla exactamente un avatar, aunque puedes cambiar su apariencia cuando quieras desde tu panel.</p>
+        </details>
+        <details class="pregunta">
+          <summary>¿Por qué no puedo entrar a algunas zonas?</summary>
+          <p>Algunas zonas, como las del Grupo de las Mil Columnas, requieren el rol Guía. En el mapa de la visita aparecen con un candado: puedes leer su ficha, pero no entrar.</p>
+        </details>
+        <details class="pregunta">
+          <summary>¿Necesito instalar algo?</summary>
+          <p>No. Los recorridos se realizan desde el navegador, en computadora, tableta o teléfono.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="contenedor seccion">
+      <div class="llamado">
+        <div>
+          <h2>¿Listo para tu primera visita?</h2>
+          <p>Crea tu cuenta, elige tu avatar y empieza por el recorrido que más te llame la atención.</p>
+        </div>
+        <div class="llamado__acciones">
+          <a class="boton boton--claro boton--grande" href="registro.html">Crear cuenta gratis</a>
+          <a class="llamado__enlace enlace-flecha" href="recorridos.html">Ver recorridos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <rect class="logo__fondo" width="40" height="40" rx="10"/>
+              <g class="logo__piramide">
+                <rect x="17" y="9" width="6" height="5" rx="1"/>
+                <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+                <rect x="9" y="22" width="22" height="8" rx="1"/>
+              </g>
+            </svg>
+            <span>Chichén Itzá Virtual</span>
+          </a>
+          <p>Recorridos virtuales por el sitio arqueológico, de forma individual o en grupo.</p>
+        </div>
+        <nav aria-labelledby="pie-explora">
+          <h2 class="pie__titulo" id="pie-explora">Explora</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="recorridos.html">Recorridos</a></li>
+            <li><a href="como-funciona.html">Cómo funciona</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-cuenta">
+          <h2 class="pie__titulo" id="pie-cuenta">Tu cuenta</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="login.html">Iniciar sesión</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-agencia">
+          <h2 class="pie__titulo" id="pie-agencia">Agencia</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="admin/participantes.html">Administración (demo)</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__nota">Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+    </div>
+  </footer>
+</body>
+</html>
