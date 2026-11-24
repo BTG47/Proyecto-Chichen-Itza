@@ -828,6 +828,7 @@
     --v-ancho-ficha: min(18.5rem, 50vw - 23.5rem);
     top: calc(var(--v-nodo) / 2 - 2.5rem);
     left: calc(100% + var(--v-hueco-ficha) + (1 - var(--x)) * var(--v-paso));
+    scroll-margin-top: 13rem;     /* la columna de fichas pasa bajo el guía fijo (~11rem de alto) */
   }
 
   /* Pico hacia el nodo */
