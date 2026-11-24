@@ -1359,7 +1359,8 @@
 /* ---------- Avisos: una sola ranura ----------
  * Todos ocupan la misma celda: si dos coinciden se tapan en vez de apilarse. El orden del
  * HTML decide cuál queda encima (saludo < foto < ayuda < cambio de zona). Los de acciones
- * se desvanecen solos; el de cambio de zona y la ayuda tienen su propio botón. */
+ * se desvanecen solos (la ayuda se cancela también con ✋, que queda resaltado); el de
+ * cambio de zona se cierra con su botón. */
 .avisos {
   position: fixed;
   top: 5.25rem;

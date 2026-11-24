@@ -132,7 +132,7 @@
     <main class="escenario" id="camino">
       <div class="camino-scroll">
 
-        <!-- ===== Voz del guía: lo primero que se lee; se queda visible al bajar ===== -->
+        <!-- ===== Voz del guía: lo primero que se lee; se queda visible al bajar (ESTADO: zona que explica) ===== -->
         <label class="voz-pildora" for="voz-arriba"><span aria-hidden="true">💬</span> <strong>Kan</strong> explica… <small>Juego de Pelota</small></label>
 
         <section class="voz" aria-labelledby="voz-titulo">
@@ -463,7 +463,7 @@
         </div>
       </section>
 
-      <!-- ===== Grupo: participantes y su Conexion ===== -->
+      <!-- ===== Grupo: participantes y su Conexion (ESTADO: zona de cada uno) ===== -->
       <section class="grupo" aria-labelledby="grupo-titulo">
         <h2 id="grupo-titulo" class="grupo__titulo">Grupo de la visita</h2>
         <p class="grupo__resumen"><span class="punto punto--vivo" aria-hidden="true"></span>6 participantes · 5 conectados · 1 inactivo</p>
@@ -517,13 +517,13 @@
 
     <div class="mando">
       <div class="mando__botones">
-        <a class="mando__boton" href="#ficha-castillo" title="Zona anterior: El Castillo" aria-label="Zona anterior: El Castillo"><svg aria-hidden="true"><use href="#i-anterior"/></svg></a>
+        <a class="mando__boton" href="#ficha-castillo" title="Última zona visitada: El Castillo" aria-label="Última zona visitada: El Castillo"><svg aria-hidden="true"><use href="#i-anterior"/></svg></a>
         <label class="mando__boton mando__boton--ayuda" for="pedir-ayuda" title="Pedir ayuda al guía">
           <span aria-hidden="true">✋</span><span class="visualmente-oculto">Pedir ayuda al guía</span>
         </label>
-        <a class="mando__boton" href="#ficha-venus" title="Siguiente zona: Plataforma de Venus (pendiente)" aria-label="Siguiente zona: Plataforma de Venus"><svg aria-hidden="true"><use href="#i-siguiente"/></svg></a>
+        <a class="mando__boton" href="#ficha-venus" title="Zona pendiente: Plataforma de Venus" aria-label="Zona pendiente: Plataforma de Venus"><svg aria-hidden="true"><use href="#i-siguiente"/></svg></a>
       </div>
-      <!-- Progreso = Participacion.calcularProgreso() · tiempo desde SesionRecorrido.fechaInicio (17:20) -->
+      <!-- ESTADO · Progreso = Participacion.calcularProgreso() · tiempo desde SesionRecorrido.fechaInicio (17:20) -->
       <div class="pista">
         <time class="pista__tiempo" datetime="PT22M">22:00</time>
         <div class="pista__barra" role="progressbar" aria-label="Progreso de la visita" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 %, 2 de 4 zonas visitadas">
