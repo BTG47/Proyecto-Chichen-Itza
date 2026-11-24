@@ -12,18 +12,12 @@
 }
 
 .portada__etiqueta {
-  display: inline-block;
   margin-bottom: var(--espacio-4);
-  padding: .3rem .8rem;
-  border-radius: var(--radio-pildora);
-  background: var(--color-naranja-claro);
-  color: var(--color-naranja-oscuro);
-  font-size: var(--texto-sm);
-  font-weight: var(--peso-medio);
 }
 
 .portada__titulo {
   margin-bottom: var(--espacio-4);
+  font-size: var(--texto-portada);
   letter-spacing: -.01em;
 }
 
@@ -73,7 +67,6 @@
 .ilus__cielo-alto { stop-color: var(--ilus-cielo-alto); }
 .ilus__cielo-bajo { stop-color: var(--ilus-cielo-bajo); }
 .ilus__sol { fill: var(--ilus-sol); }
-.ilus__halo { fill: var(--ilus-sol); opacity: .35; }
 .ilus__colina { fill: var(--ilus-colina); }
 .ilus__pasto { fill: var(--ilus-pasto); }
 .ilus__ave { fill: none; stroke: var(--ilus-ave); stroke-width: 2.2; stroke-linecap: round; }
@@ -103,7 +96,10 @@
 }
 
 .ilus__halo {
-  transform-origin: 520px 92px;
+  fill: var(--ilus-sol);
+  opacity: .35;
+  transform-box: fill-box;
+  transform-origin: center;
   animation: halo 6s ease-in-out infinite;
 }
 

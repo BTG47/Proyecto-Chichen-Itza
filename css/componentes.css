@@ -47,6 +47,7 @@
 
 /* Interruptor del menú móvil (checkbox oculto + label, sin JS) */
 .menu-interruptor {
+  display: none;
   position: absolute;
   opacity: 0;
   pointer-events: none;
@@ -69,7 +70,7 @@
   display: block;
   width: 1.2rem;
   height: 2px;
-  border-radius: 2px;
+  border-radius: var(--radio-pildora);
   background: var(--color-tinta);
   transition: transform var(--transicion-media), background-color var(--transicion-rapida);
 }
@@ -145,6 +146,10 @@
 }
 
 @media (max-width: 60rem) {
+  .menu-interruptor {
+    display: block;
+  }
+
   .menu-boton {
     display: inline-flex;
     margin-left: auto;
@@ -367,13 +372,16 @@
   border-radius: inherit;
 }
 
-.tarjeta__enlace-principal:focus-visible {
-  outline: none;
-}
+/* Con :has() el anillo de foco rodea la tarjeta completa; sin él, queda en el enlace */
+@supports selector(:has(*)) {
+  .tarjeta__enlace-principal:focus-visible {
+    outline: none;
+  }
 
-.tarjeta--enlace:has(.tarjeta__enlace-principal:focus-visible) {
-  outline: 3px solid var(--color-foco);
-  outline-offset: 3px;
+  .tarjeta--enlace:has(.tarjeta__enlace-principal:focus-visible) {
+    outline: 3px solid var(--color-foco);
+    outline-offset: 3px;
+  }
 }
 
 /* ---------- Campos de formulario ---------- */
@@ -453,7 +461,9 @@
   background: var(--color-superficie-suave);
 }
 
-/* ---------- Paneles :target (patrón de la Persona 1) ---------- */
+/* ---------- Paneles :target (patrón de la Persona 1) ----------
+ * Marcado: <div class="paneles"> con un .panel-default y varios .panel.
+ * El nombre .panel-default se conserva del CRUD de la Persona 1. */
 .panel {
   display: none;
   padding: var(--espacio-5);
@@ -469,6 +479,6 @@
   display: block;
 }
 
-:has(> .panel:target) > .panel-default:not(:target) {
+.paneles:has(> .panel:target) > .panel-default:not(:target) {
   display: none;
 }

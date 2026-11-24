@@ -1,6 +1,6 @@
 /*
  * Base: reinicio, tipografía, foco visible y utilidades.
- * Todos los valores vienen de tokens.css.
+ * Colores, fuentes y medidas principales vienen de tokens.css.
  */
 *,
 *::before,
@@ -40,7 +40,7 @@ h4 {
   text-wrap: balance;
 }
 
-h1 { font-size: var(--texto-portada); }
+h1 { font-size: var(--texto-3xl); }
 h2 { font-size: var(--texto-2xl); }
 h3 { font-size: var(--texto-lg); }
 
