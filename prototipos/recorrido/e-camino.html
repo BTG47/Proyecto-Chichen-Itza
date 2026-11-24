@@ -6,7 +6,7 @@
   - Camino tipo Duolingo: <ol class="camino"> de bloques de zona; el zigzag y los tramos
     salen de :nth-child (no hay coordenadas por zona).
   - «Vista general»: el MISMO <ol> se reestiliza como mapa esquemático (radios + :has()).
-  - Fichas de zona con :target (sin destino, se muestra la zona actual).
+  - Ficha de zona = bocadillo anclado a su nodo, con :target (hoja inferior en móvil).
   - Barra «Reproduciendo ahora» tipo Spotify; ayuda, saludos y fotografía con checkboxes
     ocultos + <label>; filtro de la bitácora y pestañas con radios + :has().
   Datos: prototipos/recorrido/DATOS.md. No es código de producción.
@@ -105,19 +105,10 @@
   <header class="cabecera">
     <span class="cabecera__marca" aria-hidden="true"><svg><use href="#i-marca"/></svg></span>
     <div class="cabecera__titulo">
-      <p class="cabecera__ceja"><span class="punto punto--vivo" aria-hidden="true"></span>En curso · Grupal con guía · 45 min</p>
+      <p class="cabecera__ceja"><span class="punto punto--vivo" aria-hidden="true"></span>En curso · Grupal con guía</p>
       <h1>El Castillo y la Gran Plaza</h1>
     </div>
     <p class="cabecera__conexion" title="Servidor de la sesión"><span class="punto punto--vivo" aria-hidden="true"></span><span>Región Sureste <small>Conectada</small></span></p>
-    <label class="cabecera__grupo" for="tab-grupo">
-      <span class="pila" aria-hidden="true">
-        <img src="../../img/apariencias/serpiente-emplumada.svg" alt="">
-        <img src="../../img/apariencias/jaguar-jade.svg" alt="">
-        <img src="../../img/apariencias/quetzal.svg" alt="">
-        <img src="../../img/apariencias/buho.svg" alt="">
-      </span>
-      <span><strong>6</strong> en el grupo <small>5 en línea</small></span>
-    </label>
     <a class="boton boton--contorno cabecera__salir" href="../../dashboard.html"><svg aria-hidden="true"><use href="#i-salir"/></svg>Salir</a>
   </header>
 
@@ -140,21 +131,21 @@
         <!--
           ======== PLANTILLA · BLOQUE DE ZONA ========
           Añadir una zona = copiar este <li> dentro de <ol class="camino">, antes de la meta.
-          El número, el zigzag, los tramos del camino y su lugar en la «Vista general» salen
-          solos de su posición en la lista (:nth-child y contadores CSS). Nada más que tocar.
+          El número («Zona N»), el zigzag, los tramos, el lado del bocadillo y su lugar en la
+          «Vista general» salen solos de su posición en la lista (:nth-child y counter()).
 
           <li class="nodo nodo--pendiente">               (visitada | actual | pendiente [+ nodo--saltada])
             <div class="nodo__marco">
               <a class="nodo__boton" href="#ficha-ID" aria-label="NOMBRE: pendiente. Ver ficha">
-                <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-ID"/></svg>   (ícono pequeño del monumento)
+                <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-ID"/></svg>   (ícono del monumento)
               </a>
               <span class="nodo__nombre">NOMBRE</span>
               <span class="nodo__aqui">N aquí</span>
+              <article class="ficha" id="ficha-ID" aria-labelledby="t-ID">   (bocadillo :target)
+                cerrar · medallón con el mismo <use> · estado · NOMBRE · una línea ·
+                quién está · <details> «Datos curiosos» con 2–3 <li> · acción
+              </article>
             </div>
-            <article class="ficha" id="ficha-ID" aria-labelledby="t-ID">
-              … medallón con el mismo <use>, NOMBRE, descripción, «Aquí ahora»,
-              2–3 <details class="curioso"> con datos curiosos, acción …
-            </article>
           </li>
 
           Recorrido nuevo = otra página con otro <ol class="camino"> de estos bloques
@@ -162,7 +153,7 @@
         -->
         <ol class="camino" role="list" aria-label="Zonas del recorrido, en el orden del catálogo">
 
-          <!-- ===== Zona 1 · Gran Plaza (con zona vecina: Mil Columnas) ===== -->
+          <!-- ===== Gran Plaza (con zona vecina: Mil Columnas) ===== -->
           <li class="nodo nodo--visitada">
             <div class="nodo__marco">
               <a class="nodo__boton" href="#ficha-plaza" aria-label="Gran Plaza: visitada. Ver ficha">
@@ -170,57 +161,59 @@
               </a>
               <span class="nodo__nombre">Gran Plaza</span>
               <span class="nodo__aqui"><img src="../../img/apariencias/buho.svg" alt="">1 aquí</span>
+
               <!-- Zona vecina fuera del recorrido (D29): sale de la Gran Plaza -->
-              <a class="vecina" href="#ficha-columnas" aria-label="Grupo de las Mil Columnas: requiere rol Guía. Ver ficha">
-                <span class="vecina__boton"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-columnas"/></svg><span class="vecina__candado"><svg aria-hidden="true"><use href="#i-candado"/></svg></span></span>
-                <span class="vecina__texto">Mil Columnas<small>Requiere rol Guía</small></span>
-              </a>
+              <div class="vecina">
+                <a class="vecina__enlace" href="#ficha-columnas" aria-label="Grupo de las Mil Columnas: requiere rol Guía. Ver ficha">
+                  <span class="vecina__boton"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-columnas"/></svg><span class="vecina__candado"><svg aria-hidden="true"><use href="#i-candado"/></svg></span></span>
+                  <span class="vecina__texto">Mil Columnas<small>Requiere rol Guía</small></span>
+                </a>
+                <article class="ficha ficha--vecina" id="ficha-columnas" aria-labelledby="t-columnas">
+                  <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+                  <header class="ficha__cabecera">
+                    <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-columnas"/></svg></span>
+                    <div>
+                      <p class="ficha__etiqueta"><svg aria-hidden="true"><use href="#i-candado"/></svg>Requiere rol Guía</p>
+                      <h2 id="t-columnas">Grupo de las Mil Columnas</h2>
+                    </div>
+                  </header>
+                  <p class="ficha__descripcion">Espacio porticado al este de la Gran Plaza: cientos de columnas talladas con guerreros.</p>
+                  <details class="curioso">
+                    <summary>Datos curiosos <small>2</small></summary>
+                    <ul role="list">
+                      <li>El vecino Templo de los Guerreros está coronado por un chac mool, figura reclinada que sostiene un recipiente sobre el vientre.</li>
+                      <li>Las columnas formaban galerías techadas; las vigas de madera desaparecieron hace siglos.</li>
+                    </ul>
+                  </details>
+                  <p class="ficha__pie">Fuera del recorrido. Con rol Visitante puedes consultarla, pero no entrar.</p>
+                </article>
+              </div>
+
+              <article class="ficha" id="ficha-plaza" aria-labelledby="t-plaza">
+                <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+                <header class="ficha__cabecera">
+                  <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-plaza"/></svg></span>
+                  <div>
+                    <p class="ficha__etiqueta"><span class="ficha__num"></span> · Visitada</p>
+                    <h2 id="t-plaza">Gran Plaza</h2>
+                  </div>
+                </header>
+                <p class="ficha__descripcion">Explanada ceremonial rodeada por los principales edificios del Posclásico temprano.</p>
+                <p class="ficha__aqui"><span class="pila"><img src="../../img/apariencias/buho.svg" alt=""></span>Muan · inactivo 3 min</p>
+                <details class="curioso">
+                  <summary>Datos curiosos <small>3</small></summary>
+                  <ul role="list">
+                    <li>La explanada se niveló con rellenos de piedra y se cubrió con pisos de estuco renovados varias veces.</li>
+                    <li>De su lado norte parte un sacbé, calzada elevada de unos 300 metros, hasta el Cenote Sagrado.</li>
+                    <li>Cerca del Juego de Pelota está el Tzompantli, cuyos muros están tallados con hileras de cráneos.</li>
+                  </ul>
+                </details>
+                <a class="ficha__ir" href="#aviso-viaje">Ir a esta zona →</a>
+              </article>
             </div>
-
-            <article class="ficha" id="ficha-plaza" aria-labelledby="t-plaza">
-              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
-              <header class="ficha__cabecera">
-                <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-plaza"/></svg></span>
-                <div>
-                  <p class="ficha__etiqueta">Zona 1 de 4 · <span class="estado estado--visitada">Visitada</span></p>
-                  <h2 id="t-plaza">Gran Plaza</h2>
-                </div>
-              </header>
-              <p class="ficha__descripcion">Explanada ceremonial alrededor de la cual se levantan los principales edificios del periodo Posclásico temprano.</p>
-              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">1</span></h3>
-              <ul class="aqui" role="list">
-                <li class="aqui__item aqui__item--inactivo"><img class="apariencia apariencia--mini" src="../../img/apariencias/buho.svg" alt=""> Juan · Muan <small>Inactivo 3 min</small></li>
-              </ul>
-              <h3 class="ficha__sub">Datos curiosos</h3>
-              <div class="curiosos">
-                <details class="curioso"><summary>Un suelo hecho a mano</summary><p>La explanada se niveló de forma artificial con rellenos de piedra y se cubrió con pisos de estuco renovados varias veces.</p></details>
-                <details class="curioso"><summary>El camino blanco al cenote</summary><p>Del norte de la plaza parte un sacbé, calzada elevada de unos 300 metros, que llega al Cenote Sagrado.</p></details>
-                <details class="curioso"><summary>Muros de cráneos</summary><p>Cerca del Juego de Pelota está el Tzompantli, una plataforma cuyos muros están tallados con hileras de cráneos.</p></details>
-              </div>
-              <a class="boton boton--contorno ficha__accion" href="#aviso-viaje">Ir a esta zona<svg aria-hidden="true"><use href="#i-entrar"/></svg></a>
-            </article>
-
-            <article class="ficha ficha--vecina" id="ficha-columnas" aria-labelledby="t-columnas">
-              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
-              <header class="ficha__cabecera">
-                <span class="medallon medallon--bloqueado"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-columnas"/></svg></span>
-                <div>
-                  <p class="ficha__etiqueta">Zona vecina · fuera del recorrido</p>
-                  <h2 id="t-columnas">Grupo de las Mil Columnas</h2>
-                </div>
-              </header>
-              <p><span class="insignia insignia--restringida"><svg class="insignia__icono" aria-hidden="true"><use href="#i-candado"/></svg>Requiere rol Guía</span></p>
-              <p class="ficha__descripcion">Gran espacio porticado al este de la Gran Plaza, donde cientos de columnas talladas con guerreros sostenían techos de madera y estuco.</p>
-              <h3 class="ficha__sub">Datos curiosos</h3>
-              <div class="curiosos">
-                <details class="curioso"><summary>Un chac mool en la cima</summary><p>El vecino Templo de los Guerreros está coronado por un chac mool, figura reclinada que sostiene un recipiente sobre el vientre.</p></details>
-                <details class="curioso"><summary>Bosque de piedra</summary><p>Las columnas que hoy se ven solas formaban galerías techadas; las vigas de madera desaparecieron hace siglos.</p></details>
-              </div>
-              <p class="ficha__nota ficha__nota--candado">Tu avatar tiene rol Visitante: puedes consultar esta ficha, pero no entrar.</p>
-            </article>
           </li>
 
-          <!-- ===== Zona 2 · El Castillo ===== -->
+          <!-- ===== El Castillo ===== -->
           <li class="nodo nodo--visitada">
             <div class="nodo__marco">
               <a class="nodo__boton" href="#ficha-castillo" aria-label="El Castillo: visitada. Ver ficha">
@@ -228,67 +221,62 @@
               </a>
               <span class="nodo__nombre">El Castillo</span>
               <span class="nodo__aqui"><img src="../../img/apariencias/quetzal.svg" alt="">1 aquí</span>
+              <article class="ficha" id="ficha-castillo" aria-labelledby="t-castillo">
+                <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+                <header class="ficha__cabecera">
+                  <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-kukulkan"/></svg></span>
+                  <div>
+                    <p class="ficha__etiqueta"><span class="ficha__num"></span> · Visitada</p>
+                    <h2 id="t-castillo">El Castillo</h2>
+                  </div>
+                </header>
+                <p class="ficha__descripcion">Templo de Kukulcán: nueve cuerpos escalonados y 365 escalones, uno por día del año.</p>
+                <p class="ficha__aqui"><span class="pila"><img src="../../img/apariencias/quetzal.svg" alt=""></span>Ixchel</p>
+                <details class="curioso">
+                  <summary>Datos curiosos <small>3</small></summary>
+                  <ul role="list">
+                    <li>Cada una de sus cuatro escalinatas tiene 91 escalones: 364, más la plataforma del templo, 365.</li>
+                    <li>En los equinoccios, la sombra de los cuerpos escalonados dibuja triángulos de luz que bajan hasta una cabeza de serpiente.</li>
+                    <li>Dentro hay una pirámide más antigua; en su templo se halló un trono en forma de jaguar pintado de rojo.</li>
+                  </ul>
+                </details>
+                <a class="ficha__ir" href="#aviso-viaje">Ir a esta zona →</a>
+              </article>
             </div>
-
-            <article class="ficha" id="ficha-castillo" aria-labelledby="t-castillo">
-              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
-              <header class="ficha__cabecera">
-                <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-kukulkan"/></svg></span>
-                <div>
-                  <p class="ficha__etiqueta">Zona 2 de 4 · <span class="estado estado--visitada">Visitada</span></p>
-                  <h2 id="t-castillo">El Castillo</h2>
-                </div>
-              </header>
-              <p class="ficha__descripcion">Templo de Kukulcán: nueve cuerpos escalonados y 365 escalones, uno por cada día del año solar.</p>
-              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">1</span></h3>
-              <ul class="aqui" role="list">
-                <li class="aqui__item"><img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt=""> María · Ixchel <small>Explorando</small></li>
-              </ul>
-              <h3 class="ficha__sub">Datos curiosos</h3>
-              <div class="curiosos">
-                <details class="curioso"><summary>Las cuentas de los escalones</summary><p>Cada una de las cuatro escalinatas tiene 91 escalones: 364 en total, más la plataforma del templo superior, 365.</p></details>
-                <details class="curioso"><summary>La serpiente de luz</summary><p>En los equinoccios, la sombra de los cuerpos escalonados dibuja triángulos de luz en la alfarda norte, que bajan hasta una cabeza de serpiente.</p></details>
-                <details class="curioso"><summary>Una pirámide dentro de otra</summary><p>Bajo el edificio visible hay una pirámide más antigua; en su templo se halló un trono en forma de jaguar pintado de rojo.</p></details>
-              </div>
-              <a class="boton boton--contorno ficha__accion" href="#aviso-viaje">Ir a esta zona<svg aria-hidden="true"><use href="#i-entrar"/></svg></a>
-            </article>
           </li>
 
-          <!-- ===== Zona 3 · Plataforma de Venus (pendiente: Ana la saltó) ===== -->
+          <!-- ===== Plataforma de Venus (pendiente: Ana la saltó) ===== -->
           <li class="nodo nodo--pendiente nodo--saltada">
             <div class="nodo__marco">
               <a class="nodo__boton" href="#ficha-venus" aria-label="Plataforma de Venus: pendiente, la saltaste. Ver ficha">
                 <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-venus"/></svg>
               </a>
               <span class="nodo__nombre">Plataforma de Venus</span>
-              <span class="nodo__aqui nodo__aqui--alerta"><img src="../../img/apariencias/quetzal.svg" alt="">1 aquí<span class="nodo__extra"> · pidió ayuda</span></span>
+              <span class="nodo__aqui nodo__aqui--alerta"><img src="../../img/apariencias/quetzal.svg" alt="">1 aquí</span>
+              <article class="ficha" id="ficha-venus" aria-labelledby="t-venus">
+                <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+                <header class="ficha__cabecera">
+                  <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-venus"/></svg></span>
+                  <div>
+                    <p class="ficha__etiqueta"><span class="ficha__num"></span> · Pendiente</p>
+                    <h2 id="t-venus">Plataforma de Venus</h2>
+                  </div>
+                </header>
+                <p class="ficha__descripcion">Plataforma con escalinatas en sus cuatro lados y relieves de Venus, para danzas y ceremonias.</p>
+                <p class="ficha__aqui ficha__aqui--alerta"><span class="pila"><img src="../../img/apariencias/quetzal.svg" alt=""></span>Kuk · pidió ayuda</p>
+                <details class="curioso">
+                  <summary>Datos curiosos <small>2</small></summary>
+                  <ul role="list">
+                    <li>Sus tableros combinan el símbolo de Venus con numerales de barras y puntos, ligados al ciclo del planeta.</li>
+                    <li>Las alfardas de sus escalinatas rematan en cabezas de serpiente emplumada, como en El Castillo.</li>
+                  </ul>
+                </details>
+                <a class="ficha__ir" href="#aviso-viaje">Ir a esta zona →</a>
+              </article>
             </div>
-
-            <article class="ficha" id="ficha-venus" aria-labelledby="t-venus">
-              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
-              <header class="ficha__cabecera">
-                <span class="medallon medallon--pendiente"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-venus"/></svg></span>
-                <div>
-                  <p class="ficha__etiqueta">Zona 3 de 4 · <span class="estado estado--pendiente">Pendiente</span></p>
-                  <h2 id="t-venus">Plataforma de Venus</h2>
-                </div>
-              </header>
-              <p class="ficha__descripcion">Plataforma con escalinatas en sus cuatro lados y relieves del planeta Venus, usada para danzas y ceremonias.</p>
-              <p class="ficha__nota">Pasaste de El Castillo al Juego de Pelota: esta zona sigue pendiente (recorrido libre).</p>
-              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">1</span></h3>
-              <ul class="aqui" role="list">
-                <li class="aqui__item"><img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt=""> Jose · Kuk <span class="estado estado--alerta">Pidió ayuda</span></li>
-              </ul>
-              <h3 class="ficha__sub">Datos curiosos</h3>
-              <div class="curiosos">
-                <details class="curioso"><summary>El planeta en piedra</summary><p>Sus tableros combinan el símbolo de Venus con numerales mayas de barras y puntos, ligados al ciclo del planeta que los mayas registraban con precisión.</p></details>
-                <details class="curioso"><summary>Serpientes en las escaleras</summary><p>Las alfardas de sus escalinatas rematan en cabezas de serpiente emplumada, como en El Castillo.</p></details>
-              </div>
-              <a class="boton boton--primario ficha__accion" href="#aviso-viaje">Ir a esta zona<svg aria-hidden="true"><use href="#i-entrar"/></svg></a>
-            </article>
           </li>
 
-          <!-- ===== Zona 4 · Juego de Pelota (zona actual de Ana) ===== -->
+          <!-- ===== Juego de Pelota (zona actual de Ana) ===== -->
           <li class="nodo nodo--actual">
             <div class="nodo__marco">
               <span class="nodo__burbuja" aria-hidden="true">Estás aquí</span>
@@ -297,34 +285,29 @@
               </a>
               <img class="nodo__yo apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="Tu avatar, Balam">
               <span class="nodo__nombre">Juego de Pelota</span>
-              <span class="nodo__aqui nodo__aqui--guia"><img src="../../img/apariencias/serpiente-emplumada.svg" alt=""><img src="../../img/apariencias/jaguar-jade.svg" alt="">3 aquí<span class="nodo__extra"> · con el guía</span></span>
+              <span class="nodo__aqui nodo__aqui--guia"><img src="../../img/apariencias/serpiente-emplumada.svg" alt=""><img src="../../img/apariencias/jaguar-jade.svg" alt="">3 aquí</span>
+              <article class="ficha" id="ficha-pelota" aria-labelledby="t-pelota">
+                <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+                <header class="ficha__cabecera">
+                  <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-ballcourt"/></svg></span>
+                  <div>
+                    <p class="ficha__etiqueta"><span class="ficha__num"></span> · Estás aquí</p>
+                    <h2 id="t-pelota">Juego de Pelota</h2>
+                  </div>
+                </header>
+                <p class="ficha__descripcion">La mayor cancha de Mesoamérica, con anillos de piedra en lo alto de sus muros.</p>
+                <p class="ficha__aqui"><span class="pila"><img src="../../img/apariencias/serpiente-emplumada.svg" alt=""><img src="../../img/apariencias/jaguar-jade.svg" alt=""><img src="../../img/apariencias/jaguar-jade.svg" alt=""></span>3 aquí: Kan (guía), tú e Itzel</p>
+                <details class="curioso">
+                  <summary>Datos curiosos <small>3</small></summary>
+                  <ul role="list">
+                    <li>Mide cerca de 168 metros de largo por 70 de ancho.</li>
+                    <li>Los anillos están a varios metros de altura; la pelota de hule se golpeaba con la cadera, no con las manos.</li>
+                    <li>En los taludes, dos equipos avanzan hacia una pelota central; uno de los jugadores aparece decapitado.</li>
+                  </ul>
+                </details>
+                <label class="ficha__foto" for="foto"><svg aria-hidden="true"><use href="#i-camara"/></svg>Tomar fotografía</label>
+              </article>
             </div>
-
-            <article class="ficha ficha--actual" id="ficha-pelota" aria-labelledby="t-pelota">
-              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
-              <header class="ficha__cabecera">
-                <span class="medallon medallon--actual"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-ballcourt"/></svg></span>
-                <div>
-                  <p class="ficha__etiqueta">Zona 4 de 4 · <span class="estado estado--actual">Estás aquí</span></p>
-                  <h2 id="t-pelota">Juego de Pelota</h2>
-                </div>
-              </header>
-              <p class="ficha__descripcion">La mayor cancha de Mesoamérica, con anillos de piedra en lo alto de sus muros y relieves de jugadores.</p>
-              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">3</span></h3>
-              <ul class="aqui" role="list">
-                <li class="aqui__item aqui__item--guia"><img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt=""> Carlos · Kan <span class="chip chip--guia">Guía</span></li>
-                <li class="aqui__item aqui__item--yo"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt=""> Tú · Balam</li>
-                <li class="aqui__item"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt=""> Carla · Itzel</li>
-              </ul>
-              <h3 class="ficha__sub">Datos curiosos</h3>
-              <div class="curiosos">
-                <details class="curioso" open><summary>Una cancha enorme</summary><p>Mide cerca de 168 metros de largo por 70 de ancho: es la cancha de juego de pelota más grande de Mesoamérica.</p></details>
-                <details class="curioso"><summary>Anillos en lo alto</summary><p>Los anillos de piedra están empotrados a varios metros de altura en el centro de cada muro; la pelota de hule se golpeaba con la cadera, no con las manos.</p></details>
-                <details class="curioso"><summary>Lo que cuentan los relieves</summary><p>En los taludes, dos equipos avanzan hacia una pelota central; uno de los jugadores aparece decapitado.</p></details>
-              </div>
-              <label class="boton boton--primario ficha__accion" for="foto"><svg aria-hidden="true"><use href="#i-camara"/></svg>Tomar fotografía</label>
-              <p class="ficha__pie">Solo en la zona actual. Cuenta como visitada al terminarla.</p>
-            </article>
           </li>
 
           <!-- Meta: no es una zona; cierra el camino -->
@@ -544,7 +527,7 @@
       <span class="ahora__texto">
         <small><span class="ecualizador" aria-hidden="true"><i></i><i></i><i></i></span>Reproduciendo ahora<span class="ahora__con"> · con Kan</span></small>
         <strong>Ahora: Juego de Pelota</strong>
-        <span>Zona 4 de 4 · Tú y 2 más</span>
+        <span>Zona 4 de 4</span>
       </span>
     </a>
 
