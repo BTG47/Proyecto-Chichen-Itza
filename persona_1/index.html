@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Participantes · Chichén Itzá</title>
+  <link rel="stylesheet" href="css/administracion.css">
+</head>
+<body>
+  <header class="page-heading">
+    <p class="eyebrow">UDLAP / Sistemas Distribuidos / Actividad 6</p>
+    <h1>Participantes</h1>
+    <p>Maqueta de administración · Chichén Itzá: Recorridos Virtuales</p>
+  </header>
+  <main class="workspace">
+    <nav aria-label="Módulos de administración"><strong>Administración</strong><div><a href="participantes.html" aria-current="page">Participantes</a> <a href="avatares.html">Avatares</a> <a href="roles.html">Roles</a></div></nav>
+    <div class="layout">
+      <section id="registros" aria-labelledby="titulo-registros">
+        <h2 id="titulo-registros">Registros</h2>
+        <div class="toolbar">
+          <form class="search" action="#buscar" role="search">
+            <label class="visually-hidden" for="consulta">Buscar por nombre o correo</label>
+            <input id="consulta" type="search" placeholder="Buscar por nombre o correo" required>
+            <button class="button secondary" type="submit">Buscar</button>
+          </form>
+          <a class="button" href="#nuevo">Nuevo participante</a>
+        </div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Tabla de participantes">
+          <table><thead><tr><th scope="col">ID</th><th scope="col">Nombre</th><th scope="col">Correo</th><th scope="col">Registro</th><th scope="col">Rol</th><th scope="col">Avatar</th></tr></thead><tbody><tr><td>P-01</td><td>Ana López Martínez</td><td>ana.lopez@correo.mx</td><td>14/11/26</td><td>Participante</td><td>Balam</td></tr><tr class="row-actions"><td colspan="6"><a href="#ver-p-01" aria-label="Ver Ana López Martínez">Ver</a> <a href="#editar-p-01" aria-label="Editar Ana López Martínez">Editar</a> <a href="#eliminar-p-01" aria-label="Eliminar Ana López Martínez">Eliminar</a></td></tr></tbody><tbody><tr><td>P-02</td><td>Carlos Ek</td><td>carlos.ek@example.com</td><td>19/11/26</td><td>Guía</td><td>Jaguar</td></tr><tr class="row-actions"><td colspan="6"><a href="#ver-p-02" aria-label="Ver Carlos Ek">Ver</a> <a href="#editar-p-02" aria-label="Editar Carlos Ek">Editar</a> <a href="#eliminar-p-02" aria-label="Eliminar Carlos Ek">Eliminar</a></td></tr></tbody></table>
+        </div>
+        <p class="count">2 registros de ejemplo</p>
+        <p class="subtle">En alta, la fecha se genera al guardar. El rol se consulta desde el avatar asociado.</p>
+      </section>
+      <aside aria-label="Ficha y operaciones"><section class="panel panel-default" id="editar-p-01" aria-labelledby="editar-p-01-titulo"><h2 id="editar-p-01-titulo">Editar participante</h2><form action="#guardado"><label class="field">Nombre *<input type="text" value="Ana López Martínez" required></label><label class="field">Correo electrónico *<input type="email" value="ana.lopez@correo.mx" required></label><label class="field">Fecha de registro<input type="text" value="14/11/26" readonly></label><label class="field">Avatar asociado *<select required><option value="">Selecciona una opción</option><option value="Balam" selected>Balam</option><option value="Jaguar">Jaguar</option><option value="Itzamná">Itzamná</option></select></label><label class="field">Rol asignado<input type="text" value="Participante" readonly></label><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="editar-p-02" aria-labelledby="editar-p-02-titulo"><h2 id="editar-p-02-titulo">Editar participante</h2><form action="#guardado"><label class="field">Nombre *<input type="text" value="Carlos Ek" required></label><label class="field">Correo electrónico *<input type="email" value="carlos.ek@example.com" required></label><label class="field">Fecha de registro<input type="text" value="19/11/26" readonly></label><label class="field">Avatar asociado *<select required><option value="">Selecciona una opción</option><option value="Balam">Balam</option><option value="Jaguar" selected>Jaguar</option><option value="Itzamná">Itzamná</option></select></label><label class="field">Rol asignado<input type="text" value="Guía" readonly></label><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="nuevo" aria-labelledby="nuevo-titulo"><h2 id="nuevo-titulo">Nuevo participante</h2><form action="#guardado"><label class="field">Nombre *<input type="text" value="" required></label><label class="field">Correo electrónico *<input type="email" value="" required></label><label class="field">Fecha de registro<input type="text" value="Se asigna al registrar" readonly></label><label class="field">Avatar asociado *<select required><option value="" selected>Selecciona una opción</option><option value="Balam">Balam</option><option value="Jaguar">Jaguar</option><option value="Itzamná">Itzamná</option></select></label><label class="field">Rol asignado<input type="text" value="Según el avatar asociado" readonly></label><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="ver-p-01" aria-labelledby="ver-p-01-titulo"><h2 id="ver-p-01-titulo">Ficha de participante</h2><dl><dt>ID</dt><dd>P-01</dd><dt>Nombre</dt><dd>Ana López Martínez</dd><dt>Correo</dt><dd>ana.lopez@correo.mx</dd><dt>Registro</dt><dd>14/11/26</dd><dt>Rol</dt><dd>Participante</dd><dt>Avatar</dt><dd>Balam</dd></dl><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="eliminar-p-01" aria-labelledby="eliminar-p-01-titulo"><h2 id="eliminar-p-01-titulo">Eliminar participante</h2><p><strong>¿Eliminar el registro «Ana López Martínez»?</strong></p><p class="notice">El participante tiene un recorrido activo. Finalízalo antes de eliminar su registro.</p><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="ver-p-02" aria-labelledby="ver-p-02-titulo"><h2 id="ver-p-02-titulo">Ficha de participante</h2><dl><dt>ID</dt><dd>P-02</dd><dt>Nombre</dt><dd>Carlos Ek</dd><dt>Correo</dt><dd>carlos.ek@example.com</dd><dt>Registro</dt><dd>19/11/26</dd><dt>Rol</dt><dd>Guía</dd><dt>Avatar</dt><dd>Jaguar</dd></dl><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="eliminar-p-02" aria-labelledby="eliminar-p-02-titulo"><h2 id="eliminar-p-02-titulo">Eliminar participante</h2><p><strong>¿Eliminar el registro «Carlos Ek»?</strong></p><p class="notice">El participante tiene un recorrido activo. Finalízalo antes de eliminar su registro.</p><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="guardado" aria-labelledby="guardado-titulo"><h2 id="guardado-titulo">Guardado de demostración</h2><p>El formulario se envió en modo de demostración. Los datos de ejemplo se conservan.</p><a class="button secondary" href="#registros">Volver al listado</a></section><section class="panel" id="buscar" aria-labelledby="buscar-titulo"><h2 id="buscar-titulo">Búsqueda de demostración</h2><p>El buscador forma parte del diseño. La versión estática muestra todos los registros de ejemplo.</p><a class="button secondary" href="#registros">Volver al listado</a></section></aside>
+    </div>
+  </main>
+  <footer>Chichén Itzá · Persona 1</footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+CHICHÉN ITZÁ · PERSONA 1
+Prototipo de formularios administrativos
+
+Descomprime el ZIP y abre index.html en tu navegador. El menú conecta
+Participantes, Avatares y Roles. El prototipo funciona sin conexión.
+
+Archivos para integrar
+- participantes.html, avatares.html y roles.html: vistas administrativas.
+- css/administracion.css: estilos compartidos por las tres vistas.
+- index.html: entrada del ZIP que muestra Participantes. Para integrar
+  las vistas al sitio del equipo, conserva el index.html general.
+
+Demostración
+Nuevo abre un formulario vacío. Ver muestra la ficha del registro.
+Editar precarga los datos. Eliminar muestra el motivo por el que no se
+admite la baja en los registros de muestra. Los campos de texto
+obligatorios y el formato del correo usan validación nativa del navegador.
+La búsqueda y el guardado muestran estados de demostración. Los datos
+son ficticios y no hay almacenamiento ni servidor.
+
+Reglas para una implementación posterior
+- Participantes: nombre y correo obligatorios, correo válido y único,
+  fecha automática y rol derivado del avatar asociado.
+- Avatares: nombre y rol obligatorios. La relación con el participante
+  es uno a uno. La posición y el estado vienen del recorrido activo.
+- Roles: nombre único, descripción y selección múltiple de permisos y
+  zonas. Una baja requiere reasignar primero los avatares vinculados.
+- Un avatar puede prepararse sin asignación. Se bloquea la baja de un
+  avatar vinculado. Dar de baja a un participante sin recorrido activo
+  libera el avatar para una asignación posterior.
+- Una búsqueda sin coincidencias muestra «No se encontraron registros».
+  Las altas y modificaciones exitosas vuelven a la tabla y muestran una
+  confirmación. La validación de permisos y zonas se aplica al guardar.

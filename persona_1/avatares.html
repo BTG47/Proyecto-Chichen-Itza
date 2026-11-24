@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avatares · Chichén Itzá</title>
+  <link rel="stylesheet" href="css/administracion.css">
+</head>
+<body>
+  <header class="page-heading">
+    <p class="eyebrow">UDLAP / Sistemas Distribuidos / Actividad 6</p>
+    <h1>Avatares</h1>
+    <p>Maqueta de administración · Chichén Itzá: Recorridos Virtuales</p>
+  </header>
+  <main class="workspace">
+    <nav aria-label="Módulos de administración"><strong>Administración</strong><div><a href="participantes.html">Participantes</a> <a href="avatares.html" aria-current="page">Avatares</a> <a href="roles.html">Roles</a></div></nav>
+    <div class="layout">
+      <section id="registros" aria-labelledby="titulo-registros">
+        <h2 id="titulo-registros">Registros</h2>
+        <div class="toolbar">
+          <form class="search" action="#buscar" role="search">
+            <label class="visually-hidden" for="consulta">Buscar por nombre o participante</label>
+            <input id="consulta" type="search" placeholder="Buscar por nombre o participante" required>
+            <button class="button secondary" type="submit">Buscar</button>
+          </form>
+          <a class="button" href="#nuevo">Nuevo avatar</a>
+        </div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Tabla de avatares">
+          <table><thead><tr><th scope="col">ID</th><th scope="col">Avatar</th><th scope="col">Participante</th><th scope="col">Posición X, Y</th><th scope="col">Estado</th><th scope="col">Rol</th></tr></thead><tbody><tr><td>A-01</td><td>Balam</td><td>Ana López Martínez</td><td>12, 8</td><td>En recorrido</td><td>Participante</td></tr><tr class="row-actions"><td colspan="6"><a href="#ver-a-01" aria-label="Ver Balam">Ver</a> <a href="#editar-a-01" aria-label="Editar Balam">Editar</a> <a href="#eliminar-a-01" aria-label="Eliminar Balam">Eliminar</a></td></tr></tbody><tbody><tr><td>A-02</td><td>Jaguar</td><td>Carlos Ek</td><td>4, 6</td><td>En recorrido</td><td>Guía</td></tr><tr class="row-actions"><td colspan="6"><a href="#ver-a-02" aria-label="Ver Jaguar">Ver</a> <a href="#editar-a-02" aria-label="Editar Jaguar">Editar</a> <a href="#eliminar-a-02" aria-label="Eliminar Jaguar">Eliminar</a></td></tr></tbody></table>
+        </div>
+        <p class="count">2 registros de ejemplo</p>
+        <p class="subtle">La posición y el estado se consultan del recorrido activo en el diseño propuesto.</p>
+      </section>
+      <aside aria-label="Ficha y operaciones"><section class="panel panel-default" id="editar-a-01" aria-labelledby="editar-a-01-titulo"><h2 id="editar-a-01-titulo">Editar avatar</h2><form action="#guardado"><label class="field">Nombre del avatar *<input type="text" value="Balam" required></label><label class="field">Participante asociado<select><option value="">Selecciona una opción</option><option value="Ana López Martínez" selected>Ana López Martínez</option><option value="Carlos Ek">Carlos Ek</option></select></label><label class="field">Posición X / Y<input type="text" value="12 / 8" readonly></label><label class="field">Estado<input type="text" value="En recorrido" readonly></label><label class="field">Rol *<select required><option value="">Selecciona una opción</option><option value="Participante" selected>Participante</option><option value="Guía">Guía</option></select></label><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="editar-a-02" aria-labelledby="editar-a-02-titulo"><h2 id="editar-a-02-titulo">Editar avatar</h2><form action="#guardado"><label class="field">Nombre del avatar *<input type="text" value="Jaguar" required></label><label class="field">Participante asociado<select><option value="">Selecciona una opción</option><option value="Ana López Martínez">Ana López Martínez</option><option value="Carlos Ek" selected>Carlos Ek</option></select></label><label class="field">Posición X / Y<input type="text" value="4 / 6" readonly></label><label class="field">Estado<input type="text" value="En recorrido" readonly></label><label class="field">Rol *<select required><option value="">Selecciona una opción</option><option value="Participante">Participante</option><option value="Guía" selected>Guía</option></select></label><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="nuevo" aria-labelledby="nuevo-titulo"><h2 id="nuevo-titulo">Nuevo avatar</h2><form action="#guardado"><label class="field">Nombre del avatar *<input type="text" value="" required></label><label class="field">Participante asociado<select><option value="" selected>Selecciona una opción</option><option value="Ana López Martínez">Ana López Martínez</option><option value="Carlos Ek">Carlos Ek</option></select></label><label class="field">Posición X / Y<input type="text" value="Por asignar" readonly></label><label class="field">Estado<input type="text" value="Disponible" readonly></label><label class="field">Rol *<select required><option value="" selected>Selecciona una opción</option><option value="Participante">Participante</option><option value="Guía">Guía</option></select></label><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="ver-a-01" aria-labelledby="ver-a-01-titulo"><h2 id="ver-a-01-titulo">Ficha de avatar</h2><dl><dt>ID</dt><dd>A-01</dd><dt>Avatar</dt><dd>Balam</dd><dt>Participante</dt><dd>Ana López Martínez</dd><dt>Posición X, Y</dt><dd>12, 8</dd><dt>Estado</dt><dd>En recorrido</dd><dt>Rol</dt><dd>Participante</dd></dl><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="eliminar-a-01" aria-labelledby="eliminar-a-01-titulo"><h2 id="eliminar-a-01-titulo">Eliminar avatar</h2><p><strong>¿Eliminar el registro «Balam»?</strong></p><p class="notice">El avatar está asociado a un participante. Desvincúlalo antes de eliminarlo.</p><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="ver-a-02" aria-labelledby="ver-a-02-titulo"><h2 id="ver-a-02-titulo">Ficha de avatar</h2><dl><dt>ID</dt><dd>A-02</dd><dt>Avatar</dt><dd>Jaguar</dd><dt>Participante</dt><dd>Carlos Ek</dd><dt>Posición X, Y</dt><dd>4, 6</dd><dt>Estado</dt><dd>En recorrido</dd><dt>Rol</dt><dd>Guía</dd></dl><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="eliminar-a-02" aria-labelledby="eliminar-a-02-titulo"><h2 id="eliminar-a-02-titulo">Eliminar avatar</h2><p><strong>¿Eliminar el registro «Jaguar»?</strong></p><p class="notice">El avatar está asociado a un participante. Desvincúlalo antes de eliminarlo.</p><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="guardado" aria-labelledby="guardado-titulo"><h2 id="guardado-titulo">Guardado de demostración</h2><p>El formulario se envió en modo de demostración. Los datos de ejemplo se conservan.</p><a class="button secondary" href="#registros">Volver al listado</a></section><section class="panel" id="buscar" aria-labelledby="buscar-titulo"><h2 id="buscar-titulo">Búsqueda de demostración</h2><p>El buscador forma parte del diseño. La versión estática muestra todos los registros de ejemplo.</p><a class="button secondary" href="#registros">Volver al listado</a></section></aside>
+    </div>
+  </main>
+  <footer>Chichén Itzá · Persona 1</footer>
+</body>
+</html>

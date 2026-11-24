@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chichén Itzá - Recorrido Virtual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <svg class="monument-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <symbol id="monument-kukulkan" viewBox="0 0 400 260">
+            <path d="M45 220h310" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+            <path d="M76 213 190 64h20l114 149z" fill="#a88e63" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M200 65h10l114 148H200z" fill="#927a55"/>
+            <path d="M172 89h56M155 111h90M138 134h124M120 157h160M102 181h196M84 204h232" fill="none" stroke="#ead7af" stroke-width="5" stroke-linecap="square"/>
+            <path d="M172 89h-5m83 22h-10m-107 23h-12m150 0h-12m-139 23h-15m190 0h-15m-163 24h-18m220 0h-18m-181 23h-18m246 0h-18" fill="none" stroke="#6d5940" stroke-width="2"/>
+            <path d="M185 83h30l24 130h-78z" fill="#d4bd90" stroke="#725e43" stroke-width="3"/>
+            <path d="M200 86v124m-10-109h20m-17 18h14m-20 18h26m-22 18h18m-27 18h36m-31 18h26m-35 18h44" fill="none" stroke="#8c704a" stroke-width="2.5"/>
+            <path d="M179 83h42l-5-9h-32zM183 74V56h34v18m-39-18h44l-5-8h-34z" fill="#c5ab7d" stroke="#725e43" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M191 56V45h18v11m-9-11V34m-5 0h10" fill="none" stroke="#725e43" stroke-width="3" stroke-linecap="round"/>
+            <path d="M174 216h52" stroke="#594d3b" stroke-width="3" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="monument-ballcourt" viewBox="0 0 400 260">
+            <path d="M56 222h288" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+            <path d="M69 213 113 85h48l28 128z" fill="#b79b6d" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M331 213 287 85h-48l-28 128z" fill="#a88c62" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M82 187h68m-59-27h59m-49-27h43m-33-27h24m181 81h-68m59-27h-59m49-27h-43m33-27h-24" fill="none" stroke="#e4d0a6" stroke-width="4" stroke-linecap="round"/>
+            <path d="m165 213-10-89h90l-10 89z" fill="#d6c197" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M177 129v81m46-81v81M169 153h62m-59 25h56m-53 24h50" fill="none" stroke="#9a8057" stroke-width="2"/>
+            <circle cx="266" cy="139" r="13" fill="#f1e4c5" stroke="#725e43" stroke-width="6"/>
+            <path d="M266 126v26" stroke="#725e43" stroke-width="3"/>
+            <path d="M92 218h216" stroke="#725e43" stroke-width="3" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="monument-caracol" viewBox="0 0 400 260">
+            <path d="M66 221h268" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+            <path d="m95 216 15-27h180l15 27z" fill="#927956" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+            <path d="m113 188 15-24h144l15 24z" fill="#b59a6d" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+            <path d="m131 163 14-23h110l14 23z" fill="#c9b184" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M141 139V81a59 59 0 0 1 118 0v58z" fill="#d4bd90" stroke="#725e43" stroke-width="4"/>
+            <path d="M145 99c31 10 79 10 110 0M145 124c31 8 79 8 110 0M151 68a49 49 0 0 1 98 0" fill="none" stroke="#a1875d" stroke-width="3"/>
+            <path d="M160 82V66a15 15 0 0 1 30 0v16zm50 0V66a15 15 0 0 1 30 0v16z" fill="#765f43" stroke="#725e43" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M182 139v-27a18 18 0 0 1 36 0v27z" fill="#765f43" stroke="#725e43" stroke-width="3"/>
+            <path d="M200 113v25" stroke="#dfcba2" stroke-width="3"/>
+            <path d="M141 81a59 59 0 0 1 118 0" fill="none" stroke="#ead8b2" stroke-width="4"/>
+            <path d="M145 140h110m-124 24h138m-152 25h166m-184 27h202" fill="none" stroke="#e2cda2" stroke-width="3"/>
+            <path d="M180 218h40" stroke="#64533c" stroke-width="3" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <div class="app">
+
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="5" r="2" />
+                        <path d="M12 8v3M8 11h8M6 14h12M4 17h16M3 20h18" />
+                    </svg>
+                </span>
+                <h2>CHICHÉN ITZÁ</h2>
+                <p>Rutas con historia</p>
+            </div>
+
+            <nav>
+                <a href="#" class="active">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4M8.5 11h5M11 8.5v5" /></svg>
+                    Explorar sitio
+                </a>
+                <a href="#zonas">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V8l8-4 8 4v12M8 20v-6h8v6M8 9h.01M12 9h.01M16 9h.01" /></svg>
+                    Zonas del recorrido
+                </a>
+                <a href="#participantes">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3" /><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20M16 5.5a3 3 0 0 1 0 5.8M17 14a5 5 0 0 1 3.5 4.5V20" /></svg>
+                    Participantes
+                </a>
+                <a href="#guia">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.5" /><path d="M5 20a7 7 0 0 1 14 0M18 5l1 1 2-2" /></svg>
+                    Guía turístico
+                </a>
+                <a href="#progreso">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19V5M4 19h16M8 15l4-4 3 2 5-6" /><path d="M16 7h4v4" /></svg>
+                    Mi progreso
+                </a>
+                <a href="#ayuda">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" /><path d="M9.8 9a2.3 2.3 0 1 1 3.7 1.8c-1 .7-1.5 1-1.5 2.2M12 16.5h.01" /></svg>
+                    Ayuda
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Descubre la historia</p>
+                <small>Patrimonio cultural de México</small>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="topbar-eyebrow">YUCATÁN · MÉXICO</p>
+                    <h1>Explora Chichén Itzá</h1>
+                    <p>Una ciudad, siglos de historia por descubrir.</p>
+                </div>
+
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    Recorrido disponible
+                </div>
+            </header>
+
+            <section class="welcome">
+                <div class="welcome-copy">
+                    <span class="welcome-eyebrow">PATRIMONIO DE LA HUMANIDAD · DESDE 1988</span>
+                    <h2>Donde la historia<br>se encuentra con el cielo.</h2>
+                    <p>
+                        Recorre la antigua ciudad maya a tu ritmo. Descubre
+                        sus templos, su arquitectura y las historias que
+                        siguen vivas entre la selva.
+                    </p>
+                    <a class="welcome-button" href="#mapa">
+                        Comenzar recorrido
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+                    </a>
+                </div>
+                <div class="welcome-visual" aria-hidden="true">
+                    <span class="sun-disc"></span>
+                    <svg class="welcome-pyramid" viewBox="0 0 400 260" role="presentation"><use href="#monument-kukulkan" /></svg>
+                    <span class="visual-caption">EL CASTILLO <i>20°40′ N · 88°34′ O</i></span>
+                </div>
+            </section>
+
+            <!-- MAPA -->
+            <section class="map-section" id="mapa">
+                <div class="section-heading">
+                    <div>
+                        <h2>Mapa del recorrido</h2>
+                        <p>Selecciona un punto para conocer más</p>
+                    </div>
+                    <span class="map-label">Vista general</span>
+                </div>
+
+                <div class="map">
+                    <div class="map-stamp" aria-hidden="true">CHICHÉN<br>ITZÁ</div>
+                    <div class="map-path"></div>
+
+                    <div class="map-landmark pyramid">
+                        <svg class="map-monument" viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-kukulkan" /></svg>
+                        <span>Templo de Kukulcán</span>
+                    </div>
+
+                    <div class="map-landmark ballcourt">
+                        <svg class="map-monument" viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-ballcourt" /></svg>
+                        <span>Juego de Pelota</span>
+                    </div>
+
+                    <div class="map-landmark observatory">
+                        <svg class="map-monument" viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-caracol" /></svg>
+                        <span>El Caracol</span>
+                    </div>
+
+                    <div class="map-point point-one">1</div>
+                    <div class="map-point point-two">2</div>
+                    <div class="map-point point-three">3</div>
+
+                    <div class="current-location">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                        Tu ubicación
+                    </div>
+
+                    <div class="map-legend">
+                        <p><span class="legend-green"></span> Zona arqueológica</p>
+                        <p><span class="legend-orange"></span> Punto de interés</p>
+                        <p><span class="legend-blue"></span> Ubicación actual</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ZONAS -->
+            <section class="places-section" id="zonas">
+                <div class="section-heading">
+                    <div>
+                        <h2>Puntos de interés</h2>
+                        <p>Conoce los lugares más importantes</p>
+                    </div>
+                    <a href="#">Ver todos</a>
+                </div>
+
+                <div class="places-grid">
+
+                    <article class="place-card">
+                        <div class="place-image kukulkan">
+                            <span>01</span>
+                            <svg class="place-monument" viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-kukulkan" /></svg>
+                        </div>
+                        <div class="place-info">
+                            <h3>Templo de Kukulcán</h3>
+                            <p>
+                                También conocido como El Castillo,
+                                es el monumento más representativo
+                                de Chichén Itzá.
+                            </p>
+                            <button>Explorar lugar</button>
+                        </div>
+                    </article>
+
+                    <article class="place-card">
+                        <div class="place-image ball">
+                            <span>02</span>
+                            <svg class="place-monument" viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-ballcourt" /></svg>
+                        </div>
+                        <div class="place-info">
+                            <h3>Gran Juego de Pelota</h3>
+                            <p>
+                                Espacio ceremonial donde se practicaba
+                                el tradicional juego de pelota mesoamericano.
+                            </p>
+                            <button>Explorar lugar</button>
+                        </div>
+                    </article>
+
+                    <article class="place-card">
+                        <div class="place-image caracol">
+                            <span>03</span>
+                            <svg class="place-monument" viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-caracol" /></svg>
+                        </div>
+                        <div class="place-info">
+                            <h3>El Caracol</h3>
+                            <p>
+                                Edificio conocido por su relación con
+                                la observación astronómica maya.
+                            </p>
+                            <button>Explorar lugar</button>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- GUÍA -->
+            <section class="guide-section" id="guia">
+                <div class="guide-avatar">AG</div>
+                <div class="guide-info">
+                    <span>GUÍA TURÍSTICO</span>
+                    <h3>Andrés Gómez</h3>
+                    <p>Especialista en historia y cultura maya</p>
+                    <div class="rating">★★★★★ <small>4.9 / 5</small></div>
+                </div>
+                <button class="guide-button">Contactar guía</button>
+            </section>
+
+        </main>
+
+        <!-- PANEL DERECHO -->
+        <aside class="right-panel">
+
+            <section class="progress-card" id="progreso">
+                <h3>Mi progreso</h3>
+                <p>Tu avance en el recorrido</p>
+
+                <div class="progress-circle">
+                    <div>
+                        <strong>35%</strong>
+                        <small>Completado</small>
+                    </div>
+                </div>
+
+                <div class="progress-details">
+                    <p><span>Explorados</span><strong>3 de 8</strong></p>
+                    <p><span>Tiempo estimado</span><strong>45 min</strong></p>
+                </div>
+            </section>
+
+            <section class="participants-card" id="participantes">
+                <div class="panel-heading">
+                    <h3>Participantes</h3>
+                    <span>12 en línea</span>
+                </div>
+
+                <div class="participant">
+                    <div class="participant-avatar avatar-one">ML</div>
+                    <div>
+                        <strong>María López</strong>
+                        <small>Explorando el templo</small>
+                    </div>
+                </div>
+
+                <div class="participant">
+                    <div class="participant-avatar avatar-two">JR</div>
+                    <div>
+                        <strong>Juan Ramírez</strong>
+                        <small>Visitando El Caracol</small>
+                    </div>
+                </div>
+
+                <div class="participant">
+                    <div class="participant-avatar avatar-three">CP</div>
+                    <div>
+                        <strong>Carla Pérez</strong>
+                        <small>En el mapa principal</small>
+                    </div>
+                </div>
+
+                <button class="secondary-button">Ver participantes</button>
+            </section>
+
+            <section class="fact-card">
+                <span>¿SABÍAS QUE?</span>
+                <h3>Un fenómeno de luz y sombra</h3>
+                <p>
+                    Durante los equinoccios, la luz del sol crea un
+                    efecto de sombras en la escalinata de Kukulcán
+                    que recuerda el descenso de una serpiente.
+                </p>
+            </section>
+
+            <section class="help-card" id="ayuda">
+                <h3>¿Necesitas ayuda?</h3>
+                <p>Consulta las instrucciones para utilizar el recorrido.</p>
+                <a href="#">Consultar ayuda →</a>
+            </section>
+
+        </aside>
+
+    </div>
+
+    <script>
+        // Navegación visual del menú
+        const links = document.querySelectorAll(".sidebar nav a");
+
+        links.forEach(link => {
+            link.addEventListener("click", () => {
+                links.forEach(item => item.classList.remove("active"));
+                link.classList.add("active");
+            });
+        });
+
+        // Mensajes demostrativos
+        document.querySelectorAll(".place-info button").forEach(button => {
+            button.addEventListener("click", () => {
+                const place = button.closest(".place-card")
+                    .querySelector("h3").textContent;
+
+                alert("Has seleccionado: " + place);
+            });
+        });
+
+        document.querySelector(".guide-button")
+            .addEventListener("click", () => {
+                alert("La función de contacto con el guía estará disponible próximamente.");
+            });
+
+        document.querySelector(".secondary-button")
+            .addEventListener("click", () => {
+                alert("Aquí se mostrará la lista completa de participantes.");
+            });
+    </script>
+
+</body>
+</html>

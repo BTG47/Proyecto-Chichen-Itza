@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roles · Chichén Itzá</title>
+  <link rel="stylesheet" href="css/administracion.css">
+</head>
+<body>
+  <header class="page-heading">
+    <p class="eyebrow">UDLAP / Sistemas Distribuidos / Actividad 6</p>
+    <h1>Roles</h1>
+    <p>Maqueta de administración · Chichén Itzá: Recorridos Virtuales</p>
+  </header>
+  <main class="workspace">
+    <nav aria-label="Módulos de administración"><strong>Administración</strong><div><a href="participantes.html">Participantes</a> <a href="avatares.html">Avatares</a> <a href="roles.html" aria-current="page">Roles</a></div></nav>
+    <div class="layout">
+      <section id="registros" aria-labelledby="titulo-registros">
+        <h2 id="titulo-registros">Registros</h2>
+        <div class="toolbar">
+          <form class="search" action="#buscar" role="search">
+            <label class="visually-hidden" for="consulta">Buscar por nombre del rol</label>
+            <input id="consulta" type="search" placeholder="Buscar por nombre del rol" required>
+            <button class="button secondary" type="submit">Buscar</button>
+          </form>
+          <a class="button" href="#nuevo">Nuevo rol</a>
+        </div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Tabla de roles">
+          <table><thead><tr><th scope="col">ID</th><th scope="col">Rol</th><th scope="col">Descripción</th><th scope="col">Permisos</th><th scope="col">Zonas</th></tr></thead><tbody><tr><td>R-01</td><td>Participante</td><td>Explora la ruta</td><td>Consultar, entrar</td><td>Gran Plaza</td></tr><tr class="row-actions"><td colspan="5"><a href="#ver-r-01" aria-label="Ver Participante">Ver</a> <a href="#editar-r-01" aria-label="Editar Participante">Editar</a> <a href="#eliminar-r-01" aria-label="Eliminar Participante">Eliminar</a></td></tr></tbody><tbody><tr><td>R-02</td><td>Guía</td><td>Coordina al grupo</td><td>Consultar, entrar, coordinar</td><td>Gran Plaza, Juego de Pelota</td></tr><tr class="row-actions"><td colspan="5"><a href="#ver-r-02" aria-label="Ver Guía">Ver</a> <a href="#editar-r-02" aria-label="Editar Guía">Editar</a> <a href="#eliminar-r-02" aria-label="Eliminar Guía">Eliminar</a></td></tr></tbody></table>
+        </div>
+        <p class="count">2 registros de ejemplo</p>
+        <p class="subtle">Los nombres de zonas ilustran permisos virtuales con datos de ejemplo.</p>
+      </section>
+      <aside aria-label="Ficha y operaciones"><section class="panel panel-default" id="editar-r-01" aria-labelledby="editar-r-01-titulo"><h2 id="editar-r-01-titulo">Editar rol</h2><form action="#guardado"><label class="field">Nombre del rol *<input type="text" value="Participante" required></label><label class="field">Descripción *<textarea required rows="2">Explora la ruta</textarea></label><fieldset><legend>Permisos *</legend><div class="check-options"><label><input type="checkbox" checked> Consultar</label><label><input type="checkbox" checked> Entrar</label><label><input type="checkbox"> Coordinar grupo</label></div></fieldset><fieldset><legend>Zonas permitidas *</legend><div class="check-options"><label><input type="checkbox" checked> Gran Plaza</label><label><input type="checkbox"> Juego de Pelota</label></div></fieldset><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="editar-r-02" aria-labelledby="editar-r-02-titulo"><h2 id="editar-r-02-titulo">Editar rol</h2><form action="#guardado"><label class="field">Nombre del rol *<input type="text" value="Guía" required></label><label class="field">Descripción *<textarea required rows="2">Coordina al grupo</textarea></label><fieldset><legend>Permisos *</legend><div class="check-options"><label><input type="checkbox" checked> Consultar</label><label><input type="checkbox" checked> Entrar</label><label><input type="checkbox" checked> Coordinar grupo</label></div></fieldset><fieldset><legend>Zonas permitidas *</legend><div class="check-options"><label><input type="checkbox" checked> Gran Plaza</label><label><input type="checkbox" checked> Juego de Pelota</label></div></fieldset><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="nuevo" aria-labelledby="nuevo-titulo"><h2 id="nuevo-titulo">Nuevo rol</h2><form action="#guardado"><label class="field">Nombre del rol *<input type="text" value="" required></label><label class="field">Descripción *<textarea required rows="2"></textarea></label><fieldset><legend>Permisos *</legend><div class="check-options"><label><input type="checkbox"> Consultar</label><label><input type="checkbox"> Entrar</label><label><input type="checkbox"> Coordinar grupo</label></div></fieldset><fieldset><legend>Zonas permitidas *</legend><div class="check-options"><label><input type="checkbox"> Gran Plaza</label><label><input type="checkbox"> Juego de Pelota</label></div></fieldset><p class="subtle">* Campo obligatorio</p><div class="actions"><a class="button secondary" href="#registros">Cancelar</a><button class="button" type="submit">Guardar</button></div></form></section><section class="panel" id="ver-r-01" aria-labelledby="ver-r-01-titulo"><h2 id="ver-r-01-titulo">Ficha de rol</h2><dl><dt>ID</dt><dd>R-01</dd><dt>Rol</dt><dd>Participante</dd><dt>Descripción</dt><dd>Explora la ruta</dd><dt>Permisos</dt><dd>Consultar, entrar</dd><dt>Zonas</dt><dd>Gran Plaza</dd></dl><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="eliminar-r-01" aria-labelledby="eliminar-r-01-titulo"><h2 id="eliminar-r-01-titulo">Eliminar rol</h2><p><strong>¿Eliminar el registro «Participante»?</strong></p><p class="notice">Hay avatares asociados a este rol. Reasigna su rol antes de eliminarlo.</p><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="ver-r-02" aria-labelledby="ver-r-02-titulo"><h2 id="ver-r-02-titulo">Ficha de rol</h2><dl><dt>ID</dt><dd>R-02</dd><dt>Rol</dt><dd>Guía</dd><dt>Descripción</dt><dd>Coordina al grupo</dd><dt>Permisos</dt><dd>Consultar, entrar, coordinar</dd><dt>Zonas</dt><dd>Gran Plaza, Juego de Pelota</dd></dl><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="eliminar-r-02" aria-labelledby="eliminar-r-02-titulo"><h2 id="eliminar-r-02-titulo">Eliminar rol</h2><p><strong>¿Eliminar el registro «Guía»?</strong></p><p class="notice">Hay avatares asociados a este rol. Reasigna su rol antes de eliminarlo.</p><a class="button secondary" href="#registros">Volver</a></section><section class="panel" id="guardado" aria-labelledby="guardado-titulo"><h2 id="guardado-titulo">Guardado de demostración</h2><p>El formulario se envió en modo de demostración. Los datos de ejemplo se conservan.</p><a class="button secondary" href="#registros">Volver al listado</a></section><section class="panel" id="buscar" aria-labelledby="buscar-titulo"><h2 id="buscar-titulo">Búsqueda de demostración</h2><p>El buscador forma parte del diseño. La versión estática muestra todos los registros de ejemplo.</p><a class="button secondary" href="#registros">Volver al listado</a></section></aside>
+    </div>
+  </main>
+  <footer>Chichén Itzá · Persona 1</footer>
+</body>
+</html>
