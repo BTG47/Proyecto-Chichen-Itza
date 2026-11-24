@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi perfil | Chichén Itzá Virtual</title>
+  <meta name="description" content="Consulta y edita tu nombre y tu correo de participante.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body class="area-panel">
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra lateral del panel: idéntica en dashboard, mi-avatar y mi-perfil (ADR-0001); solo cambia aria-current. -->
+  <header class="lateral">
+    <input class="lateral__interruptor" type="checkbox" id="lateral-interruptor">
+    <div class="lateral__cabecera">
+      <a class="marca lateral__marca" href="dashboard.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá</span>
+      </a>
+      <label class="lateral__boton" for="lateral-interruptor">
+        <span class="lateral__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú del panel</span>
+      </label>
+    </div>
+    <nav class="lateral__menu" aria-label="Panel del participante">
+      <ul class="lateral__enlaces" role="list">
+        <li><a href="dashboard.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Mi panel</a></li>
+        <li><a href="dashboard.html#recorridos-disponibles"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/></svg>Recorridos</a></li>
+        <li><a href="mi-avatar.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9.8v.4M15 9.8v.4"/></svg>Mi avatar</a></li>
+        <li><a href="mi-perfil.html" aria-current="page"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.4 3.4 0 0 1 6.4 0M14.5 10h3.5M14.5 14h3.5"/></svg>Mi perfil</a></li>
+      </ul>
+      <div class="lateral__pie">
+        <p class="lateral__usuario">
+          <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+          <span>Ana López<small>Balam · Visitante</small></span>
+        </p>
+        <a class="lateral__salir" href="index.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 8l-4 4 4 4M6 12h10"/></svg>Cerrar sesión</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="area-panel__principal">
+    <main id="contenido" class="tablero">
+      <div class="tablero__encabezado">
+        <div>
+          <p class="tablero__ruta"><a class="enlace-flecha enlace-flecha--atras" href="dashboard.html">Mi panel</a></p>
+          <h1 class="tablero__titulo">Mi perfil</h1>
+          <p class="tablero__subtitulo">Tus datos de participante. El rol pertenece a tu avatar, no a tu cuenta.</p>
+        </div>
+      </div>
+
+      <div class="perfil">
+        <!-- Patrón :target de la Persona 1: ficha (por defecto) → #editar → #guardado. -->
+        <div class="paneles">
+          <section class="panel panel-default" id="ficha" aria-labelledby="ficha-titulo">
+            <h2 id="ficha-titulo">Datos de la cuenta</h2>
+            <dl class="datos">
+              <div><dt>Nombre</dt><dd>Ana López Martínez</dd></div>
+              <div><dt>Correo</dt><dd>ana.lopez@correo.mx</dd></div>
+              <div><dt>Registro</dt><dd><time datetime="2026-11-14">14/11/2026</time></dd></div>
+              <div><dt>Avatar</dt><dd>Balam</dd></div>
+            </dl>
+            <div class="acciones">
+              <a class="boton boton--primario" href="#editar">Editar perfil</a>
+            </div>
+          </section>
+
+          <section class="panel" id="editar" aria-labelledby="editar-titulo">
+            <h2 id="editar-titulo">Editar perfil</h2>
+            <!-- Sin name en los campos: ningún dato viaja en la URL (guardado SIMULADO). -->
+            <form class="perfil__formulario" action="#guardado" method="get">
+              <div class="campo">
+                <label class="campo__etiqueta" for="perfil-nombre">Nombre completo *</label>
+                <input class="campo__control" type="text" id="perfil-nombre" value="Ana López Martínez" autocomplete="name" required>
+              </div>
+              <div class="campo">
+                <label class="campo__etiqueta" for="perfil-correo">Correo electrónico *</label>
+                <input class="campo__control" type="email" id="perfil-correo" value="ana.lopez@correo.mx" autocomplete="email" aria-describedby="perfil-correo-ayuda" required>
+                <span class="campo__ayuda" id="perfil-correo-ayuda">Lo usas para iniciar sesión.</span>
+              </div>
+              <div class="campo">
+                <label class="campo__etiqueta" for="perfil-registro">Fecha de registro</label>
+                <input class="campo__control" type="text" id="perfil-registro" value="14/11/2026" readonly>
+              </div>
+              <p class="nota-demo">* Campo obligatorio</p>
+              <div class="acciones">
+                <button class="boton boton--primario" type="submit">Guardar cambios</button>
+                <a class="boton boton--contorno" href="#ficha">Cancelar</a>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel" id="guardado" aria-labelledby="guardado-titulo">
+            <div class="aviso-demo aviso-demo--fijo" role="status">
+              <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg>
+              <div class="aviso-demo__cuerpo">
+                <h2 class="aviso-demo__titulo" id="guardado-titulo">Guardado de demostración</h2>
+                <p>El formulario se envió en modo de demostración. Este sitio es estático: tus datos de ejemplo se conservan sin cambios.</p>
+              </div>
+            </div>
+            <div class="acciones">
+              <a class="boton boton--contorno" href="#ficha">Volver a mi perfil</a>
+              <a class="boton boton--contorno" href="dashboard.html">Ir a Mi panel</a>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tarjeta perfil__lado" aria-labelledby="lado-titulo">
+          <h2 class="tarjeta__etiqueta" id="lado-titulo">Tu avatar</h2>
+          <div class="avatar-resumen">
+            <img class="apariencia avatar-resumen__imagen" src="img/apariencias/jaguar-jade.svg" alt="">
+            <div>
+              <p class="avatar-resumen__nombre">Balam</p>
+              <p class="avatar-resumen__apariencia">Jaguar de jade</p>
+              <p><span class="insignia insignia--jade">Visitante</span></p>
+            </div>
+          </div>
+          <p class="tarjeta__texto">Cada participante controla exactamente un avatar. Su rol decide a qué zonas puede entrar.</p>
+          <a class="enlace-flecha" href="mi-avatar.html">Cambiar apariencia</a>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="pie-panel">
+      <p>Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+      <nav aria-label="Agencia">
+        <a href="admin/participantes.html">Administración (demo)</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>
