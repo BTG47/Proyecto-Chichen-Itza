@@ -99,3 +99,21 @@
   --transicion-rapida: 150ms ease;
   --transicion-media: 250ms ease;
 }
+
+/* ---------- Ticket #2: catálogo y páginas informativas ---------- */
+:root {
+  /* Acceso restringido (p. ej., «Requiere rol Guía») */
+  --color-restringido: #3b2f25;
+  --color-restringido-claro: #efe7da;
+
+  /* Emblemas de los recorridos */
+  --ilus-agua: #2f7d78;
+  --ilus-agua-borde: #8fb8a4;
+  --ilus-agua-onda: #bfe0d6;
+  --ilus-sacbe: #ece3cf;
+  --ilus-hoja: #4f7d40;
+  --ilus-noche-alto: #1f3344;
+  --ilus-noche-bajo: #4a5f72;
+  --ilus-estrella: #fdf3de;
+  --ilus-venus: #f3c77d;
+}
