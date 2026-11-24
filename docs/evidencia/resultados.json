@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-11-24T18:00:16.939Z",
+  "fecha": "2026-11-24T18:05:37.031Z",
   "navegador": "153.0.8010.12",
   "paginas": {
     "index.html": {
@@ -10,7 +10,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 16,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -19,7 +22,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 16,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -30,7 +36,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 21,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "recorridos.html": {
@@ -41,7 +48,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 15,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -50,7 +60,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 15,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -61,7 +74,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 20,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "como-funciona.html": {
@@ -72,7 +86,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 17,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -81,7 +98,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 17,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -92,7 +112,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 22,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "acerca.html": {
@@ -103,7 +124,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 12,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -112,7 +136,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 12,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -123,7 +150,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 17,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "login.html": {
@@ -134,7 +162,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 7,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -143,7 +174,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 7,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -154,7 +188,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 7,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "registro.html": {
@@ -165,7 +200,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 9,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -174,7 +212,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 9,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -185,7 +226,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 9,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "dashboard.html": {
@@ -196,7 +238,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 10,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -205,7 +250,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 10,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -216,7 +264,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 14,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "mi-avatar.html": {
@@ -227,7 +276,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 8,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -236,7 +288,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 8,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -247,7 +302,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 12,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "mi-perfil.html": {
@@ -258,7 +314,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 7,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -267,7 +326,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 7,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -278,7 +340,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 11,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "recorrido.html": {
@@ -289,7 +352,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 28,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -298,7 +364,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 29,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -309,7 +378,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 29,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "admin/participantes.html": {
@@ -320,7 +390,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 34,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -329,7 +402,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 34,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -340,7 +416,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 38,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "admin/avatares.html": {
@@ -351,7 +428,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 37,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -360,7 +440,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 37,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -371,7 +454,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 41,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "admin/roles.html": {
@@ -382,7 +466,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 22,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -391,7 +478,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 22,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -402,7 +492,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 26,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     },
     "admin/zonas.html": {
@@ -413,7 +504,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 53,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "768": {
         "desborde": 0,
@@ -422,7 +516,10 @@
         "sinLabel": [],
         "h1": 1,
         "saltos": 0,
-        "errores": []
+        "errores": [],
+        "tabulables": 53,
+        "sinFocoVisible": [],
+        "focoOculto": []
       },
       "1280": {
         "desborde": 0,
@@ -433,7 +530,8 @@
         "saltos": 0,
         "errores": [],
         "tabulables": 57,
-        "sinFocoVisible": []
+        "sinFocoVisible": [],
+        "focoOculto": []
       }
     }
   },

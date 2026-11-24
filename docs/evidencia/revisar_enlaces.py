@@ -10,6 +10,7 @@ Uso, desde la raíz del repositorio:
 Sale con código 1 si encuentra algún problema.
 """
 import sys
+from functools import cache
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -34,12 +35,11 @@ class Lector(HTMLParser):
                 self.refs.append((tag, attr, a[attr], self.getpos()[0]))
 
 
-def leer(ruta, cache={}):
-    if ruta not in cache:
-        lector = Lector()
-        lector.feed(ruta.read_text(encoding="utf-8"))
-        cache[ruta] = lector
-    return cache[ruta]
+@cache
+def leer(ruta):
+    lector = Lector()
+    lector.feed(ruta.read_text(encoding="utf-8"))
+    return lector
 
 
 problemas, externos, total = [], set(), 0

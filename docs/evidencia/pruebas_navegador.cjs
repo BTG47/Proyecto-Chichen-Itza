@@ -6,7 +6,7 @@
 //   - imágenes rotas,
 //   - campos de formulario sin label,
 //   - un solo <h1> y niveles de encabezado sin saltos,
-//   - recorrido con Tab: cada elemento que recibe el foco debe tener contorno o sombra visible.
+//   - recorrido con Tab: cada elemento que recibe el foco debe cambiar de aspecto y verse en pantalla.
 // Guarda capturas en docs/evidencia/capturas/ y el resumen en docs/evidencia/resultados.json.
 //
 // Uso (desde la raíz del repo; playwright-core se instala fuera del proyecto):
@@ -64,7 +64,10 @@ const esperarAnimaciones = (tab) => tab.evaluate(() => Promise.race([
   new Promise((listo) => setTimeout(listo, 1500)),
 ]));
 
-const url = (p) => "file://" + path.join(RAIZ, p.split("#")[0]) + (p.includes("#") ? "#" + p.split("#")[1] : "");
+const url = (p) => {
+  const [ruta, ancla] = p.split("#");
+  return "file://" + path.join(RAIZ, ruta) + (ancla ? "#" + ancla : "");
+};
 
 // Se ejecuta dentro de la página.
 function medir() {
@@ -88,25 +91,27 @@ function medir() {
   return { desborde, culpables, imagenesRotas, sinLabel, h1: niveles.filter((n) => n === 1).length, saltos };
 }
 
-// Foco visible del elemento activo: contorno, sombra o cambio de fondo/borde respecto a su estado sin foco.
+// Foco visible: con el elemento enfocado y sin foco se compara el aspecto (contorno, sombra, fondo,
+// borde, subrayado) del elemento, de su <label> (radios/checkbox ocultos, D15) y de 4 ancestros
+// (tarjetas clicables que dibujan el anillo con :has(), componentes.css). Si nada cambia, no hay foco visible.
+// Alcanzable: el elemento o su label ocupa espacio en pantalla (no es un control oculto del menú plegado).
 function focoActual() {
   const el = document.activeElement;
   if (!el || el === document.body) return null;
-  const s = getComputedStyle(el);
-  const conContorno = s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0;
-  const conSombra = s.boxShadow !== "none";
-  // Un radio/checkbox oculto muestra el foco en su <label> (D15).
-  const label = el.labels && el.labels[0];
-  const ls = label && getComputedStyle(label);
-  const enLabel = !!ls && ((ls.outlineStyle !== "none" && parseFloat(ls.outlineWidth) > 0) || ls.boxShadow !== "none");
-  // Las tarjetas clicables dibujan el anillo en la tarjeta con :has() (componentes.css).
-  let enAncestro = false;
-  for (let p = el.parentElement, i = 0; p && i < 4 && !enAncestro; p = p.parentElement, i++) {
-    const ps = getComputedStyle(p);
-    enAncestro = ps.outlineStyle !== "none" && parseFloat(ps.outlineWidth) > 0;
-  }
+  const aspecto = (e) => {
+    const s = getComputedStyle(e);
+    return [s.outlineStyle, s.outlineWidth, s.outlineColor, s.boxShadow, s.backgroundColor, s.borderColor, s.textDecorationLine].join(";");
+  };
+  const piezas = [el, el.labels && el.labels[0]].filter(Boolean);
+  for (let p = el.parentElement, i = 0; p && i < 4; p = p.parentElement, i++) piezas.push(p);
+  const firma = () => piezas.map(aspecto).join("|");
+  const conFoco = firma();
+  el.blur();
+  const sinFoco = firma();
+  el.focus({ focusVisible: true });
+  const ocupa = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
   const desc = el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + (el.getAttribute("href") ? `[href=${el.getAttribute("href")}]` : "");
-  return { desc, visible: conContorno || conSombra || enLabel || enAncestro };
+  return { desc, visible: conFoco !== sinFoco, alcanzable: piezas.slice(0, 2).some(ocupa) };
 }
 
 (async () => {
@@ -126,8 +131,8 @@ function focoActual() {
       await esperarAnimaciones(tab);
       const m = await tab.evaluate(medir);
       m.errores = errores;
-      if (ancho === 1280) {
-        // Recorrido con Tab hasta volver al inicio o 200 pasos.
+      {
+        // Recorrido con Tab en cada ancho, hasta volver al inicio o 200 pasos.
         const pasos = [];
         for (let i = 0; i < 200; i++) {
           await tab.keyboard.press("Tab");
@@ -137,6 +142,7 @@ function focoActual() {
         }
         m.tabulables = pasos.length;
         m.sinFocoVisible = [...new Set(pasos.filter((p) => !p.visible).map((p) => p.desc))];
+        m.focoOculto = [...new Set(pasos.filter((p) => !p.alcanzable).map((p) => p.desc))];
       }
       resultados.paginas[pagina][ancho] = m;
       await ctx.close();
@@ -170,9 +176,10 @@ function focoActual() {
         m.h1 !== 1 && `${m.h1} h1`,
         m.saltos && `${m.saltos} saltos de encabezado`,
         m.errores.length && `errores: ${m.errores}`,
-        m.sinFocoVisible && m.sinFocoVisible.length && `sin foco visible: ${m.sinFocoVisible}`,
+        m.sinFocoVisible.length && `sin foco visible: ${m.sinFocoVisible}`,
+        m.focoOculto.length && `foco en elemento oculto: ${m.focoOculto}`,
       ].filter(Boolean);
-      console.log(`${p} @${a}: ${fallas.length ? fallas.join(" | ") : "OK"}${m.tabulables != null ? ` (${m.tabulables} tabulables)` : ""}`);
+      console.log(`${p} @${a}: ${fallas.length ? fallas.join(" | ") : "OK"}${` (${m.tabulables} tabulables)`}`);
     }
   }
   console.log(`${resultados.capturas.length} capturas en docs/evidencia/capturas/`);
