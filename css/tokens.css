@@ -134,3 +134,16 @@
   --apariencia-aro-borde: var(--color-borde);
 
 }
+
+/* ---------- Ticket #5: panel del participante ---------- */
+:root {
+  --ancho-lateral: 16rem;
+  --color-lateral: var(--color-jade-profundo);
+  --color-lateral-texto: var(--color-jade-claro);
+  --color-lateral-hover: rgb(255 255 255 / .07);
+  --color-lateral-activo: rgb(255 255 255 / .13);
+  --color-conectado: #3fb37f;
+  --color-conectado-halo: rgb(63 179 127 / .35);
+  --color-progreso-fondo: var(--color-naranja-claro);
+  --color-progreso: var(--color-naranja);
+}
