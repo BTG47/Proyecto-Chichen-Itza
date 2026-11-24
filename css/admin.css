@@ -736,6 +736,9 @@
 @media (prefers-reduced-motion: reduce) {
   .selector-apariencia__opcion {
     transition: none;
+  }
+}
+
 /* ---------- Ticket #8: zonas ----------
  * Filtro por recorrido (radios ocultos + label + :has, D15), tabla agrupada
  * por recorrido con un <tbody> por grupo y marcas de zona restringida. */
