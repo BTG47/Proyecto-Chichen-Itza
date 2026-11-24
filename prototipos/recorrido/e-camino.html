@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!--
+  PROTOTIPO DESECHABLE · ticket #9 · Variante E: Camino + reproduciendo ahora.
+  Pregunta: ¿una pantalla de visita sobria (Persona 3) y ESCALABLE, construida solo con
+  listas de elementos repetidos, puede ser tan clara y viva como A/C/D sin arte por zona?
+  - Camino tipo Duolingo: <ol class="camino"> de bloques de zona; el zigzag y los tramos
+    salen de :nth-child (no hay coordenadas por zona).
+  - «Vista general»: el MISMO <ol> se reestiliza como mapa esquemático (radios + :has()).
+  - Fichas de zona con :target (sin destino, se muestra la zona actual).
+  - Barra «Reproduciendo ahora» tipo Spotify; ayuda, saludos y fotografía con checkboxes
+    ocultos + <label>; filtro de la bitácora y pestañas con radios + :has().
+  Datos: prototipos/recorrido/DATOS.md. No es código de producción.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROTOTIPO · E · Camino | Visita | Chichén Itzá Virtual</title>
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/componentes.css">
+  <link rel="stylesheet" href="prototipo.css">
+  <link rel="stylesheet" href="e-camino.css">
+</head>
+<body class="visita">
+
+  <!-- Estado de las acciones simuladas (D15). No cambian la URL, así que no cierran la ficha abierta. -->
+  <input class="interruptor" type="checkbox" id="sal-hola">
+  <input class="interruptor" type="checkbox" id="sal-sigo">
+  <input class="interruptor" type="checkbox" id="sal-duda">
+  <input class="interruptor" type="checkbox" id="pedir-ayuda">
+  <input class="interruptor" type="checkbox" id="foto">
+  <input class="interruptor" type="checkbox" id="cajon">
+  <input class="interruptor" type="radio" name="vista" id="vista-camino" checked>
+  <input class="interruptor" type="radio" name="vista" id="vista-mapa">
+  <input class="interruptor" type="radio" name="pestana" id="tab-bitacora" checked>
+  <input class="interruptor" type="radio" name="pestana" id="tab-grupo">
+
+  <!-- ===================== Biblioteca SVG: un <symbol> por monumento + íconos ===================== -->
+  <svg class="biblioteca" aria-hidden="true" focusable="false">
+    <symbol id="i-candado" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="8" rx="1.5" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16"><path d="m3.5 8.5 3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-salir" viewBox="0 0 24 24"><path d="M14 4H5v16h9M10 12h10m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 3h6l-1 6 3 3H7l3-3zM12 12v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-camara" viewBox="0 0 24 24"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h3l1.5-2h6l1.5 2h3A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-anterior" viewBox="0 0 24 24"><path d="M6 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M19 5.5 9 12l10 6.5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-siguiente" viewBox="0 0 24 24"><path d="M18 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M5 5.5 15 12 5 18.5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lista" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-entrar" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bandera" viewBox="0 0 24 24"><path d="M6 21V4m0 1h11l-2.5 4L17 13H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-marca" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v3M8 11h8M6 14h12M4 17h16M3 20h18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+
+    <!-- Monumentos pequeños (viewBox 400×260). Kukulcán y cancha: Persona 3; plaza, Venus y columnas: variante D. -->
+    <symbol id="monument-kukulkan" viewBox="0 0 400 260">
+      <path d="M45 220h310" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M76 213 190 64h20l114 149z" fill="#a88e63" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M200 65h10l114 148H200z" fill="#927a55"/>
+      <path d="M172 89h56M155 111h90M138 134h124M120 157h160M102 181h196M84 204h232" fill="none" stroke="#ead7af" stroke-width="5" stroke-linecap="square"/>
+      <path d="M185 83h30l24 130h-78z" fill="#d4bd90" stroke="#725e43" stroke-width="3"/>
+      <path d="M200 86v124m-10-109h20m-17 18h14m-20 18h26m-22 18h18m-27 18h36m-31 18h26m-35 18h44" fill="none" stroke="#8c704a" stroke-width="2.5"/>
+      <path d="M179 83h42l-5-9h-32zM183 74V56h34v18m-39-18h44l-5-8h-34z" fill="#c5ab7d" stroke="#725e43" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M191 56V45h18v11m-9-11V34m-5 0h10" fill="none" stroke="#725e43" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="monument-ballcourt" viewBox="0 0 400 260">
+      <path d="M56 222h288" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M69 213 113 85h48l28 128z" fill="#b79b6d" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M331 213 287 85h-48l-28 128z" fill="#a88c62" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M82 187h68m-59-27h59m-49-27h43m-33-27h24m181 81h-68m59-27h-59m49-27h-43m33-27h-24" fill="none" stroke="#e4d0a6" stroke-width="4" stroke-linecap="round"/>
+      <path d="m165 213-10-89h90l-10 89z" fill="#d6c197" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="266" cy="139" r="13" fill="#f1e4c5" stroke="#725e43" stroke-width="6"/>
+      <path d="M266 126v26" stroke="#725e43" stroke-width="3"/>
+    </symbol>
+    <symbol id="m-plaza" viewBox="0 0 400 260">
+      <path d="M30 222h340" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="m60 214 40-40h200l40 40z" fill="#e6d8b8" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M120 186h160M100 200h200" stroke="#c9b48a" stroke-width="3"/>
+      <path d="M150 174v-50h16v50m68 0v-50h16v50" fill="#c9b184" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M146 124h24m60 0h24" stroke="#725e43" stroke-width="4" stroke-linecap="round"/>
+      <path d="m180 110 20-36 20 36z" fill="#a88e63" stroke="#725e43" stroke-width="3" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="m-venus" viewBox="0 0 400 260">
+      <path d="M40 222h320" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M90 214v-80h220v80z" fill="#c9b184" stroke="#725e43" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M90 134h220" stroke="#ead8b2" stroke-width="6"/>
+      <path d="M170 214v-80h60v80z" fill="#d4bd90" stroke="#725e43" stroke-width="3"/>
+      <path d="M170 150h60m-60 16h60m-60 16h60m-60 16h60" stroke="#8c704a" stroke-width="2.5"/>
+      <path d="M112 160h40v36h-40zm136 0h40v36h-40z" fill="none" stroke="#8c704a" stroke-width="3"/>
+      <path d="m200 40 9 20 21 2-16 14 5 21-19-11-19 11 5-21-16-14 21-2z" fill="#f3c77d" stroke="#725e43" stroke-width="3" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="m-columnas" viewBox="0 0 400 260">
+      <path d="M30 222h340" stroke="#6d7955" stroke-width="7" stroke-linecap="round"/>
+      <path d="M50 214v-12h300v12z" fill="#b59a6d" stroke="#725e43" stroke-width="3"/>
+      <g fill="#d4bd90" stroke="#725e43" stroke-width="3">
+        <rect x="66" y="96" width="20" height="106"/><rect x="110" y="96" width="20" height="106"/>
+        <rect x="154" y="96" width="20" height="106"/><rect x="198" y="96" width="20" height="106"/>
+        <rect x="242" y="96" width="20" height="106"/><rect x="286" y="96" width="20" height="106"/>
+        <rect x="320" y="96" width="20" height="106"/>
+      </g>
+      <path d="M52 96V80h296v16z" fill="#c5ab7d" stroke="#725e43" stroke-width="3"/>
+    </symbol>
+  </svg>
+
+  <!-- ===================== Encabezado sobrio ===================== -->
+  <header class="cabecera">
+    <span class="cabecera__marca" aria-hidden="true"><svg><use href="#i-marca"/></svg></span>
+    <div class="cabecera__titulo">
+      <p class="cabecera__ceja"><span class="punto punto--vivo" aria-hidden="true"></span>En curso · Grupal con guía · 45 min</p>
+      <h1>El Castillo y la Gran Plaza</h1>
+    </div>
+    <p class="cabecera__conexion" title="Servidor de la sesión"><span class="punto punto--vivo" aria-hidden="true"></span><span>Región Sureste <small>Conectada</small></span></p>
+    <label class="cabecera__grupo" for="tab-grupo">
+      <span class="pila" aria-hidden="true">
+        <img src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+        <img src="../../img/apariencias/jaguar-jade.svg" alt="">
+        <img src="../../img/apariencias/quetzal.svg" alt="">
+        <img src="../../img/apariencias/buho.svg" alt="">
+      </span>
+      <span><strong>6</strong> en el grupo <small>5 en línea</small></span>
+    </label>
+    <a class="boton boton--contorno cabecera__salir" href="../../dashboard.html"><svg aria-hidden="true"><use href="#i-salir"/></svg>Salir</a>
+  </header>
+
+  <div class="cuerpo">
+
+    <!-- ===================== Camino (protagonista) ===================== -->
+    <main class="escenario" id="camino">
+      <div class="camino-scroll">
+        <div class="camino-cabecera">
+          <div>
+            <h2>Tu camino</h2>
+            <p>Recorrido libre: ve en el orden que quieras. Toca una zona para ver su ficha.</p>
+          </div>
+          <div class="vistas" role="radiogroup" aria-label="Forma de ver el recorrido">
+            <label for="vista-camino">Camino</label>
+            <label for="vista-mapa">Vista general</label>
+          </div>
+        </div>
+
+        <!--
+          ======== PLANTILLA · BLOQUE DE ZONA ========
+          Añadir una zona = copiar este <li> dentro de <ol class="camino">, antes de la meta.
+          El número, el zigzag, los tramos del camino y su lugar en la «Vista general» salen
+          solos de su posición en la lista (:nth-child y contadores CSS). Nada más que tocar.
+
+          <li class="nodo nodo--pendiente">               (visitada | actual | pendiente [+ nodo--saltada])
+            <div class="nodo__marco">
+              <a class="nodo__boton" href="#ficha-ID" aria-label="NOMBRE: pendiente. Ver ficha">
+                <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-ID"/></svg>   (ícono pequeño del monumento)
+              </a>
+              <span class="nodo__nombre">NOMBRE</span>
+              <span class="nodo__aqui">N aquí</span>
+            </div>
+            <article class="ficha" id="ficha-ID" aria-labelledby="t-ID">
+              … medallón con el mismo <use>, NOMBRE, descripción, «Aquí ahora»,
+              2–3 <details class="curioso"> con datos curiosos, acción …
+            </article>
+          </li>
+
+          Recorrido nuevo = otra página con otro <ol class="camino"> de estos bloques
+          (+ un <symbol> por monumento nuevo). El CSS no cambia.
+        -->
+        <ol class="camino" role="list" aria-label="Zonas del recorrido, en el orden del catálogo">
+
+          <!-- ===== Zona 1 · Gran Plaza (con zona vecina: Mil Columnas) ===== -->
+          <li class="nodo nodo--visitada">
+            <div class="nodo__marco">
+              <a class="nodo__boton" href="#ficha-plaza" aria-label="Gran Plaza: visitada. Ver ficha">
+                <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-plaza"/></svg>
+              </a>
+              <span class="nodo__nombre">Gran Plaza</span>
+              <span class="nodo__aqui"><img src="../../img/apariencias/buho.svg" alt="">1 aquí</span>
+              <!-- Zona vecina fuera del recorrido (D29): sale de la Gran Plaza -->
+              <a class="vecina" href="#ficha-columnas" aria-label="Grupo de las Mil Columnas: requiere rol Guía. Ver ficha">
+                <span class="vecina__boton"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-columnas"/></svg><span class="vecina__candado"><svg aria-hidden="true"><use href="#i-candado"/></svg></span></span>
+                <span class="vecina__texto">Mil Columnas<small>Requiere rol Guía</small></span>
+              </a>
+            </div>
+
+            <article class="ficha" id="ficha-plaza" aria-labelledby="t-plaza">
+              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+              <header class="ficha__cabecera">
+                <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-plaza"/></svg></span>
+                <div>
+                  <p class="ficha__etiqueta">Zona 1 de 4 · <span class="estado estado--visitada">Visitada</span></p>
+                  <h2 id="t-plaza">Gran Plaza</h2>
+                </div>
+              </header>
+              <p class="ficha__descripcion">Explanada ceremonial alrededor de la cual se levantan los principales edificios del periodo Posclásico temprano.</p>
+              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">1</span></h3>
+              <ul class="aqui" role="list">
+                <li class="aqui__item aqui__item--inactivo"><img class="apariencia apariencia--mini" src="../../img/apariencias/buho.svg" alt=""> Juan · Muan <small>Inactivo 3 min</small></li>
+              </ul>
+              <h3 class="ficha__sub">Datos curiosos</h3>
+              <div class="curiosos">
+                <details class="curioso"><summary>Un suelo hecho a mano</summary><p>La explanada se niveló de forma artificial con rellenos de piedra y se cubrió con pisos de estuco renovados varias veces.</p></details>
+                <details class="curioso"><summary>El camino blanco al cenote</summary><p>Del norte de la plaza parte un sacbé, calzada elevada de unos 300 metros, que llega al Cenote Sagrado.</p></details>
+                <details class="curioso"><summary>Muros de cráneos</summary><p>Cerca del Juego de Pelota está el Tzompantli, una plataforma cuyos muros están tallados con hileras de cráneos.</p></details>
+              </div>
+              <a class="boton boton--contorno ficha__accion" href="#aviso-viaje">Ir a esta zona<svg aria-hidden="true"><use href="#i-entrar"/></svg></a>
+            </article>
+
+            <article class="ficha ficha--vecina" id="ficha-columnas" aria-labelledby="t-columnas">
+              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+              <header class="ficha__cabecera">
+                <span class="medallon medallon--bloqueado"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-columnas"/></svg></span>
+                <div>
+                  <p class="ficha__etiqueta">Zona vecina · fuera del recorrido</p>
+                  <h2 id="t-columnas">Grupo de las Mil Columnas</h2>
+                </div>
+              </header>
+              <p><span class="insignia insignia--restringida"><svg class="insignia__icono" aria-hidden="true"><use href="#i-candado"/></svg>Requiere rol Guía</span></p>
+              <p class="ficha__descripcion">Gran espacio porticado al este de la Gran Plaza, donde cientos de columnas talladas con guerreros sostenían techos de madera y estuco.</p>
+              <h3 class="ficha__sub">Datos curiosos</h3>
+              <div class="curiosos">
+                <details class="curioso"><summary>Un chac mool en la cima</summary><p>El vecino Templo de los Guerreros está coronado por un chac mool, figura reclinada que sostiene un recipiente sobre el vientre.</p></details>
+                <details class="curioso"><summary>Bosque de piedra</summary><p>Las columnas que hoy se ven solas formaban galerías techadas; las vigas de madera desaparecieron hace siglos.</p></details>
+              </div>
+              <p class="ficha__nota ficha__nota--candado">Tu avatar tiene rol Visitante: puedes consultar esta ficha, pero no entrar.</p>
+            </article>
+          </li>
+
+          <!-- ===== Zona 2 · El Castillo ===== -->
+          <li class="nodo nodo--visitada">
+            <div class="nodo__marco">
+              <a class="nodo__boton" href="#ficha-castillo" aria-label="El Castillo: visitada. Ver ficha">
+                <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-kukulkan"/></svg>
+              </a>
+              <span class="nodo__nombre">El Castillo</span>
+              <span class="nodo__aqui"><img src="../../img/apariencias/quetzal.svg" alt="">1 aquí</span>
+            </div>
+
+            <article class="ficha" id="ficha-castillo" aria-labelledby="t-castillo">
+              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+              <header class="ficha__cabecera">
+                <span class="medallon"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-kukulkan"/></svg></span>
+                <div>
+                  <p class="ficha__etiqueta">Zona 2 de 4 · <span class="estado estado--visitada">Visitada</span></p>
+                  <h2 id="t-castillo">El Castillo</h2>
+                </div>
+              </header>
+              <p class="ficha__descripcion">Templo de Kukulcán: nueve cuerpos escalonados y 365 escalones, uno por cada día del año solar.</p>
+              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">1</span></h3>
+              <ul class="aqui" role="list">
+                <li class="aqui__item"><img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt=""> María · Ixchel <small>Explorando</small></li>
+              </ul>
+              <h3 class="ficha__sub">Datos curiosos</h3>
+              <div class="curiosos">
+                <details class="curioso"><summary>Las cuentas de los escalones</summary><p>Cada una de las cuatro escalinatas tiene 91 escalones: 364 en total, más la plataforma del templo superior, 365.</p></details>
+                <details class="curioso"><summary>La serpiente de luz</summary><p>En los equinoccios, la sombra de los cuerpos escalonados dibuja triángulos de luz en la alfarda norte, que bajan hasta una cabeza de serpiente.</p></details>
+                <details class="curioso"><summary>Una pirámide dentro de otra</summary><p>Bajo el edificio visible hay una pirámide más antigua; en su templo se halló un trono en forma de jaguar pintado de rojo.</p></details>
+              </div>
+              <a class="boton boton--contorno ficha__accion" href="#aviso-viaje">Ir a esta zona<svg aria-hidden="true"><use href="#i-entrar"/></svg></a>
+            </article>
+          </li>
+
+          <!-- ===== Zona 3 · Plataforma de Venus (pendiente: Ana la saltó) ===== -->
+          <li class="nodo nodo--pendiente nodo--saltada">
+            <div class="nodo__marco">
+              <a class="nodo__boton" href="#ficha-venus" aria-label="Plataforma de Venus: pendiente, la saltaste. Ver ficha">
+                <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-venus"/></svg>
+              </a>
+              <span class="nodo__nombre">Plataforma de Venus</span>
+              <span class="nodo__aqui nodo__aqui--alerta"><img src="../../img/apariencias/quetzal.svg" alt="">1 aquí<span class="nodo__extra"> · pidió ayuda</span></span>
+            </div>
+
+            <article class="ficha" id="ficha-venus" aria-labelledby="t-venus">
+              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+              <header class="ficha__cabecera">
+                <span class="medallon medallon--pendiente"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#m-venus"/></svg></span>
+                <div>
+                  <p class="ficha__etiqueta">Zona 3 de 4 · <span class="estado estado--pendiente">Pendiente</span></p>
+                  <h2 id="t-venus">Plataforma de Venus</h2>
+                </div>
+              </header>
+              <p class="ficha__descripcion">Plataforma con escalinatas en sus cuatro lados y relieves del planeta Venus, usada para danzas y ceremonias.</p>
+              <p class="ficha__nota">Pasaste de El Castillo al Juego de Pelota: esta zona sigue pendiente (recorrido libre).</p>
+              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">1</span></h3>
+              <ul class="aqui" role="list">
+                <li class="aqui__item"><img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt=""> Jose · Kuk <span class="estado estado--alerta">Pidió ayuda</span></li>
+              </ul>
+              <h3 class="ficha__sub">Datos curiosos</h3>
+              <div class="curiosos">
+                <details class="curioso"><summary>El planeta en piedra</summary><p>Sus tableros combinan el símbolo de Venus con numerales mayas de barras y puntos, ligados al ciclo del planeta que los mayas registraban con precisión.</p></details>
+                <details class="curioso"><summary>Serpientes en las escaleras</summary><p>Las alfardas de sus escalinatas rematan en cabezas de serpiente emplumada, como en El Castillo.</p></details>
+              </div>
+              <a class="boton boton--primario ficha__accion" href="#aviso-viaje">Ir a esta zona<svg aria-hidden="true"><use href="#i-entrar"/></svg></a>
+            </article>
+          </li>
+
+          <!-- ===== Zona 4 · Juego de Pelota (zona actual de Ana) ===== -->
+          <li class="nodo nodo--actual">
+            <div class="nodo__marco">
+              <span class="nodo__burbuja" aria-hidden="true">Estás aquí</span>
+              <a class="nodo__boton" href="#ficha-pelota" aria-label="Juego de Pelota: zona actual. Ver ficha">
+                <svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-ballcourt"/></svg>
+              </a>
+              <img class="nodo__yo apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="Tu avatar, Balam">
+              <span class="nodo__nombre">Juego de Pelota</span>
+              <span class="nodo__aqui nodo__aqui--guia"><img src="../../img/apariencias/serpiente-emplumada.svg" alt=""><img src="../../img/apariencias/jaguar-jade.svg" alt="">3 aquí<span class="nodo__extra"> · con el guía</span></span>
+            </div>
+
+            <article class="ficha ficha--actual" id="ficha-pelota" aria-labelledby="t-pelota">
+              <a class="ficha__cerrar" href="#camino" aria-label="Cerrar ficha"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></a>
+              <header class="ficha__cabecera">
+                <span class="medallon medallon--actual"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-ballcourt"/></svg></span>
+                <div>
+                  <p class="ficha__etiqueta">Zona 4 de 4 · <span class="estado estado--actual">Estás aquí</span></p>
+                  <h2 id="t-pelota">Juego de Pelota</h2>
+                </div>
+              </header>
+              <p class="ficha__descripcion">La mayor cancha de Mesoamérica, con anillos de piedra en lo alto de sus muros y relieves de jugadores.</p>
+              <h3 class="ficha__sub">Aquí ahora <span class="cuenta">3</span></h3>
+              <ul class="aqui" role="list">
+                <li class="aqui__item aqui__item--guia"><img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt=""> Carlos · Kan <span class="chip chip--guia">Guía</span></li>
+                <li class="aqui__item aqui__item--yo"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt=""> Tú · Balam</li>
+                <li class="aqui__item"><img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt=""> Carla · Itzel</li>
+              </ul>
+              <h3 class="ficha__sub">Datos curiosos</h3>
+              <div class="curiosos">
+                <details class="curioso" open><summary>Una cancha enorme</summary><p>Mide cerca de 168 metros de largo por 70 de ancho: es la cancha de juego de pelota más grande de Mesoamérica.</p></details>
+                <details class="curioso"><summary>Anillos en lo alto</summary><p>Los anillos de piedra están empotrados a varios metros de altura en el centro de cada muro; la pelota de hule se golpeaba con la cadera, no con las manos.</p></details>
+                <details class="curioso"><summary>Lo que cuentan los relieves</summary><p>En los taludes, dos equipos avanzan hacia una pelota central; uno de los jugadores aparece decapitado.</p></details>
+              </div>
+              <label class="boton boton--primario ficha__accion" for="foto"><svg aria-hidden="true"><use href="#i-camara"/></svg>Tomar fotografía</label>
+              <p class="ficha__pie">Solo en la zona actual. Cuenta como visitada al terminarla.</p>
+            </article>
+          </li>
+
+          <!-- Meta: no es una zona; cierra el camino -->
+          <li class="camino__meta" aria-hidden="true">
+            <span class="meta__icono"><svg><use href="#i-bandera"/></svg></span>
+            <span>Fin del recorrido</span>
+          </li>
+        </ol>
+
+        <p class="mapa-nota">Vista general: el mismo camino como mapa esquemático, sin escala. El Grupo de las Mil Columnas queda junto a la Gran Plaza.</p>
+
+        <ul class="leyenda" role="list" aria-label="Leyenda">
+          <li><span class="leyenda__muestra leyenda__muestra--visitada"></span>Visitada</li>
+          <li><span class="leyenda__muestra leyenda__muestra--actual"></span>Estás aquí</li>
+          <li><span class="leyenda__muestra leyenda__muestra--pendiente"></span>Pendiente</li>
+          <li><span class="leyenda__muestra leyenda__muestra--guia"></span>Solo Guía</li>
+        </ul>
+      </div>
+    </main>
+
+    <!-- ===================== Panel lateral: guía + bitácora | grupo ===================== -->
+    <aside class="lateral" aria-label="Guía, bitácora y grupo">
+      <label class="lateral__cerrar" for="cajon" aria-label="Cerrar panel"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></label>
+
+      <!-- Tarjeta del guía. La reputación es un campo de interfaz: no está en el UML. -->
+      <section class="guia" aria-labelledby="guia-titulo">
+        <img class="apariencia" src="../../img/apariencias/serpiente-emplumada.svg" alt="Apariencia serpiente emplumada">
+        <div class="guia__texto">
+          <p class="guia__rol"><span class="chip chip--guia">Guía</span> Tu guía en esta visita</p>
+          <h2 id="guia-titulo">Kan <small>· Carlos KarKerKar</small></h2>
+        </div>
+        <div class="guia__rep">
+          <p class="guia__nota"><strong>4.8</strong><small>/ 5</small></p>
+          <ul class="barritas" role="img" aria-label="Reputación 4.8 de 5. Valoraciones: 85 % cinco estrellas, 12 % cuatro, 2 % tres, 1 % dos.">
+            <li style="--valor: 85%"><span>5</span></li>
+            <li style="--valor: 12%"><span>4</span></li>
+            <li style="--valor: 2%"><span>3</span></li>
+            <li style="--valor: 1%"><span>2</span></li>
+            <li style="--valor: 0%"><span>1</span></li>
+          </ul>
+          <p class="guia__visitas">126 visitas guiadas <span class="marca-ui" title="Campo de interfaz: la reputación no está en el UML">UI<span class="visualmente-oculto"> (campo de interfaz, no está en el UML)</span></span></p>
+        </div>
+      </section>
+
+      <div class="pestanas" role="tablist" aria-label="Panel">
+        <label for="tab-bitacora">Bitácora <b>11</b></label>
+        <label for="tab-grupo">Grupo <b>6</b></label>
+      </div>
+
+      <!-- ===== Bitácora de Acciones ===== -->
+      <section class="bitacora" aria-labelledby="bitacora-titulo">
+        <h2 id="bitacora-titulo" class="visualmente-oculto">Bitácora de la visita</h2>
+
+        <!-- «Letra» de la zona actual: explicaciones del guía (GuiaTurista.explicarZona) -->
+        <div class="letra">
+          <p class="letra__etiqueta"><svg aria-hidden="true"><use href="#i-pin"/></svg>El guía dice… <span>Juego de Pelota</span></p>
+          <ol class="letra__lineas" role="list">
+            <li class="letra__linea letra__linea--pasada">Síganme al Juego de Pelota, la mayor cancha de Mesoamérica.</li>
+            <li class="letra__linea letra__linea--ahora">Fíjense en los relieves del talud: dos equipos de jugadores avanzan hacia una gran pelota al centro.</li>
+            <li class="letra__linea letra__linea--respuesta">Ana, vi tu solicitud. Voy contigo.</li>
+          </ol>
+          <p class="letra__meta">Kan · <time>17:41</time></p>
+        </div>
+
+        <div class="filtro" role="radiogroup" aria-label="Filtrar la bitácora">
+          <input class="interruptor" type="radio" name="filtro" id="filtro-todo" checked>
+          <label for="filtro-todo">Todo</label>
+          <input class="interruptor" type="radio" name="filtro" id="filtro-guia">
+          <label for="filtro-guia">Solo guía</label>
+        </div>
+
+        <ol class="feed" role="list" aria-label="Acciones, la más reciente primero">
+          <li class="entrada entrada--guia entrada--respuesta">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+            <div><p class="entrada__meta"><strong>Kan</strong> <span class="chip chip--guia">Guía</span> <span class="entrada__tipo">Respuesta</span><time>17:42</time></p>
+            <p class="entrada__texto">Ana, vi tu solicitud. Voy contigo.</p><p class="entrada__zona">Juego de Pelota</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--ayuda">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Solicitud de ayuda</span><time>17:42</time></p>
+            <p class="entrada__zona">Juego de Pelota</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--foto">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Fotografía</span><time>17:42</time></p>
+            <p class="entrada__zona">Juego de Pelota</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--hola">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👋 Hola</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--sigo">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👍 Te sigo</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--duda">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">🙋 Tengo una duda</p></div>
+          </li>
+
+          <li class="entrada entrada--guia">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+            <div><p class="entrada__meta"><strong>Kan</strong> <span class="chip chip--guia">Guía</span> <span class="entrada__tipo">Explicación</span><time>17:41</time></p>
+            <p class="entrada__texto">Fíjense en los relieves del talud: dos equipos de jugadores avanzan hacia una gran pelota al centro.</p><p class="entrada__zona">Juego de Pelota</p></div>
+          </li>
+          <li class="entrada entrada--alerta">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">
+            <div><p class="entrada__meta"><strong>Kuk</strong> <span class="entrada__tipo">Solicitud de ayuda</span><time>17:40</time></p>
+            <p class="entrada__zona">Plataforma de Venus</p></div>
+          </li>
+          <li class="entrada">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Itzel</strong> <span class="entrada__tipo">Saludo</span><time>17:39</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👋 Hola</p><p class="entrada__zona">Juego de Pelota</p></div>
+          </li>
+          <li class="entrada">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Cambio de zona</span><time>17:38</time></p>
+            <p class="entrada__zona">El Castillo → Juego de Pelota</p></div>
+          </li>
+          <li class="entrada entrada--guia">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+            <div><p class="entrada__meta"><strong>Kan</strong> <span class="chip chip--guia">Guía</span> <span class="entrada__tipo">Explicación</span><time>17:36</time></p>
+            <p class="entrada__texto">Síganme al Juego de Pelota, la mayor cancha de Mesoamérica.</p><p class="entrada__zona">El Castillo</p></div>
+          </li>
+          <li class="entrada">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/buho.svg" alt="">
+            <div><p class="entrada__meta"><strong>Muan</strong> <span class="entrada__tipo">Saludo</span><time>17:34</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👍 Te sigo</p><p class="entrada__zona">Gran Plaza</p></div>
+          </li>
+          <li class="entrada">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">
+            <div><p class="entrada__meta"><strong>Ixchel</strong> <span class="entrada__tipo">Fotografía</span><time>17:31</time></p>
+            <p class="entrada__zona">El Castillo</p></div>
+          </li>
+          <li class="entrada entrada--guia">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+            <div><p class="entrada__meta"><strong>Kan</strong> <span class="chip chip--guia">Guía</span> <span class="entrada__tipo">Explicación</span><time>17:29</time></p>
+            <p class="entrada__texto">El Castillo tiene 365 escalones, uno por cada día del año solar.</p><p class="entrada__zona">El Castillo</p></div>
+          </li>
+          <li class="entrada">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Cambio de zona</span><time>17:27</time></p>
+            <p class="entrada__zona">Gran Plaza → El Castillo</p></div>
+          </li>
+          <li class="entrada entrada--guia">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+            <div><p class="entrada__meta"><strong>Kan</strong> <span class="chip chip--guia">Guía</span> <span class="entrada__tipo">Explicación</span><time>17:22</time></p>
+            <p class="entrada__texto">Bienvenidos a la Gran Plaza: desde aquí se ven El Castillo y la Plataforma de Venus.</p><p class="entrada__zona">Gran Plaza</p></div>
+          </li>
+          <li class="entrada entrada--sistema">
+            <span class="entrada__icono" aria-hidden="true">▶</span>
+            <div><p class="entrada__meta"><strong>Sesión iniciada</strong><time>17:20</time></p>
+            <p class="entrada__zona">Servidor Región Sureste · 6 participantes</p></div>
+          </li>
+        </ol>
+
+        <div class="saludos">
+          <p class="saludos__titulo">Saludar al grupo</p>
+          <div class="saludos__botones">
+            <label for="sal-hola">👋 Hola</label>
+            <label for="sal-sigo">👍 Te sigo</label>
+            <label for="sal-duda">🙋 Tengo una duda</label>
+          </div>
+          <p class="saludos__nota">Solo mensajes predeterminados. Demostración: no se envía nada.</p>
+        </div>
+      </section>
+
+      <!-- ===== Grupo: participantes y su Conexion ===== -->
+      <section class="grupo" aria-labelledby="grupo-titulo">
+        <h2 id="grupo-titulo" class="grupo__titulo">Grupo de la visita</h2>
+        <p class="grupo__resumen"><span class="punto punto--vivo" aria-hidden="true"></span>6 participantes · 5 conectados · 1 inactivo</p>
+        <ul class="participantes" role="list">
+          <li class="participante participante--guia">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/serpiente-emplumada.svg" alt="">
+            <span class="participante__texto"><strong>Carlos KarKerKar <span class="chip chip--guia">Guía</span></strong><small>Kan · Juego de Pelota · Explicando la zona</small></span>
+            <span class="conexion conexion--on" title="Conexion.fechaConexion">desde 17:20</span>
+          </li>
+          <li class="participante participante--yo">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <span class="participante__texto"><strong>Ana López Martínez <span class="chip chip--yo">Tú</span></strong><small>Balam · Juego de Pelota · <span class="estado-normal">Explorando</span><span class="estado-ayuda">Solicitó ayuda</span></small></span>
+            <span class="conexion conexion--on">desde 17:20</span>
+          </li>
+          <li class="participante">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/jaguar-jade.svg" alt="">
+            <span class="participante__texto"><strong>Carla Pérez</strong><small>Itzel · Juego de Pelota · Explorando</small></span>
+            <span class="conexion conexion--on">desde 17:21</span>
+          </li>
+          <li class="participante">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">
+            <span class="participante__texto"><strong>María López</strong><small>Ixchel · El Castillo · Explorando</small></span>
+            <span class="conexion conexion--on">desde 17:20</span>
+          </li>
+          <li class="participante participante--alerta">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/quetzal.svg" alt="">
+            <span class="participante__texto"><strong>Jose Jose</strong><small>Kuk · Plataforma de Venus · <em>Solicitó ayuda</em></small></span>
+            <span class="conexion conexion--on">desde 17:22</span>
+          </li>
+          <li class="participante participante--inactivo">
+            <img class="apariencia apariencia--mini" src="../../img/apariencias/buho.svg" alt="">
+            <span class="participante__texto"><strong>Juan Ramírez</strong><small>Muan · Gran Plaza</small></span>
+            <span class="conexion">Inactivo 3 min</span>
+          </li>
+        </ul>
+        <p class="grupo__nota">Conectado = <code>Conexion</code> abierta en el servidor Región Sureste.</p>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ===================== Barra fija «Reproduciendo ahora» ===================== -->
+  <footer class="reproductor" aria-label="Reproduciendo ahora">
+    <a class="ahora" href="#ficha-pelota">
+      <span class="ahora__portada"><svg viewBox="0 0 400 260" aria-hidden="true"><use href="#monument-ballcourt"/></svg></span>
+      <span class="ahora__texto">
+        <small><span class="ecualizador" aria-hidden="true"><i></i><i></i><i></i></span>Reproduciendo ahora<span class="ahora__con"> · con Kan</span></small>
+        <strong>Ahora: Juego de Pelota</strong>
+        <span>Zona 4 de 4 · Tú y 2 más</span>
+      </span>
+    </a>
+
+    <div class="mando">
+      <div class="mando__botones">
+        <a class="mando__boton" href="#ficha-castillo" title="Zona anterior: El Castillo" aria-label="Zona anterior: El Castillo"><svg aria-hidden="true"><use href="#i-anterior"/></svg></a>
+        <label class="mando__boton mando__boton--ayuda" for="pedir-ayuda" title="Pedir ayuda al guía">
+          <span aria-hidden="true">✋</span><span class="visualmente-oculto">Pedir ayuda al guía</span>
+        </label>
+        <a class="mando__boton" href="#ficha-venus" title="Siguiente zona: Plataforma de Venus (pendiente)" aria-label="Siguiente zona: Plataforma de Venus"><svg aria-hidden="true"><use href="#i-siguiente"/></svg></a>
+      </div>
+      <!-- Progreso = Participacion.calcularProgreso() · tiempo desde SesionRecorrido.fechaInicio (17:20) -->
+      <div class="pista">
+        <time class="pista__tiempo" datetime="PT22M">22:00</time>
+        <div class="pista__barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 %, 2 de 4 zonas visitadas" title="Participacion.calcularProgreso()">
+          <span class="tramo tramo--lleno"></span>
+          <span class="tramo tramo--lleno"></span>
+          <span class="tramo"></span>
+          <span class="tramo tramo--actual"></span>
+        </div>
+        <time class="pista__tiempo" datetime="PT45M">45:00</time>
+      </div>
+      <p class="pista__texto"><strong>50 %</strong> · 2 de 4 zonas visitadas · inicio 17:20</p>
+    </div>
+
+    <div class="extras">
+      <details class="saludar">
+        <summary class="extras__boton" title="Saludar al grupo"><span aria-hidden="true">👋</span><span class="extras__texto">Saludar</span></summary>
+        <div class="saludar__menu">
+          <label for="sal-hola">👋 Hola</label>
+          <label for="sal-sigo">👍 Te sigo</label>
+          <label for="sal-duda">🙋 Tengo una duda</label>
+        </div>
+      </details>
+      <label class="extras__boton solo-escritorio" for="tab-bitacora" title="Ver la bitácora"><svg aria-hidden="true"><use href="#i-lista"/></svg><span class="extras__texto">Bitácora</span></label>
+      <label class="extras__boton solo-movil" for="cajon" title="Abrir bitácora y grupo"><svg aria-hidden="true"><use href="#i-lista"/></svg><span class="extras__texto">Bitácora</span></label>
+    </div>
+  </footer>
+
+  <!-- ===================== Avisos (demostración) ===================== -->
+  <div class="aviso aviso--ayuda" role="status">
+    <span class="aviso__emoji" aria-hidden="true">✋</span>
+    <p><strong>Solicitud enviada a Kan (guía).</strong> Quedó en la bitácora. <small>Demostración: no se envía nada.</small></p>
+    <label class="aviso__accion" for="pedir-ayuda">Cancelar</label>
+  </div>
+  <div class="aviso aviso--foto" role="status">
+    <span class="polaroid" aria-hidden="true"><svg viewBox="0 0 400 260"><use href="#monument-ballcourt"/></svg></span>
+    <p><strong>Fotografía tomada.</strong> «Juego de Pelota · 17:42» <small>Demostración: no se guarda ningún archivo.</small></p>
+  </div>
+  <div class="aviso aviso--saludo" role="status">
+    <span class="aviso__emoji" aria-hidden="true">👋</span>
+    <p><strong>Saludo enviado al grupo.</strong> Aparece en la bitácora. <small>Demostración: no se envía nada.</small></p>
+  </div>
+  <div class="aviso aviso--destino" id="aviso-viaje" role="status">
+    <span class="aviso__emoji" aria-hidden="true">➜</span>
+    <p><strong>Cambio de zona simulado.</strong> En la visita real tu avatar viajaría a esa zona y el camino se actualizaría. <small>Demostración.</small></p>
+    <a class="aviso__accion" href="#camino">Cerrar</a>
+  </div>
+
+  <nav class="barra-prototipo" aria-label="Variantes del prototipo">
+    <a href="d-mapa-zona.html" aria-label="Variante anterior">←</a>
+    <span class="barra-prototipo__actual"><span class="barra-prototipo__etiqueta">Prototipo</span>E · Camino</span>
+    <a href="index.html" aria-label="Variante siguiente: Índice">→</a>
+  </nav>
+</body>
+</html>
