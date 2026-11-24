@@ -515,3 +515,226 @@
     animation: none;
   }
 }
+
+/* ---------- Ticket #7: avatares con apariencia ----------
+ * admin/avatares.html: retrato de la ficha, estado de la participación (D9),
+ * selector de apariencia con radios ocultos y vista previa con :has() (D16). */
+
+/* Participante sin asignar (avatar libre) */
+.sin-asignar {
+  color: var(--color-texto-secundario);
+  font-style: italic;
+}
+
+/* Tabla de avatares: el nombre de la apariencia y el del participante pueden
+   partirse y las acciones son compactas, para que la tabla quepa junto al
+   panel sin ocultar las acciones */
+.tabla--avatares .con-apariencia {
+  gap: var(--espacio-2);
+  width: 7rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.celda-ajustable {
+  display: block;
+  min-width: 5rem;
+  max-width: 6.75rem;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+.tabla--avatares .acciones-fila a {
+  padding-inline: var(--espacio-1);
+}
+
+.tabla--admin .fila--disponible > * {
+  background: var(--color-superficie-suave);
+}
+
+/* Estado de la participación: punto de color + texto */
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  font-weight: var(--peso-medio);
+}
+
+.estado::before {
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.estado--visita { color: var(--color-jade-oscuro); }
+.estado--libre { color: var(--color-texto-secundario); }
+
+.estado--libre::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+/* Retrato grande en la ficha */
+.retrato {
+  display: grid;
+  justify-items: center;
+  gap: var(--espacio-3);
+  margin: var(--espacio-2) 0 var(--espacio-5);
+  padding: var(--espacio-5) var(--espacio-4) var(--espacio-4);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie-suave);
+}
+
+.retrato figcaption {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+}
+
+/* Datos de la participación (solo lectura) */
+.participacion__datos {
+  display: grid;
+  gap: var(--espacio-1);
+  margin: var(--espacio-2) 0 0;
+}
+
+.participacion__datos div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 var(--espacio-3);
+  font-size: var(--texto-sm);
+}
+
+.participacion__datos dt {
+  color: var(--color-texto-secundario);
+}
+
+.participacion__datos dd {
+  margin: 0;
+  font-weight: var(--peso-medio);
+}
+
+.participacion .participacion__nota {
+  padding-top: var(--espacio-2);
+  border-top: 1px dashed var(--color-borde);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-xs);
+}
+
+/* Selector de apariencia (D16): radios ocultos + vista previa con :has() */
+.selector-apariencia__vista {
+  display: grid;
+  place-items: center;
+  min-height: calc(var(--apariencia-grande) * .75 + var(--espacio-5));
+  margin-block: var(--espacio-2) var(--espacio-3);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie-suave);
+}
+
+.selector-apariencia__previa {
+  display: none;
+  width: calc(var(--apariencia-grande) * .75);
+}
+
+.selector-apariencia:has([value="jaguar-jade"]:checked) .selector-apariencia__previa--jaguar-jade,
+.selector-apariencia:has([value="quetzal"]:checked) .selector-apariencia__previa--quetzal,
+.selector-apariencia:has([value="serpiente-emplumada"]:checked) .selector-apariencia__previa--serpiente-emplumada,
+.selector-apariencia:has([value="buho"]:checked) .selector-apariencia__previa--buho {
+  display: block;
+}
+
+.selector-apariencia__vacia {
+  max-width: 14rem;
+  margin: 0;
+  padding: var(--espacio-3);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+  text-align: center;
+}
+
+.selector-apariencia:has(:checked) .selector-apariencia__vacia {
+  display: none;
+}
+
+.selector-apariencia__opciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-2);
+}
+
+.selector-apariencia__opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: var(--tactil-minimo);
+  padding: var(--espacio-2);
+  border: 1.5px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color var(--transicion-rapida), background-color var(--transicion-rapida);
+}
+
+.selector-apariencia__opcion .apariencia {
+  width: var(--apariencia-mini);
+}
+
+.selector-apariencia__opcion:hover {
+  border-color: var(--color-jade);
+}
+
+:checked + .selector-apariencia__opcion {
+  border-color: var(--color-jade);
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+}
+
+:focus-visible + .selector-apariencia__opcion {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 2px;
+}
+
+/* Posición y estado: bloque de solo lectura */
+.campos-lectura {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 0 var(--espacio-3);
+  margin-bottom: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-3) 0;
+  border: 1px dashed var(--color-borde-campo);
+  border-radius: var(--radio-md);
+}
+
+.campos-lectura .campo {
+  margin-bottom: var(--espacio-2);
+}
+
+.campos-lectura > .campo__ayuda {
+  grid-column: 1 / -1;
+  margin-bottom: var(--espacio-3);
+}
+
+/* Botón de baja confirmada */
+.boton--peligro {
+  background: var(--color-error);
+  color: var(--color-texto-invertido);
+}
+
+.boton--peligro:hover {
+  background: var(--color-error);
+  color: var(--color-texto-invertido);
+  box-shadow: var(--sombra-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selector-apariencia__opcion {
+    transition: none;
+  }
+}
