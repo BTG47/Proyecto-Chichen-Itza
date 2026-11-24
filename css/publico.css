@@ -1,0 +1,164 @@
+/*
+ * Área pública: portada, ilustración de la pirámide y secciones del inicio.
+ */
+
+/* ---------- Portada ---------- */
+.portada {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--espacio-7);
+  padding-block: var(--espacio-7) var(--espacio-6);
+}
+
+.portada__etiqueta {
+  display: inline-block;
+  margin-bottom: var(--espacio-4);
+  padding: .3rem .8rem;
+  border-radius: var(--radio-pildora);
+  background: var(--color-naranja-claro);
+  color: var(--color-naranja-oscuro);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+}
+
+.portada__titulo {
+  margin-bottom: var(--espacio-4);
+  letter-spacing: -.01em;
+}
+
+.portada__descripcion {
+  max-width: 36rem;
+  margin-bottom: var(--espacio-6);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-lg);
+  line-height: 1.7;
+}
+
+.portada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-4);
+}
+
+@media (max-width: 60rem) {
+  .portada {
+    grid-template-columns: 1fr;
+    gap: var(--espacio-6);
+    padding-top: var(--espacio-6);
+  }
+}
+
+@media (max-width: 30rem) {
+  .portada__acciones .boton {
+    flex: 1 1 100%;
+  }
+}
+
+/* ---------- Ilustración: El Castillo al atardecer ---------- */
+.ilustracion {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-lg);
+  background: var(--ilus-cielo-bajo);
+}
+
+.ilustracion svg {
+  width: 100%;
+  height: auto;
+}
+
+.ilus__cielo-alto { stop-color: var(--ilus-cielo-alto); }
+.ilus__cielo-bajo { stop-color: var(--ilus-cielo-bajo); }
+.ilus__sol { fill: var(--ilus-sol); }
+.ilus__halo { fill: var(--ilus-sol); opacity: .35; }
+.ilus__colina { fill: var(--ilus-colina); }
+.ilus__pasto { fill: var(--ilus-pasto); }
+.ilus__ave { fill: none; stroke: var(--ilus-ave); stroke-width: 2.2; stroke-linecap: round; }
+
+.ilus__cuerpo rect {
+  fill: var(--ilus-piedra);
+  stroke: var(--ilus-piedra-borde);
+  stroke-width: 1.5;
+}
+
+.ilus__escalinata { fill: var(--ilus-escalinata); }
+.ilus__templo { fill: var(--ilus-templo); stroke: var(--ilus-piedra-borde); stroke-width: 1.5; }
+.ilus__puerta { fill: var(--ilus-puerta); }
+
+/* Serpiente de luz del equinoccio: siete triángulos que descienden por la escalinata */
+.ilus__luz polygon {
+  fill: var(--ilus-luz);
+  opacity: 0;
+  animation: serpiente-de-luz 9s ease-in-out infinite;
+  animation-delay: calc(var(--i) * .45s);
+}
+
+.ilus__cabeza {
+  fill: var(--ilus-escalinata);
+  stroke: var(--ilus-piedra-borde);
+  stroke-width: 1.5;
+}
+
+.ilus__halo {
+  transform-origin: 520px 92px;
+  animation: halo 6s ease-in-out infinite;
+}
+
+.ilus__aves {
+  animation: vuelo 14s ease-in-out infinite alternate;
+}
+
+@keyframes serpiente-de-luz {
+  0%, 10% { opacity: 0; }
+  25%, 60% { opacity: .9; }
+  80%, 100% { opacity: 0; }
+}
+
+@keyframes halo {
+  0%, 100% { transform: scale(1); opacity: .3; }
+  50% { transform: scale(1.12); opacity: .5; }
+}
+
+@keyframes vuelo {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-40px, 8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ilus__luz polygon,
+  .ilus__halo,
+  .ilus__aves {
+    animation: none;
+  }
+
+  .ilus__luz polygon {
+    opacity: .75;
+  }
+}
+
+/* ---------- Secciones ---------- */
+.seccion {
+  padding-block: var(--espacio-5);
+}
+
+.seccion__encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--espacio-2) var(--espacio-4);
+  margin-bottom: var(--espacio-5);
+}
+
+.seccion__encabezado h2 {
+  margin: 0;
+}
+
+.rejilla-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--espacio-5);
+}
