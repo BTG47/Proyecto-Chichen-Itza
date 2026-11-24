@@ -1,0 +1,229 @@
+/*
+ * Área pública · pantallas de acceso (ticket #3): login.html y registro.html.
+ * Se cargan después de publico.css, del que reutilizan las clases .ilus__* de la pirámide.
+ * Archivo propio porque estas pantallas no llevan el menú ni el pie del sitio
+ * y tienen una maquetación distinta (pantalla dividida y tarjeta centrada).
+ */
+
+/* ---------- Piezas comunes ---------- */
+.acceso__titulo {
+  margin-bottom: var(--espacio-2);
+}
+
+.acceso__entrada {
+  margin-bottom: var(--espacio-5);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-lg);
+}
+
+.acceso__enviar {
+  width: 100%;
+  margin-top: var(--espacio-2);
+}
+
+.acceso__alterno {
+  margin: var(--espacio-4) 0 0;
+  color: var(--color-texto-secundario);
+  text-align: center;
+}
+
+.acceso__alterno a,
+.acceso__cabecera-enlace a {
+  font-weight: var(--peso-medio);
+}
+
+.aviso-demo {
+  margin: var(--espacio-5) 0 0;
+  padding: var(--espacio-3) var(--espacio-4);
+  border-left: 4px solid var(--color-naranja);
+  border-radius: var(--radio-sm);
+  background: var(--color-naranja-claro);
+  color: var(--color-tinta);
+  font-size: var(--texto-sm);
+}
+
+.aviso-demo a {
+  color: var(--color-naranja-oscuro);
+  font-weight: var(--peso-medio);
+}
+
+/* ---------- Login: pantalla dividida ---------- */
+.acceso__dividida {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 9fr);
+  min-height: 100vh;
+}
+
+.acceso__ilustracion {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--ilus-cielo-bajo);
+}
+
+.acceso__ilustracion svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.acceso__mensaje {
+  position: absolute;
+  inset: auto var(--espacio-6) var(--espacio-6);
+  padding: var(--espacio-4) var(--espacio-5);
+  border-radius: var(--radio-lg);
+  background: var(--color-velo);
+  color: var(--color-texto-invertido);
+  box-shadow: var(--sombra-lg);
+}
+
+.acceso__mensaje-titulo {
+  display: block;
+  margin-bottom: var(--espacio-1);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-xl);
+}
+
+.acceso__principal {
+  display: flex;
+  flex-direction: column;
+  padding: var(--espacio-5) var(--margen-lateral) var(--espacio-7);
+}
+
+.acceso__volver {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: var(--tactil-minimo);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+}
+
+.acceso__volver::before {
+  content: "←";
+  transition: transform var(--transicion-rapida);
+}
+
+.acceso__volver:hover::before {
+  transform: translateX(-3px);
+}
+
+.acceso__formulario {
+  width: 100%;
+  max-width: 31rem;
+  margin: auto;
+  padding-top: var(--espacio-5);
+}
+
+.acceso__formulario .marca {
+  margin-bottom: var(--espacio-5);
+}
+
+/* D17: en móvil el login va sin ilustración */
+@media (max-width: 47.99rem) {
+  .acceso__dividida {
+    grid-template-columns: 1fr;
+  }
+
+  .acceso__ilustracion {
+    display: none;
+  }
+
+  .acceso__formulario {
+    margin-top: var(--espacio-4);
+  }
+}
+
+/* ---------- Registro: encabezado reducido y tarjeta centrada ---------- */
+/* No es fijo: así #error lleva al aviso sin que el encabezado lo tape */
+.acceso .encabezado {
+  position: static;
+}
+
+.acceso__cabecera-enlace {
+  margin: 0 0 0 auto;
+  color: var(--color-texto-secundario);
+}
+
+.acceso__centrada {
+  padding: var(--espacio-7) var(--margen-lateral) var(--espacio-8);
+}
+
+.acceso__tarjeta {
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: var(--espacio-6) clamp(var(--espacio-5), 5vw, var(--espacio-7));
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-xl);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-md);
+  scroll-margin-top: var(--espacio-4);
+}
+
+.acceso__pareja {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0 var(--espacio-4);
+}
+
+.acceso__nota {
+  margin: var(--espacio-4) 0 0;
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+  text-align: center;
+}
+
+/* Estado de error SIMULADO (D24): visible solo al abrir registro.html#error */
+.acceso__error,
+.acceso__aviso-error {
+  display: none;
+}
+
+.acceso__error {
+  align-items: center;
+  gap: var(--espacio-1);
+}
+
+.acceso__error svg {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+.acceso__error path { fill: currentColor; }
+.acceso__error rect,
+.acceso__error circle { fill: var(--color-superficie); }
+
+.acceso__tarjeta:target .acceso__error {
+  display: flex;
+}
+
+.acceso__tarjeta:target .acceso__aviso-error {
+  display: block;
+  margin: 0 0 var(--espacio-5);
+}
+
+.acceso__tarjeta:target .acceso__confirmacion .campo__control {
+  border-color: var(--color-error);
+  background: var(--color-error-claro);
+}
+
+.acceso__tarjeta:target .aviso-demo a[href="#error"] {
+  display: none;
+}
+
+@media (max-width: 30rem) {
+  .acceso__cabecera-enlace {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: var(--texto-sm);
+  }
+
+  .acceso__centrada {
+    padding-top: var(--espacio-5);
+  }
+}
