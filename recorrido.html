@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/recorrido.css">
+  <link rel="stylesheet" href="css/recorrido-camino.css">
 </head>
 <body class="visita">
   <a class="saltar-al-contenido" href="#camino">Saltar al camino de zonas</a>
@@ -30,6 +31,12 @@
   <input class="interruptor" type="checkbox" id="sal-hola" aria-label="Saludar: Hola">
   <input class="interruptor" type="checkbox" id="sal-sigo" aria-label="Saludar: Te sigo">
   <input class="interruptor" type="checkbox" id="sal-duda" aria-label="Saludar: Tengo una duda">
+  <!-- Saludo a un participante concreto (Accion con destinatario) -->
+  <input class="interruptor" type="checkbox" id="sal-kan" aria-label="Saludar a Kan">
+  <input class="interruptor" type="checkbox" id="sal-itzel" aria-label="Saludar a Itzel">
+  <input class="interruptor" type="checkbox" id="sal-ixchel" aria-label="Saludar a Ixchel">
+  <input class="interruptor" type="checkbox" id="sal-kuk" aria-label="Saludar a Kuk">
+  <input class="interruptor" type="checkbox" id="sal-muan" aria-label="Saludar a Muan">
   <input class="interruptor" type="checkbox" id="pedir-ayuda" aria-label="Pedir ayuda al guía">
   <input class="interruptor" type="checkbox" id="foto" aria-label="Tomar fotografía">
   <input class="interruptor" type="checkbox" id="cajon" aria-label="Mostrar actividad y grupo">
@@ -414,6 +421,31 @@
             <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo</span><time>17:42</time></p>
             <p class="entrada__texto entrada__texto--saludo">🙋 Tengo una duda</p></div>
           </li>
+          <li class="entrada entrada--mia entrada--a-kan">
+            <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo a Kan</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👋 Hola, Kan</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--a-itzel">
+            <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo a Itzel</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👋 Hola, Itzel</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--a-ixchel">
+            <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo a Ixchel</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👋 Hola, Ixchel</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--a-kuk">
+            <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo a Kuk</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👋 Hola, Kuk</p></div>
+          </li>
+          <li class="entrada entrada--mia entrada--a-muan">
+            <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+            <div><p class="entrada__meta"><strong>Tú</strong> <span class="entrada__tipo">Saludo a Muan</span><time>17:42</time></p>
+            <p class="entrada__texto entrada__texto--saludo">👋 Hola, Muan</p></div>
+          </li>
 
           <li class="entrada entrada--alerta">
             <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
@@ -471,6 +503,7 @@
           <li class="participante participante--guia">
             <img class="apariencia apariencia--mini" src="img/apariencias/serpiente-emplumada.svg" alt="">
             <span class="participante__texto"><strong>Carlos KarKerKar <span class="chip chip--guia">Guía</span></strong><small>Kan · Juego de Pelota · Explicando la zona</small></span>
+            <label class="participante__saludo" for="sal-kan" title="Saludar a Kan"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Kan</span></label>
             <span class="conexion conexion--on">desde 17:20</span>
           </li>
           <li class="participante participante--yo">
@@ -481,25 +514,29 @@
           <li class="participante">
             <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
             <span class="participante__texto"><strong>Carla Pérez</strong><small>Itzel · Juego de Pelota · Explorando</small></span>
+            <label class="participante__saludo" for="sal-itzel" title="Saludar a Itzel"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Itzel</span></label>
             <span class="conexion conexion--on">desde 17:21</span>
           </li>
           <li class="participante">
             <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
             <span class="participante__texto"><strong>María López</strong><small>Ixchel · El Castillo · Explorando</small></span>
+            <label class="participante__saludo" for="sal-ixchel" title="Saludar a Ixchel"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Ixchel</span></label>
             <span class="conexion conexion--on">desde 17:20</span>
           </li>
           <li class="participante participante--alerta">
             <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
             <span class="participante__texto"><strong>Jose Jose</strong><small>Kuk · Plataforma de Venus · <em>Solicitó ayuda</em></small></span>
+            <label class="participante__saludo" for="sal-kuk" title="Saludar a Kuk"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Kuk</span></label>
             <span class="conexion conexion--on">desde 17:22</span>
           </li>
           <li class="participante participante--inactivo">
             <img class="apariencia apariencia--mini" src="img/apariencias/buho.svg" alt="">
             <span class="participante__texto"><strong>Juan Ramírez</strong><small>Muan · Gran Plaza</small></span>
+            <label class="participante__saludo" for="sal-muan" title="Saludar a Muan"><span aria-hidden="true">👋</span><span class="visualmente-oculto">Saludar a Muan</span></label>
             <span class="conexion">Inactivo 3 min</span>
           </li>
         </ul>
-        <p class="grupo__nota">Conectado: su conexión al servidor Región Sureste sigue abierta.</p>
+        <p class="grupo__nota">Conectado: su conexión al servidor Región Sureste sigue abierta. 👋 saluda solo a esa persona (demostración: no se envía nada).</p>
       </section>
     </aside>
   </div>
@@ -552,20 +589,21 @@
   </footer>
 
   <!-- ===================== Avisos (demostración) =====================
-       Una sola ranura: si coinciden, el más reciente o el más importante queda encima (no se apilan). -->
+       Una sola ranura (no se apilan). La ayuda queda fija debajo hasta cancelarla; saludos y fotografía
+       pasan por encima unos segundos; el cambio de zona queda arriba hasta cerrarlo. -->
   <div class="avisos">
-    <div class="aviso aviso--saludo" role="status">
-      <span class="aviso__emoji" aria-hidden="true">👋</span>
-      <p><strong>Saludo enviado al grupo.</strong> Aparece en la actividad del grupo. <small>Demostración: no se envía nada.</small></p>
-    </div>
-    <div class="aviso aviso--foto" role="status">
-      <span class="polaroid" aria-hidden="true"><svg viewBox="0 0 400 260"><use href="#m-pelota"/></svg></span>
-      <p><strong>Fotografía tomada.</strong> «Juego de Pelota · 17:42» <small>Demostración: no se guarda ningún archivo.</small></p>
-    </div>
     <div class="aviso aviso--ayuda" role="status">
       <span class="aviso__emoji" aria-hidden="true">✋</span>
       <p><strong>Solicitud enviada a Kan (guía).</strong> Quedó en la actividad del grupo. <small>Demostración: no se envía nada.</small></p>
       <label class="aviso__accion" for="pedir-ayuda">Cancelar</label>
+    </div>
+    <div class="aviso aviso--saludo" role="status">
+      <span class="aviso__emoji" aria-hidden="true">👋</span>
+      <p><strong>Saludo enviado.</strong> Aparece en la actividad del grupo. <small>Demostración: no se envía nada.</small></p>
+    </div>
+    <div class="aviso aviso--foto" role="status">
+      <span class="polaroid" aria-hidden="true"><svg viewBox="0 0 400 260"><use href="#m-pelota"/></svg></span>
+      <p><strong>Fotografía tomada.</strong> «Juego de Pelota · 17:42» <small>Demostración: no se guarda ningún archivo.</small></p>
     </div>
     <div class="aviso aviso--destino" id="aviso-viaje" role="status">
       <span class="aviso__emoji" aria-hidden="true">➜</span>
