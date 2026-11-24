@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi panel | Chichén Itzá Virtual</title>
+  <meta name="description" content="Panel de la participante: su información, su avatar, la visita en curso y los recorridos disponibles.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body class="area-panel">
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Barra lateral del panel: idéntica en dashboard, mi-avatar y mi-perfil (ADR-0001); solo cambia aria-current. -->
+  <header class="lateral">
+    <input class="lateral__interruptor" type="checkbox" id="lateral-interruptor">
+    <div class="lateral__cabecera">
+      <a class="marca lateral__marca" href="dashboard.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá</span>
+      </a>
+      <label class="lateral__boton" for="lateral-interruptor">
+        <span class="lateral__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú del panel</span>
+      </label>
+    </div>
+    <nav class="lateral__menu" aria-label="Panel del participante">
+      <ul class="lateral__enlaces" role="list">
+        <li><a href="dashboard.html" aria-current="page"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Mi panel</a></li>
+        <li><a href="dashboard.html#recorridos-disponibles"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/></svg>Recorridos</a></li>
+        <li><a href="mi-avatar.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9.8v.4M15 9.8v.4"/></svg>Mi avatar</a></li>
+        <li><a href="mi-perfil.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.4 3.4 0 0 1 6.4 0M14.5 10h3.5M14.5 14h3.5"/></svg>Mi perfil</a></li>
+      </ul>
+      <div class="lateral__pie">
+        <p class="lateral__usuario">
+          <img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="">
+          <span>Ana López<small>Balam · Visitante</small></span>
+        </p>
+        <a class="lateral__salir" href="index.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 8l-4 4 4 4M6 12h10"/></svg>Cerrar sesión</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="area-panel__principal">
+    <main id="contenido" class="tablero">
+      <div class="tablero__encabezado">
+        <div>
+          <h1 class="tablero__titulo">Hola, Ana</h1>
+          <p class="tablero__subtitulo">Tienes una visita en curso y otra programada para hoy.</p>
+        </div>
+        <p class="estado-conexion"><span class="estado-conexion__punto" aria-hidden="true"></span>Conectada · Servidor Región Sureste</p>
+      </div>
+
+      <div class="tablero__tarjetas">
+        <section class="tarjeta tarjeta--panel" aria-labelledby="info-titulo">
+          <h2 class="tarjeta__etiqueta" id="info-titulo">Mi información</h2>
+          <dl class="datos">
+            <div><dt>Nombre</dt><dd>Ana López Martínez</dd></div>
+            <div><dt>Correo</dt><dd>ana.lopez@correo.mx</dd></div>
+            <div><dt>Rol</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+            <div><dt>Registro</dt><dd><time datetime="2026-11-14">14/11/2026</time></dd></div>
+          </dl>
+          <a class="enlace-flecha tarjeta__accion" href="mi-perfil.html#editar">Editar perfil</a>
+        </section>
+
+        <section class="tarjeta tarjeta--panel" aria-labelledby="avatar-titulo">
+          <h2 class="tarjeta__etiqueta" id="avatar-titulo">Mi avatar</h2>
+          <div class="avatar-resumen">
+            <img class="apariencia avatar-resumen__imagen" src="img/apariencias/jaguar-jade.svg" alt="">
+            <div>
+              <p class="avatar-resumen__nombre">Balam</p>
+              <p class="avatar-resumen__apariencia">Apariencia: jaguar de jade</p>
+              <p><span class="insignia insignia--jade insignia--punto">En visita</span></p>
+            </div>
+          </div>
+          <a class="boton boton--contorno tarjeta__accion" href="mi-avatar.html">Cambiar apariencia</a>
+        </section>
+
+        <section class="tarjeta tarjeta--panel tarjeta--visita" aria-labelledby="visita-titulo">
+          <h2 class="tarjeta__etiqueta" id="visita-titulo">Visita en curso</h2>
+          <h3 class="visita__recorrido">El Castillo y la Gran Plaza</h3>
+          <p class="visita__meta">Grupal · Guía: Carlos KarKerKar</p>
+          <div class="visita__grupo">
+            <ul class="pila-avatares" role="list" aria-label="Participantes de la visita">
+              <li><img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="Ana López Martínez (tú)"></li>
+              <li><img class="apariencia apariencia--mini" src="img/apariencias/serpiente-emplumada.svg" alt="Carlos KarKerKar, guía"></li>
+              <li><img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="María López"></li>
+              <li><img class="apariencia apariencia--mini" src="img/apariencias/buho.svg" alt="Juan Ramírez"></li>
+              <li><img class="apariencia apariencia--mini" src="img/apariencias/jaguar-jade.svg" alt="Carla Pérez"></li>
+              <li><img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="Jose Jose"></li>
+            </ul>
+            <span>6 participantes</span>
+          </div>
+          <div class="progreso" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="2 de 4 zonas, 50 %" aria-label="Progreso de la visita">
+            <span class="progreso__barra" style="--progreso: 50%"></span>
+          </div>
+          <p class="visita__zona">
+            <span>Zona actual: <strong>Juego de Pelota</strong></span>
+            <span class="visita__avance">2 de 4 zonas · 50 %</span>
+          </p>
+          <a class="boton boton--primario tarjeta__accion" href="recorrido.html">Continuar visita <span aria-hidden="true">→</span></a>
+        </section>
+      </div>
+
+      <section class="bloque-tabla" id="recorridos-disponibles" aria-labelledby="recorridos-titulo">
+        <div class="bloque-tabla__encabezado">
+          <h2 class="tarjeta__etiqueta" id="recorridos-titulo">Recorridos disponibles</h2>
+          <a class="enlace-flecha" href="recorridos.html">Ver catálogo</a>
+        </div>
+        <div class="tabla-contenedor">
+          <table class="tabla tabla--panel">
+            <caption class="visualmente-oculto">Recorridos que puedes iniciar con tu rol actual</caption>
+            <thead>
+              <tr>
+                <th scope="col">Recorrido</th>
+                <th scope="col">Modalidad</th>
+                <th scope="col">Zonas</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Estado</th>
+                <th scope="col"><span class="visualmente-oculto">Acción</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Cenote Sagrado</th>
+                <td data-etiqueta="Modalidad">Individual</td>
+                <td data-etiqueta="Zonas">2</td>
+                <td data-etiqueta="Duración">25 min</td>
+                <td data-etiqueta="Estado"><span class="insignia insignia--jade">Disponible</span></td>
+                <td class="tabla__accion"><a class="boton boton--primario boton--compacto" href="recorrido.html">Iniciar visita<span class="visualmente-oculto"> de Cenote Sagrado</span></a></td>
+              </tr>
+              <tr class="fila--restringida">
+                <th scope="row">Grupo de las Mil Columnas</th>
+                <td data-etiqueta="Modalidad">Grupal · con guía</td>
+                <td data-etiqueta="Zonas">3</td>
+                <td data-etiqueta="Duración">40 min</td>
+                <td data-etiqueta="Estado">
+                  <span class="insignia insignia--restringida">
+                    <svg class="insignia__icono" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="8" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                    Acceso restringido
+                  </span>
+                </td>
+                <td class="tabla__accion"><span class="tabla__nota">Requiere rol Guía</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bloque-tabla" id="visitas-programadas" aria-labelledby="programadas-titulo">
+        <div class="bloque-tabla__encabezado">
+          <h2 class="tarjeta__etiqueta" id="programadas-titulo">Visitas programadas</h2>
+        </div>
+        <div class="tabla-contenedor">
+          <table class="tabla tabla--panel">
+            <caption class="visualmente-oculto">Visitas grupales a las que puedes unirte</caption>
+            <thead>
+              <tr>
+                <th scope="col">Recorrido</th>
+                <th scope="col">Modalidad</th>
+                <th scope="col">Zonas</th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Estado</th>
+                <th scope="col"><span class="visualmente-oculto">Acción</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">El Caracol y Las Monjas</th>
+                <td data-etiqueta="Modalidad">Grupal · con guía</td>
+                <td data-etiqueta="Zonas">3</td>
+                <td data-etiqueta="Inicio"><time datetime="2026-11-24T18:00">Hoy, 18:00</time></td>
+                <td data-etiqueta="Estado"><span class="insignia insignia--naranja">Programada</span></td>
+                <td class="tabla__accion"><a class="boton boton--contorno boton--compacto" href="recorrido.html">Unirme<span class="visualmente-oculto"> a El Caracol y Las Monjas</span></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie-panel">
+      <p>Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+      <nav aria-label="Agencia">
+        <a href="admin/participantes.html">Administración (demo)</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>
