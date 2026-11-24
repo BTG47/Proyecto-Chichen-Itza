@@ -103,6 +103,24 @@
   --transicion-media: 250ms ease;
 }
 
+
+/* ---------- Ticket #2: catálogo y páginas informativas ---------- */
+:root {
+  /* Acceso restringido (p. ej., «Requiere rol Guía») */
+  --color-restringido: #3b2f25;
+  --color-restringido-claro: #efe7da;
+
+  /* Emblemas de los recorridos */
+  --ilus-agua: #2f7d78;
+  --ilus-agua-borde: #8fb8a4;
+  --ilus-agua-onda: #bfe0d6;
+  --ilus-sacbe: #ece3cf;
+  --ilus-hoja: #4f7d40;
+  --ilus-noche-alto: #1f3344;
+  --ilus-noche-bajo: #4a5f72;
+  --ilus-estrella: #fdf3de;
+  --ilus-venus: #f3c77d;
+
 /* ---------- Ticket #4: apariencias de avatar ----------
  * Tamaños de las ilustraciones de img/apariencias/ (ver .apariencia en componentes.css).
  * Los colores de esas ilustraciones están copiados de los tokens de arriba dentro de
@@ -113,4 +131,5 @@
   --apariencia-grande: 10rem;   /* 160 px: vista previa del selector */
   --apariencia-aro: var(--color-superficie);
   --apariencia-aro-borde: var(--color-borde);
+
 }

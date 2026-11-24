@@ -483,6 +483,21 @@
   display: none;
 }
 
+/* ---------- Ticket #2: insignia de acceso restringido ----------
+ * Para recorridos y zonas que requieren un rol (D27/D29). Admite un icono SVG de candado. */
+.insignia--restringida {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-1);
+  background: var(--color-restringido);
+  color: var(--color-texto-invertido);
+}
+
+.insignia__icono {
+  width: .9em;
+  height: .9em;
+  flex: none;
+  fill: currentColor;
 /* ---------- Ticket #4: apariencias de avatar ----------
  * Ilustraciones en img/apariencias/*.svg, siempre con <img>:
  *   <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">

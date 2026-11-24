@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recorridos | Chichén Itzá Virtual</title>
+  <meta name="description" content="Catálogo de recorridos virtuales por Chichén Itzá: modalidad, duración y zonas de cada ruta.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/publico.css">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <input class="menu-interruptor" type="checkbox" id="menu-interruptor">
+      <label class="menu-boton" for="menu-interruptor">
+        <span class="menu-boton__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú</span>
+      </label>
+      <nav class="menu" aria-label="Principal">
+        <ul class="menu__enlaces" role="list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="recorridos.html" aria-current="page">Recorridos</a></li>
+          <li><a href="como-funciona.html">Cómo funciona</a></li>
+          <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+        <div class="menu__acciones">
+          <a class="boton boton--contorno" href="login.html">Iniciar sesión</a>
+          <a class="boton boton--primario" href="registro.html">Registrarse</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="catalogo">
+    <section class="cabecera-pagina">
+      <div class="contenedor">
+        <p class="cabecera-pagina__etiqueta"><span class="insignia insignia--naranja">Catálogo</span></p>
+        <h1 class="cabecera-pagina__titulo">Recorridos por Chichén Itzá</h1>
+        <p class="cabecera-pagina__descripcion">
+          Cuatro rutas por las zonas del sitio arqueológico. Cada recorrido puede visitarse muchas veces,
+          de forma individual o en grupo con un guía. Abre su ficha para conocer las zonas que incluye.
+        </p>
+        <ul class="cifras" role="list">
+          <li><strong>4</strong> recorridos</li>
+          <li><strong>12</strong> zonas</li>
+          <li><strong>2</strong> modalidades</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contenedor seccion" id="catalogo" aria-labelledby="catalogo-titulo">
+      <div class="seccion__encabezado">
+        <h2 id="catalogo-titulo">Recorridos disponibles</h2>
+        <fieldset class="filtros">
+          <legend class="visualmente-oculto">Filtrar recorridos por modalidad</legend>
+          <input class="filtros__opcion visualmente-oculto" type="radio" name="filtro" id="filtro-todos" checked>
+          <label for="filtro-todos">Todos</label>
+          <input class="filtros__opcion visualmente-oculto" type="radio" name="filtro" id="filtro-individual">
+          <label for="filtro-individual">Individual</label>
+          <input class="filtros__opcion visualmente-oculto" type="radio" name="filtro" id="filtro-grupal">
+          <label for="filtro-grupal">Grupal</label>
+          <input class="filtros__opcion visualmente-oculto" type="radio" name="filtro" id="filtro-guia">
+          <label for="filtro-guia">Solo Guía</label>
+        </fieldset>
+      </div>
+
+      <ul class="rejilla-tarjetas rejilla-recorridos" role="list">
+        <li class="tarjeta tarjeta--enlace tarjeta--recorrido" data-recorrido="castillo-gran-plaza" data-modalidad="grupal">
+          <svg class="emblema emblema--atardecer" viewBox="0 0 240 110" aria-hidden="true" focusable="false">
+            <circle class="emblema__sol" cx="190" cy="34" r="18"/>
+            <rect class="emblema__suelo" y="92" width="240" height="18"/>
+            <g class="emblema__piedra">
+              <rect x="60" y="80" width="120" height="12"/>
+              <rect x="72" y="68" width="96" height="12"/>
+              <rect x="84" y="56" width="72" height="12"/>
+              <rect x="96" y="44" width="48" height="12"/>
+              <rect x="106" y="28" width="28" height="16"/>
+            </g>
+            <polygon class="emblema__escalinata" points="110,92 130,92 126,44 114,44"/>
+          </svg>
+          <p><span class="insignia insignia--jade">Grupal · con guía</span></p>
+          <h3>El Castillo y la Gran Plaza</h3>
+          <p class="tarjeta__texto">Pirámide de Kukulcán, Plataforma de Venus y Juego de Pelota alrededor de la explanada central.</p>
+          <div class="tarjeta__pie">
+            <span>4 zonas · 45 min</span>
+            <a class="tarjeta__enlace-principal enlace-flecha" href="#castillo-gran-plaza">Ver detalle<span class="visualmente-oculto"> de El Castillo y la Gran Plaza</span></a>
+          </div>
+        </li>
+        <li class="tarjeta tarjeta--enlace tarjeta--recorrido" data-recorrido="cenote-sagrado" data-modalidad="individual">
+          <svg class="emblema emblema--selva" viewBox="0 0 240 110" aria-hidden="true" focusable="false">
+            <rect class="emblema__suelo" y="70" width="240" height="40"/>
+            <path class="emblema__sacbe" d="M40 110 L96 74 H112 L76 110Z"/>
+            <ellipse class="emblema__agua-borde" cx="160" cy="78" rx="58" ry="18"/>
+            <ellipse class="emblema__agua" cx="160" cy="80" rx="50" ry="13"/>
+            <path class="emblema__onda" d="M136 80 q8 -4 16 0 q8 4 16 0"/>
+            <path class="emblema__onda" d="M152 86 q6 -3 12 0 q6 3 12 0"/>
+            <g class="emblema__hojas">
+              <circle cx="22" cy="58" r="20"/>
+              <circle cx="214" cy="50" r="24"/>
+              <circle cx="232" cy="64" r="16"/>
+            </g>
+          </svg>
+          <p><span class="insignia insignia--naranja">Individual</span></p>
+          <h3>Cenote Sagrado</h3>
+          <p class="tarjeta__texto">Del sacbé ceremonial al cenote principal, con su historia ritual y las ofrendas a Chaac.</p>
+          <div class="tarjeta__pie">
+            <span>2 zonas · 25 min</span>
+            <a class="tarjeta__enlace-principal enlace-flecha" href="#cenote-sagrado">Ver detalle<span class="visualmente-oculto"> de Cenote Sagrado</span></a>
+          </div>
+        </li>
+        <li class="tarjeta tarjeta--enlace tarjeta--recorrido" data-recorrido="caracol-monjas" data-modalidad="grupal">
+          <svg class="emblema emblema--noche" viewBox="0 0 240 110" aria-hidden="true" focusable="false">
+            <g class="emblema__estrellas">
+              <circle cx="40" cy="22" r="2"/>
+              <circle cx="72" cy="40" r="1.5"/>
+              <circle cx="196" cy="18" r="2"/>
+              <circle cx="214" cy="46" r="1.5"/>
+              <circle cx="160" cy="30" r="1.5"/>
+            </g>
+            <circle class="emblema__venus" cx="60" cy="30" r="4"/>
+            <rect class="emblema__suelo" y="92" width="240" height="18"/>
+            <g class="emblema__piedra">
+              <rect x="70" y="78" width="100" height="14"/>
+              <rect x="86" y="66" width="68" height="12"/>
+              <rect x="102" y="50" width="36" height="16"/>
+              <path d="M102 50 a18 18 0 0 1 36 0Z"/>
+            </g>
+            <rect class="emblema__ventana" x="117" y="38" width="6" height="8" rx="1"/>
+          </svg>
+          <p><span class="insignia insignia--jade">Grupal · con guía</span></p>
+          <h3>El Caracol y Las Monjas</h3>
+          <p class="tarjeta__texto">Observatorio astronómico maya, el conjunto de Las Monjas y el pequeño edificio de La Iglesia.</p>
+          <div class="tarjeta__pie">
+            <span>3 zonas · 35 min</span>
+            <a class="tarjeta__enlace-principal enlace-flecha" href="#caracol-monjas">Ver detalle<span class="visualmente-oculto"> de El Caracol y Las Monjas</span></a>
+          </div>
+        </li>
+        <li class="tarjeta tarjeta--enlace tarjeta--recorrido tarjeta--restringida" data-recorrido="mil-columnas" data-modalidad="grupal guia">
+          <svg class="emblema emblema--atardecer" viewBox="0 0 240 110" aria-hidden="true" focusable="false">
+            <rect class="emblema__suelo" y="92" width="240" height="18"/>
+            <g class="emblema__piedra">
+              <rect x="28" y="36" width="184" height="8"/>
+              <rect x="36" y="44" width="10" height="48"/>
+              <rect x="60" y="44" width="10" height="48"/>
+              <rect x="84" y="44" width="10" height="48"/>
+              <rect x="108" y="44" width="10" height="48"/>
+              <rect x="132" y="44" width="10" height="48"/>
+              <rect x="156" y="44" width="10" height="48"/>
+              <rect x="180" y="44" width="10" height="48"/>
+              <rect x="200" y="44" width="10" height="48"/>
+            </g>
+          </svg>
+          <p class="tarjeta__insignias">
+            <span class="insignia insignia--jade">Grupal · con guía</span>
+            <span class="insignia insignia--restringida">
+              <svg class="insignia__icono" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="8" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              Requiere rol Guía
+            </span>
+          </p>
+          <h3>Grupo de las Mil Columnas</h3>
+          <p class="tarjeta__texto">Templo de los Guerreros, las columnatas talladas y el Mercado. Reservado a avatares con rol Guía.</p>
+          <div class="tarjeta__pie">
+            <span>3 zonas · 40 min</span>
+            <a class="tarjeta__enlace-principal enlace-flecha" href="#mil-columnas">Ver detalle<span class="visualmente-oculto"> de Grupo de las Mil Columnas</span></a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="contenedor seccion" aria-label="Ficha del recorrido">
+      <div class="paneles fichas">
+        <div class="panel-default ficha-vacia">
+          <svg class="ficha-vacia__icono" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path d="M8 40 L24 8 L40 40Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M16 40 h16 M19 32 h10 M21 24 h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <p>Elige <strong>Ver detalle</strong> en un recorrido para ver aquí su ficha: descripción, modalidad, duración y las zonas que incluye.</p>
+        </div>
+
+        <!-- Ficha: El Castillo y la Gran Plaza -->
+        <article class="panel ficha" id="castillo-gran-plaza" aria-labelledby="ficha-castillo-titulo">
+          <div class="ficha__cabecera">
+            <div>
+              <p class="ficha__etiqueta">Ficha del recorrido</p>
+              <h2 id="ficha-castillo-titulo">El Castillo y la Gran Plaza</h2>
+            </div>
+            <a class="ficha__cerrar" href="#catalogo">Cerrar ficha<span class="visualmente-oculto"> de El Castillo y la Gran Plaza</span></a>
+          </div>
+          <div class="ficha__cuerpo">
+            <div class="ficha__principal">
+              <p class="ficha__descripcion">
+                El corazón del sitio. La ruta parte de la explanada central y rodea la pirámide de Kukulcán,
+                donde en cada equinoccio la luz dibuja una serpiente sobre la escalinata. El guía explica
+                los rituales de la Plataforma de Venus y las reglas del gran Juego de Pelota.
+              </p>
+              <h3>Zonas del recorrido</h3>
+              <ol class="ruta" role="list">
+                <li class="ruta__zona">
+                  <h4>Gran Plaza</h4>
+                  <p>Explanada ceremonial alrededor de la cual se levantan los principales edificios del periodo Posclásico temprano.</p>
+                </li>
+                <li class="ruta__zona">
+                  <h4>El Castillo</h4>
+                  <p>Templo de Kukulcán: nueve cuerpos escalonados y 365 escalones, uno por cada día del año solar.</p>
+                </li>
+                <li class="ruta__zona">
+                  <h4>Plataforma de Venus</h4>
+                  <p>Plataforma con escalinatas en sus cuatro lados y relieves del planeta Venus, usada para danzas y ceremonias.</p>
+                </li>
+                <li class="ruta__zona">
+                  <h4>Juego de Pelota</h4>
+                  <p>La mayor cancha de Mesoamérica, con anillos de piedra en lo alto de sus muros y relieves de jugadores.</p>
+                </li>
+              </ol>
+              <p class="ficha__nota">
+                Junto a la Gran Plaza está el Grupo de las Mil Columnas: durante la visita aparece en el mapa,
+                pero solo pueden entrar los avatares con rol Guía.
+              </p>
+            </div>
+            <aside class="ficha__resumen" aria-label="Datos del recorrido">
+              <dl class="datos">
+                <div><dt>Modalidad</dt><dd>Grupal, con guía</dd></div>
+                <div><dt>Duración</dt><dd>45 min</dd></div>
+                <div><dt>Zonas</dt><dd>4</dd></div>
+                <div><dt>Acceso</dt><dd>Visitante y Guía</dd></div>
+              </dl>
+              <a class="boton boton--primario ficha__accion" href="registro.html">Regístrate para visitarlo</a>
+              <p class="ficha__ayuda">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+            </aside>
+          </div>
+        </article>
+
+        <!-- Ficha: Cenote Sagrado -->
+        <article class="panel ficha" id="cenote-sagrado" aria-labelledby="ficha-cenote-titulo">
+          <div class="ficha__cabecera">
+            <div>
+              <p class="ficha__etiqueta">Ficha del recorrido</p>
+              <h2 id="ficha-cenote-titulo">Cenote Sagrado</h2>
+            </div>
+            <a class="ficha__cerrar" href="#catalogo">Cerrar ficha<span class="visualmente-oculto"> de Cenote Sagrado</span></a>
+          </div>
+          <div class="ficha__cuerpo">
+            <div class="ficha__principal">
+              <p class="ficha__descripcion">
+                Un recorrido breve y a tu ritmo. Sigue el camino blanco que unía la ciudad con el cenote
+                y descubre por qué este pozo natural fue el lugar de peregrinación y ofrendas más
+                importante del norte de Yucatán.
+              </p>
+              <h3>Zonas del recorrido</h3>
+              <ol class="ruta" role="list">
+                <li class="ruta__zona">
+                  <h4>Sacbé ceremonial</h4>
+                  <p>Calzada elevada de piedra caliza, de unos 300 metros, que une la Gran Plaza con el Cenote Sagrado.</p>
+                </li>
+                <li class="ruta__zona">
+                  <h4>Cenote Sagrado</h4>
+                  <p>Pozo natural de unos 60 metros de diámetro donde se depositaban ofrendas a Chaac, dios de la lluvia.</p>
+                </li>
+              </ol>
+            </div>
+            <aside class="ficha__resumen" aria-label="Datos del recorrido">
+              <dl class="datos">
+                <div><dt>Modalidad</dt><dd>Individual</dd></div>
+                <div><dt>Duración</dt><dd>25 min</dd></div>
+                <div><dt>Zonas</dt><dd>2</dd></div>
+                <div><dt>Acceso</dt><dd>Visitante y Guía</dd></div>
+              </dl>
+              <a class="boton boton--primario ficha__accion" href="registro.html">Regístrate para visitarlo</a>
+              <p class="ficha__ayuda">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+            </aside>
+          </div>
+        </article>
+
+        <!-- Ficha: El Caracol y Las Monjas -->
+        <article class="panel ficha" id="caracol-monjas" aria-labelledby="ficha-caracol-titulo">
+          <div class="ficha__cabecera">
+            <div>
+              <p class="ficha__etiqueta">Ficha del recorrido</p>
+              <h2 id="ficha-caracol-titulo">El Caracol y Las Monjas</h2>
+            </div>
+            <a class="ficha__cerrar" href="#catalogo">Cerrar ficha<span class="visualmente-oculto"> de El Caracol y Las Monjas</span></a>
+          </div>
+          <div class="ficha__cuerpo">
+            <div class="ficha__principal">
+              <p class="ficha__descripcion">
+                La ruta de la astronomía maya. El guía conduce al grupo desde el observatorio, cuyas ventanas
+                siguen los movimientos de Venus, hasta los edificios de estilo Puuc del sur de la ciudad.
+              </p>
+              <h3>Zonas del recorrido</h3>
+              <ol class="ruta" role="list">
+                <li class="ruta__zona">
+                  <h4>El Caracol</h4>
+                  <p>Observatorio de torre circular con una escalera interior en espiral; sus ventanas se alinean con Venus y los equinoccios.</p>
+                </li>
+                <li class="ruta__zona">
+                  <h4>Las Monjas</h4>
+                  <p>Conjunto palaciego de estilo Puuc con fachadas cubiertas de mascarones de Chaac; su nombre lo dieron los españoles.</p>
+                </li>
+                <li class="ruta__zona">
+                  <h4>La Iglesia</h4>
+                  <p>Pequeño edificio junto a Las Monjas, con una crestería decorada con mascarones y figuras de los bacabes.</p>
+                </li>
+              </ol>
+            </div>
+            <aside class="ficha__resumen" aria-label="Datos del recorrido">
+              <dl class="datos">
+                <div><dt>Modalidad</dt><dd>Grupal, con guía</dd></div>
+                <div><dt>Duración</dt><dd>35 min</dd></div>
+                <div><dt>Zonas</dt><dd>3</dd></div>
+                <div><dt>Acceso</dt><dd>Visitante y Guía</dd></div>
+              </dl>
+              <a class="boton boton--primario ficha__accion" href="registro.html">Regístrate para visitarlo</a>
+              <p class="ficha__ayuda">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+            </aside>
+          </div>
+        </article>
+
+        <!-- Ficha: Grupo de las Mil Columnas (solo Guía, D27) -->
+        <article class="panel ficha ficha--restringida" id="mil-columnas" aria-labelledby="ficha-columnas-titulo">
+          <div class="ficha__cabecera">
+            <div>
+              <p class="ficha__etiqueta">Ficha del recorrido</p>
+              <h2 id="ficha-columnas-titulo">Grupo de las Mil Columnas</h2>
+              <p class="ficha__restriccion">
+                <span class="insignia insignia--restringida">
+                  <svg class="insignia__icono" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="8" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                  Requiere rol Guía
+                </span>
+              </p>
+            </div>
+            <a class="ficha__cerrar" href="#catalogo">Cerrar ficha<span class="visualmente-oculto"> de Grupo de las Mil Columnas</span></a>
+          </div>
+          <div class="ficha__cuerpo">
+            <div class="ficha__principal">
+              <p class="ficha__descripcion">
+                Un recorrido para quienes guían grupos. Atraviesa el gran espacio porticado al este de la
+                Gran Plaza, donde cientos de columnas talladas con guerreros sostenían techos de madera y estuco.
+              </p>
+              <h3>Zonas del recorrido</h3>
+              <ol class="ruta" role="list">
+                <li class="ruta__zona ruta__zona--restringida">
+                  <h4>Templo de los Guerreros</h4>
+                  <p>Templo coronado por un chac mool y precedido por columnas con relieves de guerreros.</p>
+                  <p class="ruta__aviso">Requiere rol Guía</p>
+                </li>
+                <li class="ruta__zona ruta__zona--restringida">
+                  <h4>Grupo de las Mil Columnas</h4>
+                  <p>Columnatas que formaban galerías techadas para reuniones y actividades públicas.</p>
+                  <p class="ruta__aviso">Requiere rol Guía</p>
+                </li>
+                <li class="ruta__zona ruta__zona--restringida">
+                  <h4>Mercado</h4>
+                  <p>Edificio con patio rodeado de columnas, interpretado como mercado o lugar de reunión.</p>
+                  <p class="ruta__aviso">Requiere rol Guía</p>
+                </li>
+              </ol>
+              <p class="ficha__nota ficha__nota--aviso">
+                Si tu avatar tiene el rol Visitante, verás estas zonas con candado en el mapa de la visita y
+                podrás consultar su ficha, pero no entrar en ellas.
+              </p>
+            </div>
+            <aside class="ficha__resumen" aria-label="Datos del recorrido">
+              <dl class="datos">
+                <div><dt>Modalidad</dt><dd>Grupal, con guía</dd></div>
+                <div><dt>Duración</dt><dd>40 min</dd></div>
+                <div><dt>Zonas</dt><dd>3</dd></div>
+                <div><dt>Acceso</dt><dd>Solo Guía</dd></div>
+              </dl>
+              <a class="boton boton--primario ficha__accion" href="registro.html">Regístrate para visitarlo</a>
+              <p class="ficha__ayuda">Necesitas un avatar con rol Guía para entrar en sus zonas.</p>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <rect class="logo__fondo" width="40" height="40" rx="10"/>
+              <g class="logo__piramide">
+                <rect x="17" y="9" width="6" height="5" rx="1"/>
+                <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+                <rect x="9" y="22" width="22" height="8" rx="1"/>
+              </g>
+            </svg>
+            <span>Chichén Itzá Virtual</span>
+          </a>
+          <p>Recorridos virtuales por el sitio arqueológico, de forma individual o en grupo.</p>
+        </div>
+        <nav aria-labelledby="pie-explora">
+          <h2 class="pie__titulo" id="pie-explora">Explora</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="recorridos.html">Recorridos</a></li>
+            <li><a href="como-funciona.html">Cómo funciona</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-cuenta">
+          <h2 class="pie__titulo" id="pie-cuenta">Tu cuenta</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="login.html">Iniciar sesión</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-agencia">
+          <h2 class="pie__titulo" id="pie-agencia">Agencia</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="admin/participantes.html">Administración (demo)</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__nota">Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

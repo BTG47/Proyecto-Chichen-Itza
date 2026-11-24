@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acerca de | Chichén Itzá Virtual</title>
+  <meta name="description" content="Propósito de Chichén Itzá Virtual, prototipo académico con datos de demostración.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/publico.css">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <input class="menu-interruptor" type="checkbox" id="menu-interruptor">
+      <label class="menu-boton" for="menu-interruptor">
+        <span class="menu-boton__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú</span>
+      </label>
+      <nav class="menu" aria-label="Principal">
+        <ul class="menu__enlaces" role="list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="recorridos.html">Recorridos</a></li>
+          <li><a href="como-funciona.html">Cómo funciona</a></li>
+          <li><a href="acerca.html" aria-current="page">Acerca de</a></li>
+        </ul>
+        <div class="menu__acciones">
+          <a class="boton boton--contorno" href="login.html">Iniciar sesión</a>
+          <a class="boton boton--primario" href="registro.html">Registrarse</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="cabecera-pagina">
+      <div class="contenedor">
+        <p class="cabecera-pagina__etiqueta"><span class="insignia insignia--naranja">Acerca del proyecto</span></p>
+        <h1 class="cabecera-pagina__titulo">Una agencia de turismo digital para Chichén Itzá</h1>
+        <p class="cabecera-pagina__descripcion">
+          Chichén Itzá Virtual permite recorrer el sitio arqueológico desde cualquier lugar, solo o en grupo,
+          mediante avatares con roles y visitas coordinadas por guías.
+        </p>
+      </div>
+    </section>
+
+    <div class="contenedor seccion">
+      <aside class="aviso" aria-labelledby="aviso-titulo">
+        <svg class="aviso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h2 class="aviso__titulo" id="aviso-titulo">Prototipo académico con datos de demostración</h2>
+          <p>
+            Este sitio es un prototipo de interfaz elaborado para la materia Sistemas Distribuidos de la UDLAP.
+            Está hecho solo con HTML y CSS: no guarda datos ni existen cuentas reales. El inicio de sesión,
+            el registro y la visita en curso son <strong>simulados</strong> y siempre muestran a la participante
+            de ejemplo, Ana López Martínez.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="contenedor seccion acerca" aria-labelledby="proposito-titulo">
+      <div class="acerca__texto">
+        <h2 id="proposito-titulo">Propósito</h2>
+        <p>
+          El sistema modela cómo una agencia ofrecería recorridos virtuales por Chichén Itzá a personas de
+          distintas regiones al mismo tiempo. Cada participante controla un avatar; el rol de ese avatar
+          determina qué puede hacer y a qué zonas puede entrar.
+        </p>
+        <p>
+          Las visitas pueden ser individuales o grupales. En una visita grupal, un avatar con rol Guía coordina
+          al grupo y los participantes ven en qué zona se encuentra cada uno, aunque estén conectados a
+          servidores de regiones diferentes.
+        </p>
+      </div>
+      <figure class="acerca__cifras">
+        <ul class="cifras cifras--tarjeta" role="list">
+          <li><strong>4</strong> recorridos</li>
+          <li><strong>12</strong> zonas</li>
+          <li><strong>2</strong> roles</li>
+          <li><strong>2</strong> modalidades</li>
+        </ul>
+        <figcaption>El catálogo de demostración.</figcaption>
+      </figure>
+    </section>
+
+    <section class="contenedor seccion" aria-labelledby="conceptos-titulo">
+      <div class="seccion__encabezado">
+        <h2 id="conceptos-titulo">Conceptos del sistema</h2>
+      </div>
+      <dl class="conceptos">
+        <div class="concepto">
+          <dt>Participante</dt>
+          <dd>Persona registrada que controla exactamente un avatar.</dd>
+        </div>
+        <div class="concepto">
+          <dt>Avatar</dt>
+          <dd>Su representación en los recorridos, con una apariencia y un rol.</dd>
+        </div>
+        <div class="concepto">
+          <dt>Rol</dt>
+          <dd>Visitante o Guía: define las acciones y las zonas permitidas.</dd>
+        </div>
+        <div class="concepto">
+          <dt>Recorrido</dt>
+          <dd>Ruta del catálogo por una o más zonas; se puede realizar muchas veces.</dd>
+        </div>
+        <div class="concepto">
+          <dt>Visita</dt>
+          <dd>Cada realización de un recorrido, individual o grupal, con su fecha y estado.</dd>
+        </div>
+        <div class="concepto">
+          <dt>Zona</dt>
+          <dd>Área del sitio con nombre y descripción histórica, como el Juego de Pelota.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="contenedor seccion" aria-labelledby="demo-titulo">
+      <div class="seccion__encabezado">
+        <h2 id="demo-titulo">Datos de demostración</h2>
+      </div>
+      <div class="comparativa">
+        <article class="tarjeta">
+          <p><span class="insignia insignia--jade">Visitante</span></p>
+          <h3>Ana López Martínez</h3>
+          <p class="tarjeta__texto">Participante de ejemplo con el avatar Balam. Está en la visita grupal de «El Castillo y la Gran Plaza», en el Juego de Pelota.</p>
+        </article>
+        <article class="tarjeta">
+          <p><span class="insignia insignia--naranja">Guía</span></p>
+          <h3>Carlos KarKerKar</h3>
+          <p class="tarjeta__texto">Guía de esa visita con el avatar Jaguar. Coordina a los seis participantes del grupo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contenedor seccion">
+      <div class="llamado">
+        <div>
+          <h2>Explora el prototipo</h2>
+          <p>Revisa el catálogo de recorridos o descubre paso a paso cómo funciona una visita.</p>
+        </div>
+        <div class="llamado__acciones">
+          <a class="boton boton--claro boton--grande" href="recorridos.html">Ver recorridos</a>
+          <a class="llamado__enlace enlace-flecha" href="como-funciona.html">Cómo funciona</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <rect class="logo__fondo" width="40" height="40" rx="10"/>
+              <g class="logo__piramide">
+                <rect x="17" y="9" width="6" height="5" rx="1"/>
+                <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+                <rect x="9" y="22" width="22" height="8" rx="1"/>
+              </g>
+            </svg>
+            <span>Chichén Itzá Virtual</span>
+          </a>
+          <p>Recorridos virtuales por el sitio arqueológico, de forma individual o en grupo.</p>
+        </div>
+        <nav aria-labelledby="pie-explora">
+          <h2 class="pie__titulo" id="pie-explora">Explora</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="recorridos.html">Recorridos</a></li>
+            <li><a href="como-funciona.html">Cómo funciona</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-cuenta">
+          <h2 class="pie__titulo" id="pie-cuenta">Tu cuenta</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="login.html">Iniciar sesión</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-agencia">
+          <h2 class="pie__titulo" id="pie-agencia">Agencia</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="admin/participantes.html">Administración (demo)</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__nota">Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+    </div>
+  </footer>
+</body>
+</html>
