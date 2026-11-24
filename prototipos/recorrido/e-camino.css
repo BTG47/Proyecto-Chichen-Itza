@@ -212,9 +212,12 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: start;
   gap: var(--espacio-4);
+  position: sticky;              /* se queda visible al bajar por el camino */
+  top: var(--espacio-2);
+  z-index: 20;
   max-width: 46rem;
   margin: 0 auto var(--espacio-4);
-  padding: var(--espacio-4) var(--espacio-5);
+  padding: var(--espacio-4) 3.25rem var(--espacio-4) var(--espacio-5);
   border: 1.5px solid var(--e-oro);
   border-radius: var(--radio-xl);
   background: linear-gradient(120deg, #fffaf0, var(--color-superficie) 60%);
@@ -298,6 +301,126 @@
 .voz__nota { font: 700 1.6rem/1 var(--fuente-titulos); }
 .voz__nota small { margin-left: .15rem; color: var(--color-texto-secundario); font: .75rem var(--fuente-cuerpo); }
 .voz__visitas { margin-top: .5rem !important; color: var(--color-texto-secundario); font-size: .72rem; white-space: nowrap; }
+
+/* ---------- Bloque del guía: compacto al bajar, posiciones y píldora ---------- */
+.voz__mas { display: none; }
+
+/* Control de posición (📌) */
+.voz__pos { position: absolute; top: var(--espacio-2); right: var(--espacio-2); z-index: 2; }
+
+.voz__pos summary {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  font-size: .95rem;
+  list-style: none;
+  cursor: pointer;
+  opacity: .65;
+  transition: opacity var(--transicion-rapida), background var(--transicion-rapida);
+}
+
+.voz__pos summary::-webkit-details-marker { display: none; }
+.voz__pos summary:hover,
+.voz__pos[open] summary { background: rgb(243 199 125 / .3); opacity: 1; }
+
+.voz__menu {
+  position: absolute;
+  top: calc(100% + .3rem);
+  right: 0;
+  display: grid;
+  gap: 2px;
+  min-width: 9rem;
+  padding: .3rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-lg);
+}
+
+.voz__menu label { padding: .4rem .6rem; border-radius: var(--radio-sm); font-size: var(--texto-sm); font-weight: var(--peso-medio); white-space: nowrap; cursor: pointer; }
+.voz__menu label:hover { background: var(--color-superficie-suave); }
+
+.visita:has(#voz-arriba:checked) .voz__menu label[for="voz-arriba"],
+.visita:has(#voz-esquina:checked) .voz__menu label[for="voz-esquina"],
+.visita:has(#voz-mini:checked) .voz__menu label[for="voz-mini"] { background: var(--color-jade-claro); color: var(--color-jade-oscuro); }
+
+.visita:has(#voz-arriba:focus-visible) label[for="voz-arriba"],
+.visita:has(#voz-esquina:focus-visible) label[for="voz-esquina"],
+.visita:has(#voz-mini:focus-visible) label[for="voz-mini"],
+.visita:has(#voz-mas:focus-visible) .voz__mas { outline: 3px solid var(--color-foco); outline-offset: 2px; }
+
+/* Arriba + mejora progresiva: al bajar por el camino el bloque se compacta
+   (scroll-driven animation; sin soporte queda fijo y completo). */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
+    .visita:has(#voz-arriba:checked) .voz { animation: voz-flota linear both; animation-timeline: scroll(nearest block); animation-range: 0 140px; }
+    .visita:has(#voz-arriba:checked) .voz__avatar { animation: voz-avatar linear both; animation-timeline: scroll(nearest block); animation-range: 0 140px; }
+    .visita:has(#voz-arriba:checked) .voz__texto { animation: voz-texto linear both; animation-timeline: scroll(nearest block); animation-range: 0 140px; }
+    .visita:has(#voz-arriba:checked) :is(.anteriores, .voz__rep, .voz__nombre) { animation: voz-oculta linear both; animation-timeline: scroll(nearest block); animation-range: 0 90px; }
+  }
+}
+
+@keyframes voz-flota {
+  to { padding-block: var(--espacio-2); background: rgb(255 250 240 / .94); backdrop-filter: blur(8px); box-shadow: 0 10px 28px rgb(31 27 22 / .18); }
+}
+@keyframes voz-avatar { to { width: 2.25rem; } }
+@keyframes voz-texto {
+  to { max-height: 1.45em; margin-top: .1rem; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+@keyframes voz-oculta { to { max-height: 0; max-width: 0; font-size: 0; margin: 0; padding: 0; border: 0; opacity: 0; overflow: hidden; visibility: hidden; } }
+
+.voz__texto { max-height: 6em; }
+.voz__texto p { overflow: hidden; text-overflow: ellipsis; }
+
+/* Esquina: tarjeta pequeña abajo a la izquierda, sobre la barra de zona */
+.visita:has(#voz-esquina:checked) .voz {
+  position: fixed;
+  top: auto;
+  left: var(--espacio-4);
+  bottom: calc(var(--e-alto-barra) + var(--espacio-3));
+  z-index: 50;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--espacio-3);
+  width: min(22rem, calc(100% - 2rem));
+  margin: 0;
+  padding: var(--espacio-3) 2.75rem var(--espacio-3) var(--espacio-3);
+  box-shadow: var(--sombra-lg);
+  animation: aparece .25s ease-out both;
+}
+
+.visita:has(#voz-esquina:checked) .voz__avatar { width: 2.5rem; }
+.visita:has(#voz-esquina:checked) .voz__texto { font-size: 1rem; padding-left: 1.2rem; }
+.visita:has(#voz-esquina:checked) .voz__texto::before { font-size: 2rem; }
+.visita:has(#voz-esquina:checked) :is(.voz__rep, .voz__nombre) { display: none; }
+.visita:has(#voz-esquina:checked) .voz__menu { top: auto; bottom: calc(100% + .3rem); }
+
+/* Minimizado: solo la píldora */
+.voz-pildora { display: none; }
+.visita:has(#voz-mini:checked) .voz { display: none; }
+
+.visita:has(#voz-mini:checked) .voz-pildora {
+  position: sticky;
+  top: var(--espacio-2);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  width: fit-content;
+  margin: 0 auto var(--espacio-3);
+  padding: .45rem 1rem .45rem .8rem;
+  border: 1.5px solid var(--e-oro);
+  border-radius: var(--radio-pildora);
+  background: #fffaf0;
+  box-shadow: var(--sombra-md);
+  font-size: var(--texto-sm);
+  cursor: pointer;
+  animation: aparece .25s ease-out both;
+}
+
+.voz-pildora small { color: var(--color-texto-secundario); }
+.voz-pildora:hover { border-color: var(--color-naranja); }
 
 /* ---------- Camino tipo Duolingo ---------- */
 .camino {
@@ -1293,7 +1416,9 @@
   .entrada--mia,
   .entrada--respuesta,
   .saludar__menu,
-  .aviso--destino:target { animation: none; }
+  .aviso--destino:target,
+  .visita:has(#voz-esquina:checked) .voz,
+  .visita:has(#voz-mini:checked) .voz-pildora { animation: none; }
   .nodo--actual .nodo__boton::before { opacity: .5; }
 
   /* Sin animación el aviso no se desvanece: queda visible (la ayuda tiene «Cancelar») */
@@ -1348,6 +1473,9 @@
   .camino-scroll { padding: var(--espacio-4) var(--espacio-3) var(--e-hueco-proto); }
   .nodo__extra { display: none; }
   .nodo__nombre { font-size: .9rem; }
+  /* «Estás aquí» al lado derecho: a la izquierda se saldría de la pantalla */
+  .nodo__burbuja { right: auto; left: calc(100% + 12px); }
+  .nodo__burbuja::after { left: auto; right: 100%; border-color: transparent; border-right-color: var(--color-naranja); }
   .vecina { right: calc(100% + 2.2rem); }
   .vecina::after { width: 3rem; }
 
@@ -1383,12 +1511,21 @@
   }
 
   .lateral__cerrar svg { width: 1rem; height: 1rem; }
-  .voz { grid-template-columns: auto minmax(0, 1fr); gap: var(--espacio-3); padding: var(--espacio-3); margin-bottom: var(--espacio-4); }
-  .voz__avatar { width: 2.75rem; }
+  .voz { grid-template-columns: auto minmax(0, 1fr); gap: var(--espacio-3); padding: var(--espacio-2) 2.75rem var(--espacio-2) var(--espacio-3); margin-bottom: var(--espacio-4); }
+  .voz__avatar { width: 2.25rem; }
   .voz__nombre { display: none; }
-  .voz__texto { font-size: 1.05rem; padding-left: 1.2rem; }
-  .voz__texto::before { font-size: 2rem; }
-  .voz__rep { display: none; }
+  .voz__texto { max-height: none; margin-top: .1rem; font-size: 1rem; padding-left: 1.1rem; }
+  .voz__texto p { white-space: nowrap; }
+  .voz__texto::before { font-size: 1.8rem; }
+  .voz__rep,
+  .anteriores { display: none; }
+  .voz__mas { display: inline-block; margin-top: .15rem; color: var(--color-jade-oscuro); font-size: var(--texto-xs); font-weight: var(--peso-fuerte); text-decoration: underline; cursor: pointer; }
+  .voz__mas-menos,
+  .visita:has(#voz-mas:checked) .voz__mas-ver { display: none; }
+  .visita:has(#voz-mas:checked) .voz__mas-menos { display: inline; }
+  .visita:has(#voz-mas:checked) .voz__texto p { white-space: normal; }
+  .visita:has(#voz-mas:checked) .anteriores { display: block; }
+  .visita:has(#voz-esquina:checked) .voz { left: var(--espacio-2); right: var(--espacio-2); width: auto; bottom: calc(var(--e-alto-barra) + var(--e-hueco-proto)); }
   .anteriores li { grid-template-columns: 2.6rem minmax(0, 1fr); }
   .pestanas { margin-right: 3rem; }
   .visita:has(#cajon:checked) .barra-prototipo { display: none; }

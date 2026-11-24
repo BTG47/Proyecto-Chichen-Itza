@@ -34,6 +34,12 @@
   <input class="interruptor" type="checkbox" id="cajon">
   <input class="interruptor" type="radio" name="vista" id="vista-camino" checked>
   <input class="interruptor" type="radio" name="vista" id="vista-mapa">
+  <!-- Posición del bloque del guía. Arrastrarlo requeriría JavaScript (ADR-0001):
+       esta es la alternativa solo CSS, con tres posiciones elegibles con radios. -->
+  <input class="interruptor" type="radio" name="voz-pos" id="voz-arriba" checked>
+  <input class="interruptor" type="radio" name="voz-pos" id="voz-esquina">
+  <input class="interruptor" type="radio" name="voz-pos" id="voz-mini">
+  <input class="interruptor" type="checkbox" id="voz-mas">
   <input class="interruptor" type="radio" name="pestana" id="tab-actividad" checked>
   <input class="interruptor" type="radio" name="pestana" id="tab-grupo">
 
@@ -118,11 +124,23 @@
     <main class="escenario" id="camino">
       <div class="camino-scroll">
         <!-- ===== Voz del guía (GuiaTurista.explicarZona): lo primero que se lee ===== -->
+        <!-- Minimizado: solo una píldora; al tocarla vuelve arriba -->
+        <label class="voz-pildora" for="voz-arriba"><span aria-hidden="true">💬</span> <strong>Kan</strong> explica… <small>Juego de Pelota</small></label>
+
         <section class="voz" aria-labelledby="voz-titulo">
+          <details class="voz__pos">
+            <summary title="Mover el bloque del guía"><span aria-hidden="true">📌</span><span class="visualmente-oculto">Posición del bloque del guía</span></summary>
+            <div class="voz__menu">
+              <label for="voz-arriba">⬆ Arriba</label>
+              <label for="voz-esquina">↙ Esquina</label>
+              <label for="voz-mini">— Minimizar</label>
+            </div>
+          </details>
           <img class="apariencia voz__avatar" src="../../img/apariencias/serpiente-emplumada.svg" alt="Apariencia serpiente emplumada">
           <div class="voz__cuerpo">
             <p class="voz__quien" id="voz-titulo"><strong>Kan</strong> <span class="chip chip--guia">Guía</span> <span class="voz__nombre">Carlos KarKerKar</span> <span class="voz__donde">explica Juego de Pelota · <time>17:41</time></span></p>
             <blockquote class="voz__texto"><p>Fíjense en los relieves del talud: dos equipos de jugadores avanzan hacia una gran pelota al centro.</p></blockquote>
+            <label class="voz__mas" for="voz-mas"><span class="voz__mas-ver">ver más</span><span class="voz__mas-menos">ver menos</span></label>
             <details class="anteriores">
               <summary>Explicaciones anteriores <small>3</small></summary>
               <ol role="list">
