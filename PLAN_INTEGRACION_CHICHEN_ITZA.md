@@ -18,10 +18,10 @@ Se parte de que el análisis de requisitos, la identificación de entidades y re
 
 ## 2. Fuentes y orden de precedencia
 
-1. **Consigna original:** `Actividad 6 - Chichen Itza (diseño).docx`; indica UML, formularios CRUD, diseño de páginas, implementación HTML/CSS y reporte técnico de máximo 10 páginas.
-2. **Rúbrica:** `SO2.pdf`; criterios de identificación, análisis, desarrollo, evaluación y sostenibilidad.
-3. **Modelo UML aprobado:** imagen/archivo del diagrama compartido por el equipo. Referencia conceptual que se resume en §3. Se debe conservar su semántica; ante discrepancias, registrar una decisión y solicitar resolución del equipo en vez de cambiar el modelo silenciosamente.
-4. **Distribución oficial:** `Distribucion_Actividad_Chichen_Itza_5_Personas.pdf`; distribuye diseño a Personas 1–3 e implementación a Personas 4–5.
+1. **Consigna original:** `docs/Actividad 6 - Chichen Itza (diseño)(1).docx`; indica UML, formularios CRUD, diseño de páginas, implementación HTML/CSS y reporte técnico de máximo 10 páginas.
+2. **Rúbrica:** `docs/SO2-1.pdf`; criterios de identificación, análisis, desarrollo, evaluación y sostenibilidad.
+3. **Modelo UML aprobado:** `docs/Uml.jpeg`. Referencia conceptual que se resume en §3. Se debe conservar su semántica; ante discrepancias, registrar una decisión y solicitar resolución del equipo en vez de cambiar el modelo silenciosamente.
+4. **Distribución oficial:** `docs/Distribucion_Actividad_Chichen_Itza_5_Personas.pdf`; distribuye diseño a Personas 1–3 e implementación a Personas 4–5.
 5. **Materiales definitivos de diseño:** ZIP de cada persona, **aún por adjuntar en este hilo**. Una vez inspeccionados, prevalecerán sobre ejemplos y propuestas preliminares de este documento en materia de interfaz, recursos y flujos, siempre que no contradigan los acuerdos globales.
 
 **Política para discrepancias:** no modificar una especificación aprobada para hacer que el código existente “encaje”. Documentar diferencia → proponer opción mínima → dejar decisión explícita → implementar.
