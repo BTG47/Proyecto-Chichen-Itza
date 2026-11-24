@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avatares | Administración | Chichén Itzá Virtual</title>
+  <meta name="description" content="Administración de avatares de Chichén Itzá Virtual (demostración).">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado encabezado--admin">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="../index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <span class="area-admin">Administración</span>
+      <input class="menu-interruptor" type="checkbox" id="menu-interruptor">
+      <label class="menu-boton" for="menu-interruptor">
+        <span class="menu-boton__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú de administración</span>
+      </label>
+      <nav class="menu" aria-label="Administración">
+        <ul class="menu__enlaces" role="list">
+          <li><a href="participantes.html">Participantes</a></li>
+          <li><a href="avatares.html" aria-current="page">Avatares</a></li>
+          <li><a href="roles.html">Roles</a></li>
+          <li><a href="zonas.html">Zonas</a></li>
+        </ul>
+        <div class="menu__acciones">
+          <a class="boton boton--contorno" href="../index.html">Volver al sitio</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <p class="banda-demo"><span class="contenedor"><strong>Modo demostración.</strong> Herramienta interna de la agencia: los datos son de ejemplo y ningún cambio se guarda.</span></p>
+
+  <main id="contenido">
+    <div class="contenedor admin">
+      <div class="admin__intro">
+        <p class="admin__ruta">Administración</p>
+        <h1>Avatares</h1>
+        <p class="admin__texto">Representación de cada participante dentro de los recorridos. El avatar tiene una apariencia y un rol; el rol decide qué puede hacer y a qué zonas entra.</p>
+      </div>
+      <ul class="admin__resumen" role="list" aria-label="Resumen de avatares">
+        <li><strong>7</strong> avatares</li>
+        <li><strong>6</strong> vinculados a un participante</li>
+        <li><strong>1</strong> disponible</li>
+        <li><strong>4</strong> apariencias</li>
+      </ul>
+
+      <div class="admin__rejilla">
+        <section class="registros" id="registros" aria-labelledby="registros-titulo">
+          <div class="registros__barra">
+            <h2 id="registros-titulo">Registros</h2>
+            <form class="buscador" action="#buscar" role="search">
+              <label class="visualmente-oculto" for="consulta">Buscar por avatar o participante</label>
+              <input class="campo__control" id="consulta" type="search" placeholder="Buscar por avatar o participante" required>
+              <button class="boton boton--contorno" type="submit">Buscar</button>
+            </form>
+            <a class="boton boton--primario" href="#nuevo">Nuevo avatar</a>
+          </div>
+          <div class="tabla-contenedor" tabindex="0" role="region" aria-labelledby="tabla-titulo">
+            <table class="tabla tabla--admin tabla--avatares">
+              <caption class="visualmente-oculto" id="tabla-titulo">Tabla de avatares</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Avatar <span class="visualmente-oculto">e ID</span></th>
+                  <th scope="col">Apariencia</th>
+                  <th scope="col">Participante</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Participación</th>
+                  <th scope="col"><span class="visualmente-oculto">Acciones</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><span class="celda-principal">Balam</span><span class="celda-secundaria tabla__id">A-01</span></th>
+                  <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</span></td>
+                  <td><span class="celda-ajustable">Ana López Martínez</span></td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td><span class="celda-principal">Juego de Pelota</span><span class="celda-secundaria"><span class="estado estado--visita">En visita</span> · 12, 8</span></td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-a-01">Ver<span class="visualmente-oculto"> Balam</span></a></li><li><a href="#editar-a-01">Editar<span class="visualmente-oculto"> Balam</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-a-01">Eliminar<span class="visualmente-oculto"> Balam</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="celda-principal">Kan</span><span class="celda-secundaria tabla__id">A-02</span></th>
+                  <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</span></td>
+                  <td><span class="celda-ajustable">Carlos KarKerKar</span></td>
+                  <td><span class="insignia insignia--naranja">Guía</span></td>
+                  <td><span class="celda-principal">Juego de Pelota</span><span class="celda-secundaria"><span class="estado estado--visita">En visita</span> · 11, 7</span></td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-a-02">Ver<span class="visualmente-oculto"> Kan</span></a></li><li><a href="#editar-a-02">Editar<span class="visualmente-oculto"> Kan</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-a-02">Eliminar<span class="visualmente-oculto"> Kan</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="celda-principal">Ixchel</span><span class="celda-secundaria tabla__id">A-03</span></th>
+                  <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/quetzal.svg" alt="">Quetzal</span></td>
+                  <td><span class="celda-ajustable">María López</span></td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td><span class="celda-principal">El Castillo</span><span class="celda-secundaria"><span class="estado estado--visita">En visita</span> · 20, 14</span></td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-a-03">Ver<span class="visualmente-oculto"> Ixchel</span></a></li><li><a href="#editar-a-03">Editar<span class="visualmente-oculto"> Ixchel</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-a-03">Eliminar<span class="visualmente-oculto"> Ixchel</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="celda-principal">Muan</span><span class="celda-secundaria tabla__id">A-04</span></th>
+                  <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/buho.svg" alt="">Búho</span></td>
+                  <td><span class="celda-ajustable">Juan Ramírez</span></td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td><span class="celda-principal">Gran Plaza</span><span class="celda-secundaria"><span class="estado estado--visita">En visita</span> · 24, 18</span></td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-a-04">Ver<span class="visualmente-oculto"> Muan</span></a></li><li><a href="#editar-a-04">Editar<span class="visualmente-oculto"> Muan</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-a-04">Eliminar<span class="visualmente-oculto"> Muan</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="celda-principal">Itzel</span><span class="celda-secundaria tabla__id">A-05</span></th>
+                  <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</span></td>
+                  <td><span class="celda-ajustable">Carla Pérez</span></td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td><span class="celda-principal">Juego de Pelota</span><span class="celda-secundaria"><span class="estado estado--visita">En visita</span> · 13, 9</span></td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-a-05">Ver<span class="visualmente-oculto"> Itzel</span></a></li><li><a href="#editar-a-05">Editar<span class="visualmente-oculto"> Itzel</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-a-05">Eliminar<span class="visualmente-oculto"> Itzel</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="celda-principal">Kuk</span><span class="celda-secundaria tabla__id">A-06</span></th>
+                  <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/quetzal.svg" alt="">Quetzal</span></td>
+                  <td><span class="celda-ajustable">Jose Jose</span></td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td><span class="celda-principal">Plataforma de Venus</span><span class="celda-secundaria"><span class="estado estado--visita">En visita</span> · 27, 10</span></td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-a-06">Ver<span class="visualmente-oculto"> Kuk</span></a></li><li><a href="#editar-a-06">Editar<span class="visualmente-oculto"> Kuk</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-a-06">Eliminar<span class="visualmente-oculto"> Kuk</span></a></li></ul></td>
+                </tr>
+                <tr class="fila--disponible">
+                  <th scope="row"><span class="celda-principal">Itzamná</span><span class="celda-secundaria tabla__id">A-07</span></th>
+                  <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</span></td>
+                  <td><span class="sin-asignar">Sin asignar</span></td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td><span class="celda-principal">Sin visita</span><span class="celda-secundaria"><span class="estado estado--libre">Disponible</span></span></td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-a-07">Ver<span class="visualmente-oculto"> Itzamná</span></a></li><li><a href="#editar-a-07">Editar<span class="visualmente-oculto"> Itzamná</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-a-07">Eliminar<span class="visualmente-oculto"> Itzamná</span></a></li></ul></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="registros__conteo">7 registros de ejemplo</p>
+          <p class="registros__nota">La posición (zona actual y coordenadas X, Y) y el estado no se editan aquí: son datos de la participación del avatar en la visita en curso de «El Castillo y la Gran Plaza». Un avatar vinculado a un participante no se puede eliminar.</p>
+        </section>
+
+        <aside class="paneles" aria-label="Ficha y operaciones">
+          <section class="panel panel-default" id="ver-a-01" aria-labelledby="ver-a-01-titulo">
+            <p class="panel__etiqueta">A-01</p>
+            <h2 id="ver-a-01-titulo">Balam</h2>
+            <figure class="retrato">
+              <img class="apariencia apariencia--grande" src="../img/apariencias/jaguar-jade.svg" alt="">
+              <figcaption>Jaguar de jade</figcaption>
+            </figure>
+            <dl class="ficha">
+              <div><dt>Participante</dt><dd>Ana López Martínez</dd></div>
+              <div><dt>Rol</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+              <div><dt>Apariencia</dt><dd>Jaguar de jade</dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <dl class="participacion__datos">
+                <div><dt>Zona actual</dt><dd>Juego de Pelota</dd></div>
+                <div><dt>Posición X, Y</dt><dd>12, 8</dd></div>
+                <div><dt>Estado</dt><dd><span class="estado estado--visita">En visita</span></dd></div>
+              </dl>
+              <p class="participacion__nota">Solo lectura: datos de la participación de Balam en la visita en curso.</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-a-01">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-a-01" aria-labelledby="editar-a-01-titulo">
+            <p class="panel__etiqueta">A-01</p>
+            <h2 id="editar-a-01-titulo">Editar avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="Balam" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-01-jaguar-jade" value="jaguar-jade" checked required>
+                  <label class="selector-apariencia__opcion" for="ap-a-01-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-01-quetzal" value="quetzal">
+                  <label class="selector-apariencia__opcion" for="ap-a-01-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-01-serpiente-emplumada" value="serpiente-emplumada">
+                  <label class="selector-apariencia__opcion" for="ap-a-01-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-01-buho" value="buho">
+                  <label class="selector-apariencia__opcion" for="ap-a-01-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="">Selecciona un rol</option><option value="Visitante" selected>Visitante</option><option value="Guía">Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="">Sin asignar</option><option value="Ana López Martínez" selected>Ana López Martínez (actual)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="Juego de Pelota · 12, 8" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="En visita" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: provienen de la participación en la visita en curso.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-a-01" aria-labelledby="eliminar-a-01-titulo">
+            <p class="panel__etiqueta">A-01</p>
+            <h2 id="eliminar-a-01-titulo">Eliminar avatar</h2>
+            <p><strong>¿Eliminar el registro «Balam»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: está vinculado a Ana López Martínez y participa en la visita en curso de «El Castillo y la Gran Plaza». Desvincúlalo y finaliza su participación antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-a-02" aria-labelledby="ver-a-02-titulo">
+            <p class="panel__etiqueta">A-02</p>
+            <h2 id="ver-a-02-titulo">Kan</h2>
+            <figure class="retrato">
+              <img class="apariencia apariencia--grande" src="../img/apariencias/serpiente-emplumada.svg" alt="">
+              <figcaption>Serpiente emplumada</figcaption>
+            </figure>
+            <dl class="ficha">
+              <div><dt>Participante</dt><dd>Carlos KarKerKar</dd></div>
+              <div><dt>Rol</dt><dd><span class="insignia insignia--naranja">Guía</span></dd></div>
+              <div><dt>Apariencia</dt><dd>Serpiente emplumada</dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <dl class="participacion__datos">
+                <div><dt>Zona actual</dt><dd>Juego de Pelota</dd></div>
+                <div><dt>Posición X, Y</dt><dd>11, 7</dd></div>
+                <div><dt>Estado</dt><dd><span class="estado estado--visita">En visita</span></dd></div>
+              </dl>
+              <p class="participacion__nota">Solo lectura: datos de la participación de Kan en la visita en curso.</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-a-02">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-a-02" aria-labelledby="editar-a-02-titulo">
+            <p class="panel__etiqueta">A-02</p>
+            <h2 id="editar-a-02-titulo">Editar avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="Kan" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-02-jaguar-jade" value="jaguar-jade" required>
+                  <label class="selector-apariencia__opcion" for="ap-a-02-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-02-quetzal" value="quetzal">
+                  <label class="selector-apariencia__opcion" for="ap-a-02-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-02-serpiente-emplumada" value="serpiente-emplumada" checked>
+                  <label class="selector-apariencia__opcion" for="ap-a-02-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-02-buho" value="buho">
+                  <label class="selector-apariencia__opcion" for="ap-a-02-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="">Selecciona un rol</option><option value="Visitante">Visitante</option><option value="Guía" selected>Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="">Sin asignar</option><option value="Carlos KarKerKar" selected>Carlos KarKerKar (actual)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="Juego de Pelota · 11, 7" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="En visita" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: provienen de la participación en la visita en curso.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-a-02" aria-labelledby="eliminar-a-02-titulo">
+            <p class="panel__etiqueta">A-02</p>
+            <h2 id="eliminar-a-02-titulo">Eliminar avatar</h2>
+            <p><strong>¿Eliminar el registro «Kan»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: está vinculado a Carlos KarKerKar y participa en la visita en curso de «El Castillo y la Gran Plaza». Desvincúlalo y finaliza su participación antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-a-03" aria-labelledby="ver-a-03-titulo">
+            <p class="panel__etiqueta">A-03</p>
+            <h2 id="ver-a-03-titulo">Ixchel</h2>
+            <figure class="retrato">
+              <img class="apariencia apariencia--grande" src="../img/apariencias/quetzal.svg" alt="">
+              <figcaption>Quetzal</figcaption>
+            </figure>
+            <dl class="ficha">
+              <div><dt>Participante</dt><dd>María López</dd></div>
+              <div><dt>Rol</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+              <div><dt>Apariencia</dt><dd>Quetzal</dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <dl class="participacion__datos">
+                <div><dt>Zona actual</dt><dd>El Castillo</dd></div>
+                <div><dt>Posición X, Y</dt><dd>20, 14</dd></div>
+                <div><dt>Estado</dt><dd><span class="estado estado--visita">En visita</span></dd></div>
+              </dl>
+              <p class="participacion__nota">Solo lectura: datos de la participación de Ixchel en la visita en curso.</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-a-03">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-a-03" aria-labelledby="editar-a-03-titulo">
+            <p class="panel__etiqueta">A-03</p>
+            <h2 id="editar-a-03-titulo">Editar avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="Ixchel" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-03-jaguar-jade" value="jaguar-jade" required>
+                  <label class="selector-apariencia__opcion" for="ap-a-03-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-03-quetzal" value="quetzal" checked>
+                  <label class="selector-apariencia__opcion" for="ap-a-03-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-03-serpiente-emplumada" value="serpiente-emplumada">
+                  <label class="selector-apariencia__opcion" for="ap-a-03-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-03-buho" value="buho">
+                  <label class="selector-apariencia__opcion" for="ap-a-03-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="">Selecciona un rol</option><option value="Visitante" selected>Visitante</option><option value="Guía">Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="">Sin asignar</option><option value="María López" selected>María López (actual)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="El Castillo · 20, 14" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="En visita" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: provienen de la participación en la visita en curso.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-a-03" aria-labelledby="eliminar-a-03-titulo">
+            <p class="panel__etiqueta">A-03</p>
+            <h2 id="eliminar-a-03-titulo">Eliminar avatar</h2>
+            <p><strong>¿Eliminar el registro «Ixchel»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: está vinculado a María López y participa en la visita en curso de «El Castillo y la Gran Plaza». Desvincúlalo y finaliza su participación antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-a-04" aria-labelledby="ver-a-04-titulo">
+            <p class="panel__etiqueta">A-04</p>
+            <h2 id="ver-a-04-titulo">Muan</h2>
+            <figure class="retrato">
+              <img class="apariencia apariencia--grande" src="../img/apariencias/buho.svg" alt="">
+              <figcaption>Búho</figcaption>
+            </figure>
+            <dl class="ficha">
+              <div><dt>Participante</dt><dd>Juan Ramírez</dd></div>
+              <div><dt>Rol</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+              <div><dt>Apariencia</dt><dd>Búho</dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <dl class="participacion__datos">
+                <div><dt>Zona actual</dt><dd>Gran Plaza</dd></div>
+                <div><dt>Posición X, Y</dt><dd>24, 18</dd></div>
+                <div><dt>Estado</dt><dd><span class="estado estado--visita">En visita</span></dd></div>
+              </dl>
+              <p class="participacion__nota">Solo lectura: datos de la participación de Muan en la visita en curso.</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-a-04">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-a-04" aria-labelledby="editar-a-04-titulo">
+            <p class="panel__etiqueta">A-04</p>
+            <h2 id="editar-a-04-titulo">Editar avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="Muan" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-04-jaguar-jade" value="jaguar-jade" required>
+                  <label class="selector-apariencia__opcion" for="ap-a-04-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-04-quetzal" value="quetzal">
+                  <label class="selector-apariencia__opcion" for="ap-a-04-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-04-serpiente-emplumada" value="serpiente-emplumada">
+                  <label class="selector-apariencia__opcion" for="ap-a-04-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-04-buho" value="buho" checked>
+                  <label class="selector-apariencia__opcion" for="ap-a-04-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="">Selecciona un rol</option><option value="Visitante" selected>Visitante</option><option value="Guía">Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="">Sin asignar</option><option value="Juan Ramírez" selected>Juan Ramírez (actual)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="Gran Plaza · 24, 18" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="En visita" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: provienen de la participación en la visita en curso.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-a-04" aria-labelledby="eliminar-a-04-titulo">
+            <p class="panel__etiqueta">A-04</p>
+            <h2 id="eliminar-a-04-titulo">Eliminar avatar</h2>
+            <p><strong>¿Eliminar el registro «Muan»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: está vinculado a Juan Ramírez y participa en la visita en curso de «El Castillo y la Gran Plaza». Desvincúlalo y finaliza su participación antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-a-05" aria-labelledby="ver-a-05-titulo">
+            <p class="panel__etiqueta">A-05</p>
+            <h2 id="ver-a-05-titulo">Itzel</h2>
+            <figure class="retrato">
+              <img class="apariencia apariencia--grande" src="../img/apariencias/jaguar-jade.svg" alt="">
+              <figcaption>Jaguar de jade</figcaption>
+            </figure>
+            <dl class="ficha">
+              <div><dt>Participante</dt><dd>Carla Pérez</dd></div>
+              <div><dt>Rol</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+              <div><dt>Apariencia</dt><dd>Jaguar de jade</dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <dl class="participacion__datos">
+                <div><dt>Zona actual</dt><dd>Juego de Pelota</dd></div>
+                <div><dt>Posición X, Y</dt><dd>13, 9</dd></div>
+                <div><dt>Estado</dt><dd><span class="estado estado--visita">En visita</span></dd></div>
+              </dl>
+              <p class="participacion__nota">Solo lectura: datos de la participación de Itzel en la visita en curso.</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-a-05">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-a-05" aria-labelledby="editar-a-05-titulo">
+            <p class="panel__etiqueta">A-05</p>
+            <h2 id="editar-a-05-titulo">Editar avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="Itzel" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-05-jaguar-jade" value="jaguar-jade" checked required>
+                  <label class="selector-apariencia__opcion" for="ap-a-05-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-05-quetzal" value="quetzal">
+                  <label class="selector-apariencia__opcion" for="ap-a-05-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-05-serpiente-emplumada" value="serpiente-emplumada">
+                  <label class="selector-apariencia__opcion" for="ap-a-05-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-05-buho" value="buho">
+                  <label class="selector-apariencia__opcion" for="ap-a-05-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="">Selecciona un rol</option><option value="Visitante" selected>Visitante</option><option value="Guía">Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="">Sin asignar</option><option value="Carla Pérez" selected>Carla Pérez (actual)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="Juego de Pelota · 13, 9" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="En visita" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: provienen de la participación en la visita en curso.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-a-05" aria-labelledby="eliminar-a-05-titulo">
+            <p class="panel__etiqueta">A-05</p>
+            <h2 id="eliminar-a-05-titulo">Eliminar avatar</h2>
+            <p><strong>¿Eliminar el registro «Itzel»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: está vinculado a Carla Pérez y participa en la visita en curso de «El Castillo y la Gran Plaza». Desvincúlalo y finaliza su participación antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-a-06" aria-labelledby="ver-a-06-titulo">
+            <p class="panel__etiqueta">A-06</p>
+            <h2 id="ver-a-06-titulo">Kuk</h2>
+            <figure class="retrato">
+              <img class="apariencia apariencia--grande" src="../img/apariencias/quetzal.svg" alt="">
+              <figcaption>Quetzal</figcaption>
+            </figure>
+            <dl class="ficha">
+              <div><dt>Participante</dt><dd>Jose Jose</dd></div>
+              <div><dt>Rol</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+              <div><dt>Apariencia</dt><dd>Quetzal</dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <dl class="participacion__datos">
+                <div><dt>Zona actual</dt><dd>Plataforma de Venus</dd></div>
+                <div><dt>Posición X, Y</dt><dd>27, 10</dd></div>
+                <div><dt>Estado</dt><dd><span class="estado estado--visita">En visita</span></dd></div>
+              </dl>
+              <p class="participacion__nota">Solo lectura: datos de la participación de Kuk en la visita en curso.</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-a-06">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-a-06" aria-labelledby="editar-a-06-titulo">
+            <p class="panel__etiqueta">A-06</p>
+            <h2 id="editar-a-06-titulo">Editar avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="Kuk" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-06-jaguar-jade" value="jaguar-jade" required>
+                  <label class="selector-apariencia__opcion" for="ap-a-06-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-06-quetzal" value="quetzal" checked>
+                  <label class="selector-apariencia__opcion" for="ap-a-06-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-06-serpiente-emplumada" value="serpiente-emplumada">
+                  <label class="selector-apariencia__opcion" for="ap-a-06-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-06-buho" value="buho">
+                  <label class="selector-apariencia__opcion" for="ap-a-06-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="">Selecciona un rol</option><option value="Visitante" selected>Visitante</option><option value="Guía">Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="">Sin asignar</option><option value="Jose Jose" selected>Jose Jose (actual)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="Plataforma de Venus · 27, 10" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="En visita" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: provienen de la participación en la visita en curso.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-a-06" aria-labelledby="eliminar-a-06-titulo">
+            <p class="panel__etiqueta">A-06</p>
+            <h2 id="eliminar-a-06-titulo">Eliminar avatar</h2>
+            <p><strong>¿Eliminar el registro «Kuk»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: está vinculado a Jose Jose y participa en la visita en curso de «El Castillo y la Gran Plaza». Desvincúlalo y finaliza su participación antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-a-07" aria-labelledby="ver-a-07-titulo">
+            <p class="panel__etiqueta">A-07</p>
+            <h2 id="ver-a-07-titulo">Itzamná</h2>
+            <figure class="retrato">
+              <img class="apariencia apariencia--grande" src="../img/apariencias/serpiente-emplumada.svg" alt="">
+              <figcaption>Serpiente emplumada</figcaption>
+            </figure>
+            <dl class="ficha">
+              <div><dt>Participante</dt><dd><span class="sin-asignar">Sin asignar</span></dd></div>
+              <div><dt>Rol</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+              <div><dt>Apariencia</dt><dd>Serpiente emplumada</dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Sin visita en curso</h3>
+              <dl class="participacion__datos">
+                <div><dt>Posición X, Y</dt><dd>Sin posición</dd></div>
+                <div><dt>Estado</dt><dd><span class="estado estado--libre">Disponible</span></dd></div>
+              </dl>
+              <p class="participacion__nota">Solo lectura: la posición y el estado se asignan cuando el avatar se une a una visita.</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-a-07">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-a-07" aria-labelledby="editar-a-07-titulo">
+            <p class="panel__etiqueta">A-07</p>
+            <h2 id="editar-a-07-titulo">Editar avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="Itzamná" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-07-jaguar-jade" value="jaguar-jade" required>
+                  <label class="selector-apariencia__opcion" for="ap-a-07-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-07-quetzal" value="quetzal">
+                  <label class="selector-apariencia__opcion" for="ap-a-07-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-07-serpiente-emplumada" value="serpiente-emplumada" checked>
+                  <label class="selector-apariencia__opcion" for="ap-a-07-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-a-07-buho" value="buho">
+                  <label class="selector-apariencia__opcion" for="ap-a-07-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="">Selecciona un rol</option><option value="Visitante" selected>Visitante</option><option value="Guía">Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="" selected>Sin asignar</option></select>
+                <span class="campo__ayuda">Los 6 participantes ya tienen avatar; da de alta uno nuevo en Participantes para vincularlo.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="Sin posición" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="Disponible" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: se asignan cuando el avatar se une a una visita.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-a-07" aria-labelledby="eliminar-a-07-titulo">
+            <p class="panel__etiqueta">A-07</p>
+            <h2 id="eliminar-a-07-titulo">Eliminar avatar</h2>
+            <p><strong>¿Eliminar el registro «Itzamná»?</strong></p>
+            <p class="aviso">Itzamná no está vinculado a ningún participante ni a una visita, así que puede eliminarse.</p>
+            <form class="panel__acciones" action="#guardado">
+              <a class="boton boton--contorno" href="#registros">Cancelar</a>
+              <button class="boton boton--peligro" type="submit">Eliminar avatar</button>
+            </form>
+          </section>
+          <section class="panel" id="nuevo" aria-labelledby="nuevo-titulo">
+            <p class="panel__etiqueta">Alta</p>
+            <h2 id="nuevo-titulo">Nuevo avatar</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del avatar *</span>
+                <input class="campo__control" type="text" value="" autocomplete="off" required>
+              </label>
+              <fieldset class="grupo-opciones selector-apariencia">
+                <legend>Apariencia *</legend>
+                <div class="selector-apariencia__vista">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--jaguar-jade" src="../img/apariencias/jaguar-jade.svg" alt="Vista previa: Jaguar de jade">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--quetzal" src="../img/apariencias/quetzal.svg" alt="Vista previa: Quetzal">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--serpiente-emplumada" src="../img/apariencias/serpiente-emplumada.svg" alt="Vista previa: Serpiente emplumada">
+                  <img class="apariencia apariencia--grande selector-apariencia__previa selector-apariencia__previa--buho" src="../img/apariencias/buho.svg" alt="Vista previa: Búho">
+                  <p class="selector-apariencia__vacia">Elige una apariencia para ver la vista previa.</p>
+                </div>
+                <div class="selector-apariencia__opciones">
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-nuevo-jaguar-jade" value="jaguar-jade" required>
+                  <label class="selector-apariencia__opcion" for="ap-nuevo-jaguar-jade"><img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">Jaguar de jade</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-nuevo-quetzal" value="quetzal">
+                  <label class="selector-apariencia__opcion" for="ap-nuevo-quetzal"><img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">Quetzal</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-nuevo-serpiente-emplumada" value="serpiente-emplumada">
+                  <label class="selector-apariencia__opcion" for="ap-nuevo-serpiente-emplumada"><img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">Serpiente emplumada</label>
+                  <input class="visualmente-oculto" type="radio" name="apariencia" id="ap-nuevo-buho" value="buho">
+                  <label class="selector-apariencia__opcion" for="ap-nuevo-buho"><img class="apariencia" src="../img/apariencias/buho.svg" alt="">Búho</label>
+                </div>
+                <p class="campo__ayuda">Ilustración con la que el avatar aparece en el panel, el mapa y la visita.</p>
+              </fieldset>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol *</span>
+                <select class="campo__control" required><option value="" selected>Selecciona un rol</option><option value="Visitante">Visitante</option><option value="Guía">Guía</option></select>
+                <span class="campo__ayuda">El rol pertenece al avatar y define sus permisos y zonas (ver Roles).</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Participante asociado</span>
+                <select class="campo__control"><option value="" selected>Sin asignar</option></select>
+                <span class="campo__ayuda">Los 6 participantes ya tienen avatar; da de alta uno nuevo en Participantes para vincularlo.</span>
+              </label>
+              <div class="campos-lectura">
+                <label class="campo">
+                  <span class="campo__etiqueta">Posición (zona · X, Y)</span>
+                  <input class="campo__control" type="text" value="Sin posición" readonly>
+                </label>
+                <label class="campo">
+                  <span class="campo__etiqueta">Estado</span>
+                  <input class="campo__control" type="text" value="Disponible" readonly>
+                </label>
+                <p class="campo__ayuda">Solo lectura: se asignan cuando el avatar se une a una visita.</p>
+              </div>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="guardado" aria-labelledby="guardado-titulo">
+            <p class="panel__etiqueta">Confirmación</p>
+            <h2 id="guardado-titulo">Guardado de demostración</h2>
+            <p class="aviso aviso--exito">El formulario se envió en modo de demostración. Los datos de ejemplo se conservan sin cambios.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver al listado</a>
+            </div>
+          </section>
+          <section class="panel" id="buscar" aria-labelledby="buscar-titulo">
+            <p class="panel__etiqueta">Búsqueda</p>
+            <h2 id="buscar-titulo">Búsqueda de demostración</h2>
+            <p>El buscador forma parte del diseño. La versión estática muestra todos los registros de ejemplo; una búsqueda sin coincidencias mostraría «No se encontraron registros».</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver al listado</a>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <a class="marca" href="../index.html">
+            <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <rect class="logo__fondo" width="40" height="40" rx="10"/>
+              <g class="logo__piramide">
+                <rect x="17" y="9" width="6" height="5" rx="1"/>
+                <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+                <rect x="9" y="22" width="22" height="8" rx="1"/>
+              </g>
+            </svg>
+            <span>Chichén Itzá Virtual</span>
+          </a>
+          <p>Recorridos virtuales por el sitio arqueológico, de forma individual o en grupo.</p>
+        </div>
+        <nav aria-labelledby="pie-explora">
+          <h2 class="pie__titulo" id="pie-explora">Explora</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="../recorridos.html">Recorridos</a></li>
+            <li><a href="../como-funciona.html">Cómo funciona</a></li>
+            <li><a href="../acerca.html">Acerca de</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-cuenta">
+          <h2 class="pie__titulo" id="pie-cuenta">Tu cuenta</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="../login.html">Iniciar sesión</a></li>
+            <li><a href="../registro.html">Registrarse</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-agencia">
+          <h2 class="pie__titulo" id="pie-agencia">Agencia</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="participantes.html">Administración (demo)</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__nota">Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+    </div>
+  </footer>
+</body>
+</html>
