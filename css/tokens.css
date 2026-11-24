@@ -1,0 +1,101 @@
+/*
+ * Tokens de diseño (D18).
+ * Único lugar con valores de color, tipografía, radios, sombras y medidas.
+ * Para probar una variante de diseño basta con cambiar este archivo.
+ */
+:root {
+  color-scheme: light;
+
+  /* Superficies */
+  --color-fondo: #f5efe3;
+  --color-superficie: #ffffff;
+  --color-superficie-suave: #faf6ee;
+  --color-borde: #e4dccd;
+  --color-borde-campo: #81776b;
+
+  /* Texto */
+  --color-tinta: #1f1b16;
+  --color-texto-secundario: #5b554c;
+  --color-texto-invertido: #ffffff;
+  --color-borde-invertido: rgb(255 255 255 / .15);
+
+  /* Jade (color principal) */
+  --color-jade: #1f6f5c;
+  --color-jade-oscuro: #195447;
+  --color-jade-profundo: #123d33;
+  --color-jade-claro: #e3efe9;
+
+  /* Naranja (acento) */
+  --color-naranja: #b0581c;
+  --color-naranja-oscuro: #8f4414;
+  --color-naranja-claro: #f8e4d0;
+
+  /* Estados */
+  --color-error: #a3261b;
+  --color-error-claro: #fbe5e2;
+  --color-exito: var(--color-jade);
+  --color-foco: #a14b14;
+
+  /* Ilustraciones */
+  --ilus-cielo-alto: #f0b06d;
+  --ilus-cielo-bajo: #f8dfb4;
+  --ilus-sol: #fdf3de;
+  --ilus-piedra: #d8c8a6;
+  --ilus-piedra-borde: #a8946e;
+  --ilus-escalinata: #b9a57f;
+  --ilus-templo: #c9b892;
+  --ilus-puerta: #4f4030;
+  --ilus-pasto: #5e8d4c;
+  --ilus-colina: #3f6b37;
+  --ilus-luz: #fff6dc;
+  --ilus-ave: #6b4a2e;
+
+  /* Tipografía */
+  --fuente-titulos: Georgia, "Times New Roman", serif;
+  --fuente-cuerpo: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --texto-xs: .78rem;
+  --texto-sm: .9rem;
+  --texto-base: 1rem;
+  --texto-lg: 1.15rem;
+  --texto-xl: 1.3rem;
+  --texto-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.9rem);
+  --texto-3xl: clamp(1.9rem, 1.5rem + 1.6vw, 2.6rem);
+  --texto-portada: clamp(2.3rem, 1.4rem + 3.6vw, 3.9rem);
+  --peso-normal: 400;
+  --peso-medio: 600;
+  --peso-fuerte: 700;
+  --interlineado: 1.55;
+  --interlineado-titulos: 1.12;
+
+  /* Espaciado */
+  --espacio-1: .25rem;
+  --espacio-2: .5rem;
+  --espacio-3: .75rem;
+  --espacio-4: 1rem;
+  --espacio-5: 1.5rem;
+  --espacio-6: 2rem;
+  --espacio-7: 3rem;
+  --espacio-8: 4.5rem;
+
+  /* Radios */
+  --radio-sm: .4rem;
+  --radio-md: .65rem;
+  --radio-lg: 1rem;
+  --radio-xl: 1.5rem;
+  --radio-pildora: 999px;
+
+  /* Sombras */
+  --sombra-sm: 0 1px 2px rgb(31 27 22 / .06);
+  --sombra-md: 0 4px 14px rgb(31 27 22 / .08);
+  --sombra-lg: 0 14px 34px rgb(31 27 22 / .13);
+
+  /* Diseño */
+  --ancho-contenido: 76rem;
+  --margen-lateral: clamp(1rem, 4vw, 2.5rem);
+  --alto-encabezado: 4.5rem;
+  --tactil-minimo: 44px;
+
+  /* Movimiento */
+  --transicion-rapida: 150ms ease;
+  --transicion-media: 250ms ease;
+}

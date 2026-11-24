@@ -1,0 +1,132 @@
+/*
+ * Base: reinicio, tipografía, foco visible y utilidades.
+ * Colores, fuentes y medidas principales vienen de tokens.css.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-fondo);
+  color: var(--color-tinta);
+  font-family: var(--fuente-cuerpo);
+  font-size: var(--texto-base);
+  line-height: var(--interlineado);
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--interlineado-titulos);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--texto-3xl); }
+h2 { font-size: var(--texto-2xl); }
+h3 { font-size: var(--texto-lg); }
+
+p {
+  margin: 0 0 var(--espacio-4);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-jade-oscuro);
+  text-underline-offset: .2em;
+}
+
+a:hover {
+  color: var(--color-jade);
+}
+
+:where(ul[role="list"], ol[role="list"]) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+/* Utilidades */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-contenido);
+  margin-inline: auto;
+  padding-inline: var(--margen-lateral);
+}
+
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.saltar-al-contenido {
+  position: absolute;
+  top: var(--espacio-2);
+  left: var(--espacio-2);
+  z-index: 100;
+  padding: var(--espacio-2) var(--espacio-4);
+  border-radius: var(--radio-sm);
+  background: var(--color-jade-oscuro);
+  color: var(--color-texto-invertido);
+  font-weight: var(--peso-medio);
+  transform: translateY(-200%);
+}
+
+.saltar-al-contenido:focus {
+  transform: none;
+  color: var(--color-texto-invertido);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

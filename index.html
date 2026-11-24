@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio | Chichén Itzá Virtual</title>
+  <meta name="description" content="Recorridos virtuales por Chichén Itzá, de forma individual o en grupo, con avatares y guías.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/publico.css">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <input class="menu-interruptor" type="checkbox" id="menu-interruptor">
+      <label class="menu-boton" for="menu-interruptor">
+        <span class="menu-boton__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú</span>
+      </label>
+      <nav class="menu" aria-label="Principal">
+        <ul class="menu__enlaces" role="list">
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="recorridos.html">Recorridos</a></li>
+          <li><a href="como-funciona.html">Cómo funciona</a></li>
+          <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+        <div class="menu__acciones">
+          <a class="boton boton--contorno" href="login.html">Iniciar sesión</a>
+          <a class="boton boton--primario" href="registro.html">Registrarse</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="contenedor portada" aria-labelledby="portada-titulo">
+      <div>
+        <p class="portada__etiqueta"><span class="insignia insignia--naranja">Recorridos virtuales · Patrimonio de la Humanidad</span></p>
+        <h1 class="portada__titulo" id="portada-titulo">Recorre Chichén Itzá desde cualquier lugar</h1>
+        <p class="portada__descripcion">
+          Visita la Gran Plaza, El Castillo y el Cenote Sagrado de forma individual o en grupo.
+          Elige tu avatar, sigue a un guía y explora cada zona del sitio arqueológico con información histórica.
+        </p>
+        <div class="portada__acciones">
+          <a class="boton boton--primario boton--grande" href="registro.html">Crear cuenta gratis</a>
+          <a class="boton boton--contorno boton--grande" href="recorridos.html">Ver recorridos</a>
+        </div>
+      </div>
+
+      <figure class="ilustracion">
+        <svg viewBox="0 0 640 380" role="img" aria-labelledby="ilus-titulo ilus-desc">
+          <title id="ilus-titulo">El Castillo al atardecer</title>
+          <desc id="ilus-desc">Ilustración de la pirámide de Kukulcán con el sol poniente; la luz forma una serpiente que desciende por la escalinata.</desc>
+          <defs>
+            <linearGradient id="ilus-cielo" x1="0" y1="0" x2="0" y2="1">
+              <stop class="ilus__cielo-alto" offset="0"/>
+              <stop class="ilus__cielo-bajo" offset="1"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="380" fill="url(#ilus-cielo)"/>
+
+          <circle class="ilus__halo" cx="520" cy="92" r="70"/>
+          <circle class="ilus__sol" cx="520" cy="92" r="44"/>
+
+          <g class="ilus__aves">
+            <path class="ilus__ave" d="M110 96 q8 -8 16 0 q8 -8 16 0"/>
+            <path class="ilus__ave" d="M150 120 q6 -6 12 0 q6 -6 12 0"/>
+          </g>
+
+          <path class="ilus__colina" d="M0 318 Q80 288 170 310 T340 304 T520 298 T640 312 V340 H0Z"/>
+          <rect class="ilus__pasto" y="328" width="640" height="52"/>
+
+          <g class="ilus__cuerpo">
+            <rect x="100" y="304" width="440" height="26"/>
+            <rect x="120" y="278" width="400" height="26"/>
+            <rect x="140" y="252" width="360" height="26"/>
+            <rect x="160" y="226" width="320" height="26"/>
+            <rect x="180" y="200" width="280" height="26"/>
+            <rect x="200" y="174" width="240" height="26"/>
+            <rect x="220" y="148" width="200" height="26"/>
+            <rect x="240" y="122" width="160" height="26"/>
+            <rect x="260" y="96" width="120" height="26"/>
+          </g>
+          <polygon class="ilus__escalinata" points="270,330 370,330 350,96 290,96"/>
+          <rect class="ilus__templo" x="278" y="56" width="84" height="40"/>
+          <rect class="ilus__puerta" x="307" y="68" width="26" height="28"/>
+
+          <g class="ilus__luz">
+            <polygon style="--i:0" points="285.6,148 283.3,174 299.3,174"/>
+            <polygon style="--i:1" points="283.3,174 281.1,200 297.1,200"/>
+            <polygon style="--i:2" points="281.1,200 278.9,226 294.9,226"/>
+            <polygon style="--i:3" points="278.9,226 276.7,252 292.7,252"/>
+            <polygon style="--i:4" points="276.7,252 274.4,278 290.4,278"/>
+            <polygon style="--i:5" points="274.4,278 272.2,304 288.2,304"/>
+            <polygon style="--i:6" points="272.2,304 270,330 286,330"/>
+          </g>
+          <path class="ilus__cabeza" d="M254 330 v-9 q0 -7 8 -7 h10 v16 z"/>
+        </svg>
+      </figure>
+    </section>
+
+    <section class="contenedor seccion" aria-labelledby="recorridos-titulo">
+      <div class="seccion__encabezado">
+        <h2 id="recorridos-titulo">Recorridos disponibles</h2>
+        <a class="enlace-flecha" href="recorridos.html">Ver todos</a>
+      </div>
+
+      <ul class="rejilla-tarjetas" role="list">
+        <li class="tarjeta tarjeta--enlace">
+          <p><span class="insignia insignia--jade">Grupal · con guía</span></p>
+          <h3>El Castillo y la Gran Plaza</h3>
+          <p class="tarjeta__texto">Pirámide de Kukulcán, Plataforma de Venus y Juego de Pelota.</p>
+          <div class="tarjeta__pie">
+            <span>4 zonas · 45 min</span>
+            <a class="tarjeta__enlace-principal enlace-flecha" href="recorridos.html#castillo-gran-plaza">Ver detalle<span class="visualmente-oculto"> de El Castillo y la Gran Plaza</span></a>
+          </div>
+        </li>
+        <li class="tarjeta tarjeta--enlace">
+          <p><span class="insignia insignia--naranja">Individual</span></p>
+          <h3>Cenote Sagrado</h3>
+          <p class="tarjeta__texto">Sacbé ceremonial y cenote principal, con su historia ritual.</p>
+          <div class="tarjeta__pie">
+            <span>2 zonas · 25 min</span>
+            <a class="tarjeta__enlace-principal enlace-flecha" href="recorridos.html#cenote-sagrado">Ver detalle<span class="visualmente-oculto"> de Cenote Sagrado</span></a>
+          </div>
+        </li>
+        <li class="tarjeta tarjeta--enlace">
+          <p><span class="insignia insignia--jade">Grupal · con guía</span></p>
+          <h3>El Caracol y Las Monjas</h3>
+          <p class="tarjeta__texto">Observatorio astronómico maya y conjunto de Las Monjas.</p>
+          <div class="tarjeta__pie">
+            <span>3 zonas · 35 min</span>
+            <a class="tarjeta__enlace-principal enlace-flecha" href="recorridos.html#caracol-monjas">Ver detalle<span class="visualmente-oculto"> de El Caracol y Las Monjas</span></a>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <rect class="logo__fondo" width="40" height="40" rx="10"/>
+              <g class="logo__piramide">
+                <rect x="17" y="9" width="6" height="5" rx="1"/>
+                <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+                <rect x="9" y="22" width="22" height="8" rx="1"/>
+              </g>
+            </svg>
+            <span>Chichén Itzá Virtual</span>
+          </a>
+          <p>Recorridos virtuales por el sitio arqueológico, de forma individual o en grupo.</p>
+        </div>
+        <nav aria-labelledby="pie-explora">
+          <h2 class="pie__titulo" id="pie-explora">Explora</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="recorridos.html">Recorridos</a></li>
+            <li><a href="como-funciona.html">Cómo funciona</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-cuenta">
+          <h2 class="pie__titulo" id="pie-cuenta">Tu cuenta</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="login.html">Iniciar sesión</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-agencia">
+          <h2 class="pie__titulo" id="pie-agencia">Agencia</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="admin/participantes.html">Administración (demo)</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__nota">Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

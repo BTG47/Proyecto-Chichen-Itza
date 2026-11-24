@@ -1,0 +1,484 @@
+/*
+ * Componentes compartidos por todas las áreas:
+ * encabezado, pie, botones, insignias, tarjetas, campos, tablas y paneles :target.
+ */
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-superficie);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.encabezado__contenido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-3) var(--espacio-5);
+  min-height: var(--alto-encabezado);
+  padding-block: var(--espacio-3);
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  color: var(--color-tinta);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-fuerte);
+  text-decoration: none;
+}
+
+.marca:hover {
+  color: var(--color-tinta);
+}
+
+.marca__logo {
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: none;
+}
+
+.logo__fondo { fill: var(--color-jade); }
+.logo__piramide { fill: var(--color-superficie); }
+
+/* Interruptor del menú móvil (checkbox oculto + label, sin JS) */
+.menu-interruptor {
+  display: none;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-boton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--tactil-minimo);
+  height: var(--tactil-minimo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  cursor: pointer;
+}
+
+.menu-boton__barras,
+.menu-boton__barras::before,
+.menu-boton__barras::after {
+  display: block;
+  width: 1.2rem;
+  height: 2px;
+  border-radius: var(--radio-pildora);
+  background: var(--color-tinta);
+  transition: transform var(--transicion-media), background-color var(--transicion-rapida);
+}
+
+.menu-boton__barras {
+  position: relative;
+}
+
+.menu-boton__barras::before,
+.menu-boton__barras::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-boton__barras::before { top: -6px; }
+.menu-boton__barras::after { top: 6px; }
+
+.menu-interruptor:focus-visible + .menu-boton {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+.menu-interruptor:checked + .menu-boton .menu-boton__barras {
+  background: transparent;
+}
+
+.menu-interruptor:checked + .menu-boton .menu-boton__barras::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-interruptor:checked + .menu-boton .menu-boton__barras::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.menu {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--espacio-5);
+}
+
+.menu__enlaces {
+  display: flex;
+  gap: var(--espacio-1);
+  margin-inline: auto;
+}
+
+.menu__enlaces a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil-minimo);
+  padding: 0 var(--espacio-3);
+  border-radius: var(--radio-sm);
+  color: var(--color-texto-secundario);
+  text-decoration: none;
+  transition: color var(--transicion-rapida), background-color var(--transicion-rapida);
+}
+
+.menu__enlaces a:hover {
+  color: var(--color-tinta);
+  background: var(--color-superficie-suave);
+}
+
+.menu__enlaces [aria-current="page"] {
+  color: var(--color-tinta);
+  font-weight: var(--peso-fuerte);
+}
+
+.menu__acciones {
+  display: flex;
+  gap: var(--espacio-3);
+}
+
+@media (max-width: 60rem) {
+  .menu-interruptor {
+    display: block;
+  }
+
+  .menu-boton {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .menu {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--espacio-4);
+    padding-bottom: var(--espacio-4);
+  }
+
+  .menu-interruptor:checked ~ .menu {
+    display: flex;
+  }
+
+  .menu__enlaces {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .menu__acciones .boton {
+    flex: 1;
+  }
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  margin-top: var(--espacio-8);
+  padding-block: var(--espacio-7) var(--espacio-5);
+  background: var(--color-jade-profundo);
+  color: var(--color-jade-claro);
+}
+
+.pie a {
+  color: var(--color-texto-invertido);
+}
+
+.pie a:hover {
+  color: var(--color-naranja-claro);
+}
+
+.pie :focus-visible {
+  outline-color: var(--color-naranja-claro);
+}
+
+.pie__columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--espacio-6);
+}
+
+.pie .marca {
+  color: var(--color-texto-invertido);
+  margin-bottom: var(--espacio-3);
+}
+
+.pie__titulo {
+  margin-bottom: var(--espacio-3);
+  color: var(--color-texto-invertido);
+  font-family: var(--fuente-cuerpo);
+  font-size: var(--texto-sm);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.pie__lista li + li {
+  margin-top: var(--espacio-2);
+}
+
+.pie__nota {
+  margin: var(--espacio-6) 0 0;
+  padding-top: var(--espacio-4);
+  border-top: 1px solid var(--color-borde-invertido);
+  font-size: var(--texto-sm);
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-2);
+  min-height: var(--tactil-minimo);
+  padding: var(--espacio-2) var(--espacio-5);
+  border: 1.5px solid transparent;
+  border-radius: var(--radio-md);
+  font-weight: var(--peso-medio);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida),
+    border-color var(--transicion-rapida), transform var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+.boton:active {
+  transform: translateY(1px);
+}
+
+.boton--primario {
+  background: var(--color-jade);
+  color: var(--color-texto-invertido);
+}
+
+.boton--primario:hover {
+  background: var(--color-jade-oscuro);
+  color: var(--color-texto-invertido);
+  box-shadow: var(--sombra-md);
+}
+
+.boton--contorno {
+  border-color: var(--color-jade);
+  background: var(--color-superficie);
+  color: var(--color-jade-oscuro);
+}
+
+.boton--contorno:hover {
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+}
+
+.boton--grande {
+  min-height: 3.2rem;
+  padding-inline: var(--espacio-6);
+  font-size: var(--texto-lg);
+}
+
+.enlace-flecha {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-1);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+}
+
+.enlace-flecha::after {
+  content: "→";
+  transition: transform var(--transicion-rapida);
+}
+
+.enlace-flecha:hover::after {
+  transform: translateX(3px);
+}
+
+/* ---------- Insignias ---------- */
+.insignia {
+  display: inline-block;
+  padding: .2rem .65rem;
+  border-radius: var(--radio-pildora);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  line-height: 1.4;
+}
+
+.insignia--jade {
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+}
+
+.insignia--naranja {
+  background: var(--color-naranja-claro);
+  color: var(--color-naranja-oscuro);
+}
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  padding: var(--espacio-5);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-sm);
+}
+
+.tarjeta > * {
+  margin: 0;
+}
+
+.tarjeta h3 {
+  font-size: var(--texto-xl);
+}
+
+.tarjeta__texto {
+  color: var(--color-texto-secundario);
+}
+
+.tarjeta__pie {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espacio-2);
+  margin-top: auto;
+  padding-top: var(--espacio-3);
+  color: var(--color-texto-secundario);
+}
+
+/* Toda la tarjeta es clicable mediante el enlace principal */
+.tarjeta--enlace {
+  transition: transform var(--transicion-media), box-shadow var(--transicion-media), border-color var(--transicion-media);
+}
+
+.tarjeta--enlace:hover,
+.tarjeta--enlace:focus-within {
+  transform: translateY(-4px);
+  border-color: var(--color-jade);
+  box-shadow: var(--sombra-lg);
+}
+
+.tarjeta__enlace-principal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Con :has() el anillo de foco rodea la tarjeta completa; sin él, queda en el enlace */
+@supports selector(:has(*)) {
+  .tarjeta__enlace-principal:focus-visible {
+    outline: none;
+  }
+
+  .tarjeta--enlace:has(.tarjeta__enlace-principal:focus-visible) {
+    outline: 3px solid var(--color-foco);
+    outline-offset: 3px;
+  }
+}
+
+/* ---------- Campos de formulario ---------- */
+.campo {
+  display: grid;
+  gap: var(--espacio-1);
+  margin-bottom: var(--espacio-4);
+}
+
+.campo__etiqueta {
+  font-weight: var(--peso-medio);
+}
+
+.campo__ayuda {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.campo__control {
+  width: 100%;
+  min-height: var(--tactil-minimo);
+  padding: var(--espacio-2) var(--espacio-3);
+  border: 1px solid var(--color-borde-campo);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie);
+}
+
+.campo__control:focus-visible {
+  outline-offset: 1px;
+  border-color: var(--color-jade);
+}
+
+.campo--error .campo__control {
+  border-color: var(--color-error);
+  background: var(--color-error-claro);
+}
+
+.campo__error {
+  color: var(--color-error);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+}
+
+/* ---------- Tablas ---------- */
+.tabla-contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  background: var(--color-superficie);
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--texto-sm);
+}
+
+.tabla th,
+.tabla td {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-bottom: 1px solid var(--color-borde);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabla th {
+  background: var(--color-superficie-suave);
+  color: var(--color-texto-secundario);
+  font-weight: var(--peso-medio);
+}
+
+.tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabla tbody tr:hover {
+  background: var(--color-superficie-suave);
+}
+
+/* ---------- Paneles :target (patrón de la Persona 1) ----------
+ * Marcado: <div class="paneles"> con un .panel-default y varios .panel.
+ * El nombre .panel-default se conserva del CRUD de la Persona 1. */
+.panel {
+  display: none;
+  padding: var(--espacio-5);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-md);
+  scroll-margin-top: calc(var(--alto-encabezado) + var(--espacio-4));
+}
+
+.panel-default,
+.panel:target {
+  display: block;
+}
+
+.paneles:has(> .panel:target) > .panel-default:not(:target) {
+  display: none;
+}
