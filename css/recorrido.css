@@ -372,6 +372,7 @@
 
 .participante__saludo:hover { background: var(--color-jade-claro); }
 .participante__texto small { display: block; color: var(--color-texto-secundario); font-size: .7rem; }
+.participante .participante__rep { color: var(--color-naranja-oscuro); font-weight: var(--peso-fuerte); }
 .participante--guia { border-color: var(--visita-oro); border-left: 4px solid var(--visita-oro); background: var(--visita-crema); }
 .participante--guia .apariencia { box-shadow: 0 0 0 2px var(--visita-oro); }
 .participante--yo { border-color: var(--color-naranja); background: var(--color-naranja-claro); }
@@ -393,6 +394,9 @@
 
 .conexion::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--color-borde-campo); }
 .conexion--on::before { background: var(--color-conectado); }
+/* Región del servidor y hora de conexión (D35) */
+.conexion > span { font-weight: var(--peso-fuerte); line-height: 1.2; text-align: right; }
+.conexion small { display: block; font-size: .62rem; font-weight: var(--peso-normal); }
 .grupo__nota { margin: var(--espacio-3) 0 0; color: var(--color-texto-secundario); font-size: .7rem; }
 
 /* ---------- Barra fija de la zona actual ---------- */

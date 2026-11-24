@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-11-24T18:05:37.031Z",
+  "fecha": "2026-11-24T20:57:17.314Z",
   "navegador": "153.0.8010.12",
   "paginas": {
     "index.html": {
@@ -377,7 +377,7 @@
         "h1": 1,
         "saltos": 0,
         "errores": [],
-        "tabulables": 29,
+        "tabulables": 30,
         "sinFocoVisible": [],
         "focoOculto": []
       }

@@ -40,7 +40,7 @@ Para quienes redactan el reporte. El sitio es **solo HTML y CSS** ([ADR-0001](ad
 | Guardar perfil y apariencia | Mensaje «guardado» (`#guardado`); nada se guarda | `mi-perfil.html`, `mi-avatar.html` |
 | Altas, ediciones y bajas del CRUD | Mensaje de confirmación; los 4 catálogos tienen datos fijos de ejemplo (D27, D28, D30) | `admin/*.html` |
 | Búsqueda en administración | Muestra un estado de ejemplo (`#buscar`), no filtra | `admin/*.html` |
-| Conexión al servidor «Región Sureste» y estado «Conectada» | Texto fijo (`Conexion`, `Servidor` del UML) | Dashboard, visita |
+| Conexión a servidores por región: Sureste coordina la visita; Centro y Norte sincronizan a sus participantes (D35) | Texto fijo (`Conexion`, `Servidor` del UML) | Dashboard, visita |
 | Participantes en línea y su zona actual | Datos fijos de D30 | Dashboard, visita, `admin/avatares.html` |
 | Progreso (50 %), tiempo transcurrido (22 de 45 min) e inicio (17:20) | Valores fijos marcados con «ESTADO» en el HTML (D34) | Visita; el progreso también en el dashboard |
 | Reputación del guía (4.8 / 5, gráfica por estrellas) | Datos fijos; campo de interfaz, no está en el UML (D33) | `recorrido.html` |
