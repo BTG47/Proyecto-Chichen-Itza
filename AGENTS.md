@@ -41,3 +41,20 @@ Cada ticket (issue) se trabaja en su propia rama y se cierra con un PR:
 4. **No hacer merge** del PR: lo revisa y lo fusiona Bruno.
 
 Un ticket = una rama = un PR.
+
+### Revisión tras merges con conflictos
+
+Resolver conflictos en CSS ya rompió `main` dos veces sin que se notara: se perdieron llaves de cierre y el navegador descartó secciones enteras (tokens, apariencias, zonas). Después de **cualquier** merge o resolución de conflictos, y antes de abrir un PR, ejecuta:
+
+```bash
+for f in css/*.css; do python3 -I -c "
+import sys,re
+s=re.sub(r'/\*.*?\*/','',open(sys.argv[1]).read(),flags=re.S)
+d=s.count('{')-s.count('}')
+print(sys.argv[1], 'OK' if d==0 else f'{d:+d} llaves sin cerrar')" "$f"; done
+git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- '*.html' '*.css'
+```
+
+Todo debe salir `OK` y la segunda orden no debe imprimir nada. Si una llave falta, compara la sección afectada con la versión original de cada rama (`git show <commit>:css/<archivo>`) para confirmar que no se perdió nada más.
+
+Al trabajar en paralelo con agentes, cada uno añade su CSS al final de los archivos compartidos en una sección `/* ---------- Ticket #N … */`; el conflicto se resuelve conservando ambas secciones completas. Nunca reescribas historia publicada (`push --force`).
