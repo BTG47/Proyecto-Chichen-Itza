@@ -1,0 +1,517 @@
+/*
+ * Área de administración (admin/*.html): herramienta interna de la agencia (ADR-0002).
+ * Encabezado con los cuatro módulos, banda de demostración, tabla de registros
+ * y paneles :target con fichas y formularios (patrón CRUD de la Persona 1).
+ */
+
+/* ---------- Encabezado y banda de demostración ---------- */
+.area-admin {
+  padding: .2rem .65rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-pildora);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.encabezado--admin .menu__enlaces [aria-current="page"] {
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+}
+
+.banda-demo {
+  margin: 0;
+  padding-block: var(--espacio-2);
+  background: var(--color-naranja-claro);
+  color: var(--color-naranja-oscuro);
+  font-size: var(--texto-sm);
+}
+
+.banda-demo .contenedor {
+  display: block;
+}
+
+/* ---------- Introducción de la página ---------- */
+.admin {
+  padding-top: var(--espacio-6);
+}
+
+.admin__intro {
+  max-width: 46rem;
+}
+
+.admin__ruta {
+  margin-bottom: var(--espacio-2);
+  color: var(--color-jade-oscuro);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.admin__texto {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-lg);
+}
+
+.admin__resumen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--espacio-3);
+  margin-block: var(--espacio-5) var(--espacio-6);
+}
+
+.admin__resumen li {
+  padding: var(--espacio-3) var(--espacio-4);
+  border: 1px solid var(--color-borde);
+  border-left: 4px solid var(--color-jade);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.admin__resumen strong {
+  display: block;
+  color: var(--color-tinta);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-2xl);
+  line-height: 1.1;
+}
+
+/* ---------- Rejilla: registros + paneles ---------- */
+.admin__rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 23rem);
+  align-items: start;
+  gap: var(--espacio-5);
+}
+
+@media (max-width: 64rem) {
+  .admin__rejilla {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.registros {
+  scroll-margin-top: calc(var(--alto-encabezado) + var(--espacio-4));
+}
+
+.registros__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-3);
+  margin-bottom: var(--espacio-4);
+}
+
+.registros__barra h2 {
+  flex: 1 0 100%;
+  margin: 0;
+  font-size: var(--texto-xl);
+}
+
+.buscador {
+  display: flex;
+  flex: 1 1 20rem;
+  gap: var(--espacio-2);
+}
+
+.buscador .campo__control {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.registros__conteo {
+  margin: var(--espacio-3) 0 var(--espacio-1);
+  font-weight: var(--peso-medio);
+}
+
+.registros__nota {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+/* ---------- Tabla de registros ---------- */
+/* relative: contiene los textos ocultos de las acciones dentro del área con scroll */
+.registros .tabla-contenedor {
+  position: relative;
+}
+
+.tabla--admin th,
+.tabla--admin td {
+  padding-inline: var(--espacio-2);
+  vertical-align: middle;
+}
+
+.tabla--admin tr > :first-child {
+  padding-left: var(--espacio-4);
+}
+
+.tabla--admin tr > :last-child {
+  padding-right: var(--espacio-3);
+}
+
+.tabla--admin tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+.tabla--admin tbody th {
+  background: transparent;
+  color: var(--color-tinta);
+  font-weight: var(--peso-normal);
+}
+
+.tabla__id {
+  color: var(--color-texto-secundario);
+  font-variant-numeric: tabular-nums;
+}
+
+.celda-principal {
+  display: block;
+  font-weight: var(--peso-medio);
+}
+
+.celda-secundaria {
+  display: block;
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-xs);
+}
+
+.celda-secundaria--ajustable {
+  min-width: 10rem;
+  max-width: 12.5rem;
+  margin-top: var(--espacio-1);
+  white-space: normal;
+}
+
+.acciones-fila {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0;
+}
+
+.acciones-fila a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 var(--espacio-2);
+  border-radius: var(--radio-sm);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  transition: background-color var(--transicion-rapida);
+}
+
+.acciones-fila a:hover {
+  background: var(--color-jade-claro);
+}
+
+.acciones-fila .acciones-fila__eliminar {
+  color: var(--color-error);
+}
+
+.acciones-fila .acciones-fila__eliminar:hover {
+  background: var(--color-error-claro);
+  color: var(--color-error);
+}
+
+/* ---------- Paneles: ficha y operaciones ---------- */
+.paneles .panel {
+  border-top: 4px solid var(--color-jade);
+}
+
+.panel:target {
+  animation: panel-aparece var(--transicion-media);
+}
+
+@keyframes panel-aparece {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.panel h2 {
+  font-size: var(--texto-xl);
+}
+
+.panel__etiqueta {
+  margin-bottom: var(--espacio-1);
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.panel__descripcion {
+  color: var(--color-texto-secundario);
+}
+
+.panel__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-5);
+}
+
+.ficha {
+  display: grid;
+  gap: var(--espacio-3);
+  margin: 0 0 var(--espacio-4);
+}
+
+.ficha div {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: var(--espacio-3);
+  padding-bottom: var(--espacio-3);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.ficha dt {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.ficha dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.ficha__subtitulo {
+  margin: var(--espacio-4) 0 var(--espacio-2);
+  font-family: var(--fuente-cuerpo);
+  font-size: var(--texto-sm);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-texto-secundario);
+}
+
+/* Datos de la participación en la visita en curso (D9) */
+.participacion {
+  padding: var(--espacio-4);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie-suave);
+  border: 1px solid var(--color-borde);
+}
+
+.participacion > * {
+  margin: 0 0 var(--espacio-1);
+}
+
+.participacion > :last-child {
+  margin: var(--espacio-2) 0 0;
+}
+
+.participacion__titulo {
+  font-family: var(--fuente-cuerpo);
+  font-size: var(--texto-xs);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-texto-secundario);
+}
+
+.participacion__recorrido {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-fuerte);
+}
+
+/* Indicadores de acceso */
+.permiso {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--espacio-1);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+}
+
+.permiso--si { color: var(--color-exito); }
+.permiso--si::before { content: "✓"; }
+.permiso--no { color: var(--color-naranja-oscuro); }
+.permiso--no::before { content: "✕"; }
+
+.permisos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+.permisos li {
+  padding: .15rem .6rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-pildora);
+  background: var(--color-superficie-suave);
+  font-size: var(--texto-sm);
+}
+
+.grupo-ficha {
+  padding-block: var(--espacio-3);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.grupo-ficha__titulo {
+  display: grid;
+  gap: var(--espacio-1);
+  margin-bottom: var(--espacio-2);
+  font-weight: var(--peso-medio);
+  font-size: var(--texto-sm);
+}
+
+.zonas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-1);
+}
+
+.zona {
+  padding: .1rem .55rem;
+  border-radius: var(--radio-pildora);
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+}
+
+.zona--bloqueada {
+  border: 1px dashed var(--color-borde-campo);
+  background: var(--color-superficie-suave);
+  color: var(--color-texto-secundario);
+}
+
+/* Avisos */
+.aviso {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-left: 4px solid var(--color-jade);
+  border-radius: var(--radio-sm);
+  background: var(--color-jade-claro);
+}
+
+.aviso--bloqueo {
+  border-left-color: var(--color-naranja);
+  background: var(--color-naranja-claro);
+  color: var(--color-naranja-oscuro);
+}
+
+/* ---------- Formularios ---------- */
+.formulario .campo__control[readonly] {
+  background: var(--color-superficie-suave);
+  color: var(--color-texto-secundario);
+}
+
+.formulario textarea {
+  resize: vertical;
+}
+
+.formulario__nota {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.grupo-opciones,
+.grupo-zonas {
+  min-width: 0;
+  margin: 0 0 var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-4);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+}
+
+.grupo-opciones legend,
+.grupo-zonas legend {
+  padding-inline: var(--espacio-1);
+  font-weight: var(--peso-medio);
+}
+
+.grupo-zonas {
+  margin: 0;
+  padding: var(--espacio-2) 0 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.grupo-zonas + .grupo-zonas {
+  margin-top: var(--espacio-2);
+  border-top: 1px dashed var(--color-borde);
+}
+
+.grupo-zonas legend {
+  float: left;
+  width: 100%;
+  margin-bottom: var(--espacio-1);
+  padding: var(--espacio-2) 0 0;
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.grupo-zonas .opciones {
+  clear: both;
+}
+
+.grupo-zonas .insignia {
+  margin-left: var(--espacio-1);
+  font-size: var(--texto-xs);
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+  gap: 0 var(--espacio-3);
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: var(--tactil-minimo);
+  cursor: pointer;
+}
+
+.opcion input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  accent-color: var(--color-jade);
+}
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width: 64rem) {
+  .celda-secundaria--ajustable {
+    min-width: 8rem;
+    max-width: 9rem;
+  }
+
+  .acciones-fila a {
+    padding-inline: var(--espacio-1);
+  }
+}
+
+@media (max-width: 30rem) {
+  .area-admin {
+    display: none;
+  }
+
+  .registros__barra > .boton {
+    flex: 1 1 100%;
+  }
+
+  .ficha div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .panel__acciones .boton {
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel:target {
+    animation: none;
+  }
+}
