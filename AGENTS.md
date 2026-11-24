@@ -14,6 +14,14 @@ Etiquetas canónicas por defecto (`needs-triage`, `needs-info`, `ready-for-agent
 
 Contexto único: un `GLOSSARY.md` + `docs/adr/` en la raíz. Ver `docs/agents/domain.md`.
 
+### Convenciones del proyecto
+
+- **Solo HTML y CSS, sin JavaScript** ([ADR-0001](docs/adr/0001-solo-html-y-css.md)). Consecuencia: no hay fragmentos compartidos; encabezados, menús y pies **se repiten en cada HTML**. Al cambiar uno, replica el cambio en todas las páginas que lo usan y mantén ese marcado mínimo; el aspecto vive en el CSS compartido.
+- **Archivos separables y de tamaño razonable**: una página por archivo; nada de condensar varias páginas en un `index.html`.
+- **CSS**: `css/tokens.css` (variables), `css/base.css`, `css/componentes.css` y un archivo por área (`publico`, `panel`, `admin`, `recorrido`).
+- **`persona_1/`, `persona_2/`, `persona_3/` son fuentes de referencia**: no se editan.
+- Decisiones de diseño en `docs/decisiones-pendientes.md`; vocabulario en `GLOSSARY.md`.
+
 ### Flujo de trabajo por ticket
 
 Cada ticket (issue) se trabaja en su propia rama y se cierra con un PR:
