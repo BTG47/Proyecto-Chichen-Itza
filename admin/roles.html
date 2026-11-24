@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roles | Administración | Chichén Itzá Virtual</title>
+  <meta name="description" content="Administración de roles de avatar de Chichén Itzá Virtual (demostración).">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado encabezado--admin">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="../index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <span class="area-admin">Administración</span>
+      <input class="menu-interruptor" type="checkbox" id="menu-interruptor">
+      <label class="menu-boton" for="menu-interruptor">
+        <span class="menu-boton__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú de administración</span>
+      </label>
+      <nav class="menu" aria-label="Administración">
+        <ul class="menu__enlaces" role="list">
+          <li><a href="participantes.html">Participantes</a></li>
+          <li><a href="avatares.html">Avatares</a></li>
+          <li><a href="roles.html" aria-current="page">Roles</a></li>
+          <li><a href="zonas.html">Zonas</a></li>
+        </ul>
+        <div class="menu__acciones">
+          <a class="boton boton--contorno" href="../index.html">Volver al sitio</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <p class="banda-demo"><span class="contenedor"><strong>Modo demostración.</strong> Herramienta interna de la agencia: los datos son de ejemplo y ningún cambio se guarda.</span></p>
+
+  <main id="contenido">
+    <div class="contenedor admin">
+      <div class="admin__intro">
+        <p class="admin__ruta">Administración</p>
+        <h1>Roles</h1>
+        <p class="admin__texto">Un rol pertenece al avatar, nunca al participante, y determina qué acciones puede ejecutar y a qué zonas puede acceder.</p>
+      </div>
+      <ul class="admin__resumen" role="list" aria-label="Resumen de roles">
+        <li><strong>2</strong> roles</li>
+        <li><strong>5</strong> permisos</li>
+        <li><strong>12</strong> zonas en el catálogo</li>
+        <li><strong>3</strong> zonas restringidas a Guía</li>
+      </ul>
+
+      <div class="admin__rejilla">
+        <section class="registros" id="registros" aria-labelledby="registros-titulo">
+          <div class="registros__barra">
+            <h2 id="registros-titulo">Registros</h2>
+            <form class="buscador" action="#buscar" role="search">
+              <label class="visualmente-oculto" for="consulta">Buscar por nombre del rol</label>
+              <input class="campo__control" id="consulta" type="search" placeholder="Buscar por nombre del rol" required>
+              <button class="boton boton--contorno" type="submit">Buscar</button>
+            </form>
+            <a class="boton boton--primario" href="#nuevo">Nuevo rol</a>
+          </div>
+          <div class="tabla-contenedor" tabindex="0" role="region" aria-labelledby="tabla-titulo">
+            <table class="tabla tabla--admin">
+              <caption class="visualmente-oculto" id="tabla-titulo">Tabla de roles</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Permisos</th>
+                  <th scope="col">Zonas</th>
+                  <th scope="col">Avatares</th>
+                  <th scope="col"><span class="visualmente-oculto">Acciones</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tabla__id">R-01</td>
+                  <th scope="row"><span class="celda-principal"><span class="insignia insignia--jade">Visitante</span></span><span class="celda-secundaria celda-secundaria--ajustable">Explora las zonas de los recorridos abiertos y consulta su información histórica.</span></th>
+                  <td>3 de 5</td>
+                  <td><span class="celda-principal">9 de 12</span><span class="celda-secundaria">Recorridos abiertos</span></td>
+                  <td>6</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-r-01">Ver<span class="visualmente-oculto"> Visitante</span></a></li><li><a href="#editar-r-01">Editar<span class="visualmente-oculto"> Visitante</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-r-01">Eliminar<span class="visualmente-oculto"> Visitante</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <td class="tabla__id">R-02</td>
+                  <th scope="row"><span class="celda-principal"><span class="insignia insignia--naranja">Guía</span></span><span class="celda-secundaria celda-secundaria--ajustable">Coordina al grupo de una visita y explica las zonas; accede además al Grupo de las Mil Columnas.</span></th>
+                  <td>5 de 5</td>
+                  <td><span class="celda-principal">12 de 12</span><span class="celda-secundaria">Abiertos + Mil Columnas</span></td>
+                  <td>1</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-r-02">Ver<span class="visualmente-oculto"> Guía</span></a></li><li><a href="#editar-r-02">Editar<span class="visualmente-oculto"> Guía</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-r-02">Eliminar<span class="visualmente-oculto"> Guía</span></a></li></ul></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="registros__conteo">2 registros de ejemplo</p>
+          <p class="registros__nota">Descripción y permisos son campos de interfaz. Las zonas usan el catálogo de 12 zonas; las del Grupo de las Mil Columnas solo las autoriza el rol Guía.</p>
+        </section>
+
+        <aside class="paneles" aria-label="Ficha y operaciones">
+          <section class="panel panel-default" id="ver-r-01" aria-labelledby="ver-r-01-titulo">
+            <p class="panel__etiqueta">R-01</p>
+            <h2 id="ver-r-01-titulo">Rol Visitante</h2>
+            <p class="panel__descripcion">Explora las zonas de los recorridos abiertos y consulta su información histórica.</p>
+            <h3 class="ficha__subtitulo">Permisos</h3>
+            <ul class="permisos" role="list"><li>Consultar información</li><li>Entrar a zonas</li><li>Solicitar ayuda</li></ul>
+            <h3 class="ficha__subtitulo">Zonas permitidas</h3>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Recorrido «El Castillo y la Gran Plaza» <span class="permiso permiso--si">Con acceso</span></p>
+              <ul class="zonas" role="list"><li class="zona">Gran Plaza</li><li class="zona">El Castillo</li><li class="zona">Plataforma de Venus</li><li class="zona">Juego de Pelota</li></ul>
+            </div>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Recorrido «Cenote Sagrado» <span class="permiso permiso--si">Con acceso</span></p>
+              <ul class="zonas" role="list"><li class="zona">Sacbé ceremonial</li><li class="zona">Cenote Sagrado</li></ul>
+            </div>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Recorrido «El Caracol y Las Monjas» <span class="permiso permiso--si">Con acceso</span></p>
+              <ul class="zonas" role="list"><li class="zona">El Caracol</li><li class="zona">Las Monjas</li><li class="zona">La Iglesia</li></ul>
+            </div>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Grupo de las Mil Columnas <span class="permiso permiso--no">Sin acceso · requiere rol Guía</span></p>
+              <ul class="zonas" role="list"><li class="zona zona--bloqueada">Templo de los Guerreros</li><li class="zona zona--bloqueada">Grupo de las Mil Columnas</li><li class="zona zona--bloqueada">Mercado</li></ul>
+            </div>
+            <h3 class="ficha__subtitulo">Avatares con este rol</h3>
+            <p>Balam, Ixchel, Chaac, Itzel, Kan, Itzamná</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-r-01">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-r-01" aria-labelledby="editar-r-01-titulo">
+            <p class="panel__etiqueta">R-01</p>
+            <h2 id="editar-r-01-titulo">Editar rol</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del rol *</span>
+                <input class="campo__control" type="text" value="Visitante" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Descripción *</span>
+                <textarea class="campo__control" rows="3" required>Explora las zonas de los recorridos abiertos y consulta su información histórica.</textarea>
+                <span class="campo__ayuda">Campo de interfaz.</span>
+              </label>
+              <fieldset class="grupo-opciones">
+                <legend>Permisos *</legend>
+                <p class="campo__ayuda">Acciones que el avatar puede ejecutar en una zona (campo de interfaz).</p>
+                <div class="opciones">
+                  <label class="opcion"><input type="checkbox" checked> Consultar información</label>
+                  <label class="opcion"><input type="checkbox" checked> Entrar a zonas</label>
+                  <label class="opcion"><input type="checkbox" checked> Solicitar ayuda</label>
+                  <label class="opcion"><input type="checkbox"> Coordinar grupo</label>
+                  <label class="opcion"><input type="checkbox"> Explicar zonas</label>
+                </div>
+              </fieldset>
+              <fieldset class="grupo-opciones">
+                <legend>Zonas permitidas *</legend>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «El Castillo y la Gran Plaza»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox" checked> Gran Plaza</label>
+                    <label class="opcion"><input type="checkbox" checked> El Castillo</label>
+                    <label class="opcion"><input type="checkbox" checked> Plataforma de Venus</label>
+                    <label class="opcion"><input type="checkbox" checked> Juego de Pelota</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «Cenote Sagrado»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox" checked> Sacbé ceremonial</label>
+                    <label class="opcion"><input type="checkbox" checked> Cenote Sagrado</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «El Caracol y Las Monjas»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox" checked> El Caracol</label>
+                    <label class="opcion"><input type="checkbox" checked> Las Monjas</label>
+                    <label class="opcion"><input type="checkbox" checked> La Iglesia</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Grupo de las Mil Columnas <span class="insignia insignia--naranja">Restringida</span></legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox"> Templo de los Guerreros</label>
+                    <label class="opcion"><input type="checkbox"> Grupo de las Mil Columnas</label>
+                    <label class="opcion"><input type="checkbox"> Mercado</label>
+                  </div>
+                </fieldset>
+              </fieldset>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-r-01" aria-labelledby="eliminar-r-01-titulo">
+            <p class="panel__etiqueta">R-01</p>
+            <h2 id="eliminar-r-01-titulo">Eliminar rol</h2>
+            <p><strong>¿Eliminar el registro «Visitante»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: 6 avatares tienen el rol Visitante (Balam, Ixchel, Chaac, Itzel, Kan, Itzamná). Reasigna su rol en Avatares antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-r-02" aria-labelledby="ver-r-02-titulo">
+            <p class="panel__etiqueta">R-02</p>
+            <h2 id="ver-r-02-titulo">Rol Guía</h2>
+            <p class="panel__descripcion">Coordina al grupo de una visita y explica las zonas; accede además al Grupo de las Mil Columnas.</p>
+            <h3 class="ficha__subtitulo">Permisos</h3>
+            <ul class="permisos" role="list"><li>Consultar información</li><li>Entrar a zonas</li><li>Solicitar ayuda</li><li>Coordinar grupo</li><li>Explicar zonas</li></ul>
+            <h3 class="ficha__subtitulo">Zonas permitidas</h3>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Recorrido «El Castillo y la Gran Plaza» <span class="permiso permiso--si">Con acceso</span></p>
+              <ul class="zonas" role="list"><li class="zona">Gran Plaza</li><li class="zona">El Castillo</li><li class="zona">Plataforma de Venus</li><li class="zona">Juego de Pelota</li></ul>
+            </div>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Recorrido «Cenote Sagrado» <span class="permiso permiso--si">Con acceso</span></p>
+              <ul class="zonas" role="list"><li class="zona">Sacbé ceremonial</li><li class="zona">Cenote Sagrado</li></ul>
+            </div>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Recorrido «El Caracol y Las Monjas» <span class="permiso permiso--si">Con acceso</span></p>
+              <ul class="zonas" role="list"><li class="zona">El Caracol</li><li class="zona">Las Monjas</li><li class="zona">La Iglesia</li></ul>
+            </div>
+            <div class="grupo-ficha">
+              <p class="grupo-ficha__titulo">Grupo de las Mil Columnas <span class="permiso permiso--si">Con acceso</span></p>
+              <ul class="zonas" role="list"><li class="zona">Templo de los Guerreros</li><li class="zona">Grupo de las Mil Columnas</li><li class="zona">Mercado</li></ul>
+            </div>
+            <h3 class="ficha__subtitulo">Avatares con este rol</h3>
+            <p>Jaguar</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-r-02">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-r-02" aria-labelledby="editar-r-02-titulo">
+            <p class="panel__etiqueta">R-02</p>
+            <h2 id="editar-r-02-titulo">Editar rol</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del rol *</span>
+                <input class="campo__control" type="text" value="Guía" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Descripción *</span>
+                <textarea class="campo__control" rows="3" required>Coordina al grupo de una visita y explica las zonas; accede además al Grupo de las Mil Columnas.</textarea>
+                <span class="campo__ayuda">Campo de interfaz.</span>
+              </label>
+              <fieldset class="grupo-opciones">
+                <legend>Permisos *</legend>
+                <p class="campo__ayuda">Acciones que el avatar puede ejecutar en una zona (campo de interfaz).</p>
+                <div class="opciones">
+                  <label class="opcion"><input type="checkbox" checked> Consultar información</label>
+                  <label class="opcion"><input type="checkbox" checked> Entrar a zonas</label>
+                  <label class="opcion"><input type="checkbox" checked> Solicitar ayuda</label>
+                  <label class="opcion"><input type="checkbox" checked> Coordinar grupo</label>
+                  <label class="opcion"><input type="checkbox" checked> Explicar zonas</label>
+                </div>
+              </fieldset>
+              <fieldset class="grupo-opciones">
+                <legend>Zonas permitidas *</legend>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «El Castillo y la Gran Plaza»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox" checked> Gran Plaza</label>
+                    <label class="opcion"><input type="checkbox" checked> El Castillo</label>
+                    <label class="opcion"><input type="checkbox" checked> Plataforma de Venus</label>
+                    <label class="opcion"><input type="checkbox" checked> Juego de Pelota</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «Cenote Sagrado»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox" checked> Sacbé ceremonial</label>
+                    <label class="opcion"><input type="checkbox" checked> Cenote Sagrado</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «El Caracol y Las Monjas»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox" checked> El Caracol</label>
+                    <label class="opcion"><input type="checkbox" checked> Las Monjas</label>
+                    <label class="opcion"><input type="checkbox" checked> La Iglesia</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Grupo de las Mil Columnas <span class="insignia insignia--naranja">Restringida</span></legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox" checked> Templo de los Guerreros</label>
+                    <label class="opcion"><input type="checkbox" checked> Grupo de las Mil Columnas</label>
+                    <label class="opcion"><input type="checkbox" checked> Mercado</label>
+                  </div>
+                </fieldset>
+              </fieldset>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-r-02" aria-labelledby="eliminar-r-02-titulo">
+            <p class="panel__etiqueta">R-02</p>
+            <h2 id="eliminar-r-02-titulo">Eliminar rol</h2>
+            <p><strong>¿Eliminar el registro «Guía»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: 1 avatar tiene el rol Guía (Jaguar). Reasigna su rol en Avatares antes de eliminarlo.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="nuevo" aria-labelledby="nuevo-titulo">
+            <p class="panel__etiqueta">Alta</p>
+            <h2 id="nuevo-titulo">Nuevo rol</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre del rol *</span>
+                <input class="campo__control" type="text" value="" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Descripción *</span>
+                <textarea class="campo__control" rows="3" required></textarea>
+                <span class="campo__ayuda">Campo de interfaz.</span>
+              </label>
+              <fieldset class="grupo-opciones">
+                <legend>Permisos *</legend>
+                <p class="campo__ayuda">Acciones que el avatar puede ejecutar en una zona (campo de interfaz).</p>
+                <div class="opciones">
+                  <label class="opcion"><input type="checkbox"> Consultar información</label>
+                  <label class="opcion"><input type="checkbox"> Entrar a zonas</label>
+                  <label class="opcion"><input type="checkbox"> Solicitar ayuda</label>
+                  <label class="opcion"><input type="checkbox"> Coordinar grupo</label>
+                  <label class="opcion"><input type="checkbox"> Explicar zonas</label>
+                </div>
+              </fieldset>
+              <fieldset class="grupo-opciones">
+                <legend>Zonas permitidas *</legend>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «El Castillo y la Gran Plaza»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox"> Gran Plaza</label>
+                    <label class="opcion"><input type="checkbox"> El Castillo</label>
+                    <label class="opcion"><input type="checkbox"> Plataforma de Venus</label>
+                    <label class="opcion"><input type="checkbox"> Juego de Pelota</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «Cenote Sagrado»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox"> Sacbé ceremonial</label>
+                    <label class="opcion"><input type="checkbox"> Cenote Sagrado</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Recorrido «El Caracol y Las Monjas»</legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox"> El Caracol</label>
+                    <label class="opcion"><input type="checkbox"> Las Monjas</label>
+                    <label class="opcion"><input type="checkbox"> La Iglesia</label>
+                  </div>
+                </fieldset>
+                <fieldset class="grupo-zonas">
+                  <legend>Grupo de las Mil Columnas <span class="insignia insignia--naranja">Restringida</span></legend>
+                  <div class="opciones">
+                    <label class="opcion"><input type="checkbox"> Templo de los Guerreros</label>
+                    <label class="opcion"><input type="checkbox"> Grupo de las Mil Columnas</label>
+                    <label class="opcion"><input type="checkbox"> Mercado</label>
+                  </div>
+                </fieldset>
+              </fieldset>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="guardado" aria-labelledby="guardado-titulo">
+            <p class="panel__etiqueta">Confirmación</p>
+            <h2 id="guardado-titulo">Guardado de demostración</h2>
+            <p class="aviso aviso--exito">El formulario se envió en modo de demostración. Los datos de ejemplo se conservan sin cambios.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver al listado</a>
+            </div>
+          </section>
+          <section class="panel" id="buscar" aria-labelledby="buscar-titulo">
+            <p class="panel__etiqueta">Búsqueda</p>
+            <h2 id="buscar-titulo">Búsqueda de demostración</h2>
+            <p>El buscador forma parte del diseño. La versión estática muestra todos los registros de ejemplo; una búsqueda sin coincidencias mostraría «No se encontraron registros».</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver al listado</a>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <a class="marca" href="../index.html">
+            <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <rect class="logo__fondo" width="40" height="40" rx="10"/>
+              <g class="logo__piramide">
+                <rect x="17" y="9" width="6" height="5" rx="1"/>
+                <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+                <rect x="9" y="22" width="22" height="8" rx="1"/>
+              </g>
+            </svg>
+            <span>Chichén Itzá Virtual</span>
+          </a>
+          <p>Recorridos virtuales por el sitio arqueológico, de forma individual o en grupo.</p>
+        </div>
+        <nav aria-labelledby="pie-explora">
+          <h2 class="pie__titulo" id="pie-explora">Explora</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="../recorridos.html">Recorridos</a></li>
+            <li><a href="../como-funciona.html">Cómo funciona</a></li>
+            <li><a href="../acerca.html">Acerca de</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-cuenta">
+          <h2 class="pie__titulo" id="pie-cuenta">Tu cuenta</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="../login.html">Iniciar sesión</a></li>
+            <li><a href="../registro.html">Registrarse</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-agencia">
+          <h2 class="pie__titulo" id="pie-agencia">Agencia</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="participantes.html">Administración (demo)</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__nota">Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

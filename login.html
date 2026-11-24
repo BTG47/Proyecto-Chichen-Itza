@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión | Chichén Itzá Virtual</title>
+  <meta name="description" content="Inicia sesión para retomar tus visitas virtuales a Chichén Itzá.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/publico.css">
+  <link rel="stylesheet" href="css/acceso.css">
+</head>
+<body class="acceso">
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <div class="acceso__dividida">
+    <figure class="acceso__ilustracion">
+      <svg viewBox="0 0 480 640" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="acceso-cielo" x1="0" y1="0" x2="0" y2="1">
+            <stop class="ilus__cielo-alto" offset="0"/>
+            <stop class="ilus__cielo-bajo" offset="1"/>
+          </linearGradient>
+        </defs>
+        <rect x="-400" width="1280" height="640" fill="url(#acceso-cielo)"/>
+
+        <circle class="ilus__halo" cx="410" cy="150" r="82"/>
+        <circle class="ilus__sol" cx="410" cy="150" r="54"/>
+
+        <g class="ilus__aves">
+          <path class="ilus__ave" d="M70 120 q8 -8 16 0 q8 -8 16 0"/>
+          <path class="ilus__ave" d="M108 148 q6 -6 12 0 q6 -6 12 0"/>
+        </g>
+
+        <path class="ilus__colina" d="M-400 548 Q-200 520 0 540 Q80 522 170 538 T340 532 T480 536 Q680 520 880 540 V600 H-400Z"/>
+        <rect class="ilus__pasto" x="-400" y="560" width="1280" height="80"/>
+
+        <g class="ilus__cuerpo">
+          <rect x="20" y="526" width="440" height="34"/>
+          <rect x="40" y="492" width="400" height="34"/>
+          <rect x="60" y="458" width="360" height="34"/>
+          <rect x="80" y="424" width="320" height="34"/>
+          <rect x="100" y="390" width="280" height="34"/>
+          <rect x="120" y="356" width="240" height="34"/>
+          <rect x="140" y="322" width="200" height="34"/>
+          <rect x="160" y="288" width="160" height="34"/>
+          <rect x="180" y="254" width="120" height="34"/>
+        </g>
+        <polygon class="ilus__escalinata" points="190,560 290,560 265,254 215,254"/>
+        <rect class="ilus__templo" x="193" y="202" width="94" height="52"/>
+        <rect class="ilus__puerta" x="224" y="218" width="32" height="36"/>
+
+        <g class="ilus__luz">
+          <polygon style="--i:0" points="209.4,322 206.7,356 222.7,356"/>
+          <polygon style="--i:1" points="206.7,356 203.9,390 219.9,390"/>
+          <polygon style="--i:2" points="203.9,390 201.1,424 217.1,424"/>
+          <polygon style="--i:3" points="201.1,424 198.3,458 214.3,458"/>
+          <polygon style="--i:4" points="198.3,458 195.6,492 211.6,492"/>
+          <polygon style="--i:5" points="195.6,492 192.8,526 208.8,526"/>
+          <polygon style="--i:6" points="192.8,526 190,560 206,560"/>
+        </g>
+        <path class="ilus__cabeza" d="M172 560 v-11 q0 -8 9 -8 h11 v19 z"/>
+      </svg>
+      <figcaption class="acceso__mensaje">
+        <strong class="acceso__mensaje-titulo">Bienvenido de vuelta</strong>
+        Retoma tu visita justo en la zona donde la dejaste.
+      </figcaption>
+    </figure>
+
+    <main class="acceso__principal" id="contenido">
+      <a class="acceso__volver" href="index.html">Volver al inicio</a>
+
+      <div class="acceso__formulario">
+        <a class="marca" href="index.html">
+          <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+            <rect class="logo__fondo" width="40" height="40" rx="10"/>
+            <g class="logo__piramide">
+              <rect x="17" y="9" width="6" height="5" rx="1"/>
+              <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+              <rect x="9" y="22" width="22" height="8" rx="1"/>
+            </g>
+          </svg>
+          <span>Chichén Itzá Virtual</span>
+        </a>
+
+        <h1 class="acceso__titulo">Iniciar sesión</h1>
+        <p class="acceso__entrada">Ingresa con el correo que usaste al registrarte.</p>
+
+        <!-- Sesión SIMULADA (D25, ADR-0001): el formulario solo valida con el navegador
+             y lleva al dashboard de la participante demo. Los campos no tienen name
+             para que ningún dato viaje en la URL. -->
+        <form action="dashboard.html" method="get">
+          <div class="campo">
+            <label class="campo__etiqueta" for="login-correo">Correo electrónico</label>
+            <input class="campo__control" type="email" id="login-correo" autocomplete="email" placeholder="ana.lopez@correo.mx" required>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="login-contrasena">Contraseña</label>
+            <input class="campo__control" type="password" id="login-contrasena" autocomplete="current-password" minlength="8" required>
+          </div>
+          <button class="boton boton--primario boton--grande acceso__enviar" type="submit">Ingresar</button>
+        </form>
+
+        <p class="acceso__alterno">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+
+        <p class="aviso-demo">
+          <strong>Acceso de demostración.</strong>
+          No se guarda ningún dato: al ingresar entras al panel de la participante demo, Ana López Martínez.
+        </p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

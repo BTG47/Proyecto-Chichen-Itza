@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="t">
+  <title id="t">Serpiente emplumada</title>
+  <!-- Apariencia de avatar (D16): cabeza de Kukulcán con collar de plumas.
+       Colores copiados de css/tokens.css (sin los guiones iniciales): fondo color-naranja-claro;
+       plumas color-jade e ilus-pasto; cabeza color-naranja y color-naranja-oscuro;
+       ojos y colmillos ilus-sol; pupilas color-tinta; lengua color-error. -->
+  <defs>
+    <clipPath id="c"><circle cx="64" cy="64" r="64"/></clipPath>
+    <path id="p" d="M64 4 Q75 18 64 34 Q53 18 64 4Z"/>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="128" height="128" fill="#f8e4d0"/>
+    <g fill="#1f6f5c">
+      <use href="#p" transform="rotate(0 64 64)"/>
+      <use href="#p" transform="rotate(60 64 64)"/>
+      <use href="#p" transform="rotate(120 64 64)"/>
+      <use href="#p" transform="rotate(180 64 64)"/>
+      <use href="#p" transform="rotate(240 64 64)"/>
+      <use href="#p" transform="rotate(300 64 64)"/>
+    </g>
+    <g fill="#5e8d4c">
+      <use href="#p" transform="rotate(30 64 64)"/>
+      <use href="#p" transform="rotate(90 64 64)"/>
+      <use href="#p" transform="rotate(150 64 64)"/>
+      <use href="#p" transform="rotate(210 64 64)"/>
+      <use href="#p" transform="rotate(270 64 64)"/>
+      <use href="#p" transform="rotate(330 64 64)"/>
+    </g>
+    <path d="M42 50 Q42 32 64 32 Q86 32 86 50 L92 78 Q92 96 64 96 Q36 96 36 78Z" fill="#b0581c"/>
+    <path d="M64 36 l6 6 l-6 6 l-6 -6Z" fill="#8f4414"/>
+    <path d="M40 50 Q48 40 58 48 M88 50 Q80 40 70 48" fill="none" stroke="#8f4414" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="50" cy="56" r="7.5" fill="#fdf3de"/>
+    <circle cx="78" cy="56" r="7.5" fill="#fdf3de"/>
+    <ellipse cx="50" cy="56" rx="2.2" ry="5" fill="#1f1b16"/>
+    <ellipse cx="78" cy="56" rx="2.2" ry="5" fill="#1f1b16"/>
+    <circle cx="57" cy="72" r="2.6" fill="#8f4414"/>
+    <circle cx="71" cy="72" r="2.6" fill="#8f4414"/>
+    <path d="M40 82 Q64 92 88 82" fill="none" stroke="#8f4414" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M47 85 l3 10 l4 -8Z M81 85 l-3 10 l-4 -8Z" fill="#fdf3de"/>
+    <path d="M64 89 V104 M64 104 l-5 7 M64 104 l5 7" fill="none" stroke="#a3261b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

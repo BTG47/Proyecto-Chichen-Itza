@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="t">
+  <title id="t">Búho</title>
+  <!-- Apariencia de avatar (D16). Colores copiados de css/tokens.css (sin los guiones iniciales):
+       fondo nocturno color-jade-profundo; estrellas y ojos ilus-sol;
+       plumaje ilus-ave, ilus-puerta, ilus-piedra y ilus-piedra-borde;
+       iris ilus-cielo-alto; pico color-naranja; pupilas color-tinta. -->
+  <defs><clipPath id="c"><circle cx="64" cy="64" r="64"/></clipPath></defs>
+  <g clip-path="url(#c)">
+    <rect width="128" height="128" fill="#123d33"/>
+    <g fill="#fdf3de">
+      <circle cx="18" cy="52" r="2"/>
+      <circle cx="110" cy="58" r="2"/>
+      <circle cx="104" cy="22" r="1.6"/>
+      <circle cx="26" cy="24" r="1.6"/>
+    </g>
+    <ellipse cx="64" cy="100" rx="38" ry="38" fill="#6b4a2e"/>
+    <path d="M28 46 L32 14 L52 32Z M100 46 L96 14 L76 32Z" fill="#6b4a2e"/>
+    <ellipse cx="64" cy="56" rx="38" ry="31" fill="#6b4a2e"/>
+    <path d="M26 90 Q30 120 50 128 L34 128 Q20 110 26 90Z M102 90 Q98 120 78 128 L94 128 Q108 110 102 90Z" fill="#4f4030"/>
+    <ellipse cx="64" cy="106" rx="22" ry="22" fill="#d8c8a6"/>
+    <path d="M52 100 l4 4 l4 -4 M68 100 l4 4 l4 -4 M60 112 l4 4 l4 -4" fill="none" stroke="#a8946e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="48" cy="58" r="18" fill="#d8c8a6"/>
+    <circle cx="80" cy="58" r="18" fill="#d8c8a6"/>
+    <circle cx="48" cy="58" r="12" fill="#fdf3de"/>
+    <circle cx="80" cy="58" r="12" fill="#fdf3de"/>
+    <circle cx="48" cy="58" r="8" fill="#f0b06d"/>
+    <circle cx="80" cy="58" r="8" fill="#f0b06d"/>
+    <circle cx="48" cy="58" r="4.5" fill="#1f1b16"/>
+    <circle cx="80" cy="58" r="4.5" fill="#1f1b16"/>
+    <circle cx="50" cy="56" r="1.4" fill="#fdf3de"/>
+    <circle cx="82" cy="56" r="1.4" fill="#fdf3de"/>
+    <path d="M58 70 h12 l-6 12Z" fill="#b0581c"/>
+  </g>
+</svg>

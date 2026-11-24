@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Participantes | Administración | Chichén Itzá Virtual</title>
+  <meta name="description" content="Administración de participantes de Chichén Itzá Virtual (demostración).">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado encabezado--admin">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="../index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <span class="area-admin">Administración</span>
+      <input class="menu-interruptor" type="checkbox" id="menu-interruptor">
+      <label class="menu-boton" for="menu-interruptor">
+        <span class="menu-boton__barras" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Menú de administración</span>
+      </label>
+      <nav class="menu" aria-label="Administración">
+        <ul class="menu__enlaces" role="list">
+          <li><a href="participantes.html" aria-current="page">Participantes</a></li>
+          <li><a href="avatares.html">Avatares</a></li>
+          <li><a href="roles.html">Roles</a></li>
+          <li><a href="zonas.html">Zonas</a></li>
+        </ul>
+        <div class="menu__acciones">
+          <a class="boton boton--contorno" href="../index.html">Volver al sitio</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <p class="banda-demo"><span class="contenedor"><strong>Modo demostración.</strong> Herramienta interna de la agencia: los datos son de ejemplo y ningún cambio se guarda.</span></p>
+
+  <main id="contenido">
+    <div class="contenedor admin">
+      <div class="admin__intro">
+        <p class="admin__ruta">Administración</p>
+        <h1>Participantes</h1>
+        <p class="admin__texto">Personas registradas en el sistema. Cada participante controla exactamente un avatar, y el rol se consulta desde ese avatar.</p>
+      </div>
+      <ul class="admin__resumen" role="list" aria-label="Resumen de participantes">
+        <li><strong>6</strong> participantes</li>
+        <li><strong>5</strong> con rol Visitante</li>
+        <li><strong>1</strong> con rol Guía</li>
+        <li><strong>6</strong> en la visita en curso</li>
+      </ul>
+
+      <div class="admin__rejilla">
+        <section class="registros" id="registros" aria-labelledby="registros-titulo">
+          <div class="registros__barra">
+            <h2 id="registros-titulo">Registros</h2>
+            <form class="buscador" action="#buscar" role="search">
+              <label class="visualmente-oculto" for="consulta">Buscar por nombre o correo</label>
+              <input class="campo__control" id="consulta" type="search" placeholder="Buscar por nombre o correo" required>
+              <button class="boton boton--contorno" type="submit">Buscar</button>
+            </form>
+            <a class="boton boton--primario" href="#nuevo">Nuevo participante</a>
+          </div>
+          <div class="tabla-contenedor" tabindex="0" role="region" aria-labelledby="tabla-titulo">
+            <table class="tabla tabla--admin">
+              <caption class="visualmente-oculto" id="tabla-titulo">Tabla de participantes</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Participante</th>
+                  <th scope="col">Avatar</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Registro</th>
+                  <th scope="col"><span class="visualmente-oculto">Acciones</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tabla__id">P-01</td>
+                  <th scope="row"><span class="celda-principal">Ana López Martínez</span><span class="celda-secundaria">ana.lopez@correo.mx</span></th>
+                  <td>Balam</td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td>14/11/26</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-p-01">Ver<span class="visualmente-oculto"> Ana López Martínez</span></a></li><li><a href="#editar-p-01">Editar<span class="visualmente-oculto"> Ana López Martínez</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-p-01">Eliminar<span class="visualmente-oculto"> Ana López Martínez</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <td class="tabla__id">P-02</td>
+                  <th scope="row"><span class="celda-principal">Carlos KarKerKar</span><span class="celda-secundaria">carlos.karkerkar@correo.mx</span></th>
+                  <td>Jaguar</td>
+                  <td><span class="insignia insignia--naranja">Guía</span></td>
+                  <td>19/11/26</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-p-02">Ver<span class="visualmente-oculto"> Carlos KarKerKar</span></a></li><li><a href="#editar-p-02">Editar<span class="visualmente-oculto"> Carlos KarKerKar</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-p-02">Eliminar<span class="visualmente-oculto"> Carlos KarKerKar</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <td class="tabla__id">P-03</td>
+                  <th scope="row"><span class="celda-principal">María López</span><span class="celda-secundaria">maria.lopez@correo.mx</span></th>
+                  <td>Ixchel</td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td>20/11/26</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-p-03">Ver<span class="visualmente-oculto"> María López</span></a></li><li><a href="#editar-p-03">Editar<span class="visualmente-oculto"> María López</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-p-03">Eliminar<span class="visualmente-oculto"> María López</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <td class="tabla__id">P-04</td>
+                  <th scope="row"><span class="celda-principal">Juan Ramírez</span><span class="celda-secundaria">juan.ramirez@correo.mx</span></th>
+                  <td>Chaac</td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td>20/11/26</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-p-04">Ver<span class="visualmente-oculto"> Juan Ramírez</span></a></li><li><a href="#editar-p-04">Editar<span class="visualmente-oculto"> Juan Ramírez</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-p-04">Eliminar<span class="visualmente-oculto"> Juan Ramírez</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <td class="tabla__id">P-05</td>
+                  <th scope="row"><span class="celda-principal">Carla Pérez</span><span class="celda-secundaria">carla.perez@correo.mx</span></th>
+                  <td>Itzel</td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td>21/11/26</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-p-05">Ver<span class="visualmente-oculto"> Carla Pérez</span></a></li><li><a href="#editar-p-05">Editar<span class="visualmente-oculto"> Carla Pérez</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-p-05">Eliminar<span class="visualmente-oculto"> Carla Pérez</span></a></li></ul></td>
+                </tr>
+                <tr>
+                  <td class="tabla__id">P-06</td>
+                  <th scope="row"><span class="celda-principal">Jose Jose</span><span class="celda-secundaria">jose.jose@correo.mx</span></th>
+                  <td>Kan</td>
+                  <td><span class="insignia insignia--jade">Visitante</span></td>
+                  <td>22/11/26</td>
+                  <td><ul class="acciones-fila" role="list"><li><a href="#ver-p-06">Ver<span class="visualmente-oculto"> Jose Jose</span></a></li><li><a href="#editar-p-06">Editar<span class="visualmente-oculto"> Jose Jose</span></a></li><li><a class="acciones-fila__eliminar" href="#eliminar-p-06">Eliminar<span class="visualmente-oculto"> Jose Jose</span></a></li></ul></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="registros__conteo">6 registros de ejemplo</p>
+          <p class="registros__nota">La fecha de registro es un campo de interfaz que se genera al guardar el alta. El rol no se asigna aquí: se deriva del avatar asociado.</p>
+        </section>
+
+        <aside class="paneles" aria-label="Ficha y operaciones">
+          <section class="panel panel-default" id="ver-p-01" aria-labelledby="ver-p-01-titulo">
+            <p class="panel__etiqueta">P-01</p>
+            <h2 id="ver-p-01-titulo">Ana López Martínez</h2>
+            <dl class="ficha">
+              <div><dt>Correo</dt><dd>ana.lopez@correo.mx</dd></div>
+              <div><dt>Registro</dt><dd>14/11/26</dd></div>
+              <div><dt>Avatar</dt><dd>Balam</dd></div>
+              <div><dt>Rol del avatar</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <p class="participacion__zona">Zona actual: <strong>Juego de Pelota</strong></p>
+              <p class="permiso permiso--si">Acceso permitido por el rol Visitante</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-p-01">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-p-01" aria-labelledby="editar-p-01-titulo">
+            <p class="panel__etiqueta">P-01</p>
+            <h2 id="editar-p-01-titulo">Editar participante</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre *</span>
+                <input class="campo__control" type="text" value="Ana López Martínez" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Correo electrónico *</span>
+                <input class="campo__control" type="email" value="ana.lopez@correo.mx" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Fecha de registro</span>
+                <input class="campo__control" type="text" value="14/11/26" readonly>
+                <span class="campo__ayuda">Campo de interfaz: se genera al guardar el alta.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Avatar asociado *</span>
+                <select class="campo__control" required><option value="">Selecciona un avatar</option><option value="Balam" selected>Balam (actual)</option><option value="Itzamná">Itzamná (disponible)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol</span>
+                <input class="campo__control" type="text" value="Visitante" readonly>
+                <span class="campo__ayuda">El rol pertenece al avatar; se cambia en Avatares.</span>
+              </label>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-p-01" aria-labelledby="eliminar-p-01-titulo">
+            <p class="panel__etiqueta">P-01</p>
+            <h2 id="eliminar-p-01-titulo">Eliminar participante</h2>
+            <p><strong>¿Eliminar el registro «Ana López Martínez»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: participa en la visita en curso de «El Castillo y la Gran Plaza». Finalízala antes de eliminar su registro; su avatar Balam quedará libre para otra asignación.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-p-02" aria-labelledby="ver-p-02-titulo">
+            <p class="panel__etiqueta">P-02</p>
+            <h2 id="ver-p-02-titulo">Carlos KarKerKar</h2>
+            <dl class="ficha">
+              <div><dt>Correo</dt><dd>carlos.karkerkar@correo.mx</dd></div>
+              <div><dt>Registro</dt><dd>19/11/26</dd></div>
+              <div><dt>Avatar</dt><dd>Jaguar</dd></div>
+              <div><dt>Rol del avatar</dt><dd><span class="insignia insignia--naranja">Guía</span></dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <p class="participacion__zona">Zona actual: <strong>Juego de Pelota</strong></p>
+              <p class="permiso permiso--si">Acceso permitido por el rol Guía</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-p-02">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-p-02" aria-labelledby="editar-p-02-titulo">
+            <p class="panel__etiqueta">P-02</p>
+            <h2 id="editar-p-02-titulo">Editar participante</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre *</span>
+                <input class="campo__control" type="text" value="Carlos KarKerKar" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Correo electrónico *</span>
+                <input class="campo__control" type="email" value="carlos.karkerkar@correo.mx" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Fecha de registro</span>
+                <input class="campo__control" type="text" value="19/11/26" readonly>
+                <span class="campo__ayuda">Campo de interfaz: se genera al guardar el alta.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Avatar asociado *</span>
+                <select class="campo__control" required><option value="">Selecciona un avatar</option><option value="Jaguar" selected>Jaguar (actual)</option><option value="Itzamná">Itzamná (disponible)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol</span>
+                <input class="campo__control" type="text" value="Guía" readonly>
+                <span class="campo__ayuda">El rol pertenece al avatar; se cambia en Avatares.</span>
+              </label>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-p-02" aria-labelledby="eliminar-p-02-titulo">
+            <p class="panel__etiqueta">P-02</p>
+            <h2 id="eliminar-p-02-titulo">Eliminar participante</h2>
+            <p><strong>¿Eliminar el registro «Carlos KarKerKar»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: participa en la visita en curso de «El Castillo y la Gran Plaza». Finalízala antes de eliminar su registro; su avatar Jaguar quedará libre para otra asignación.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-p-03" aria-labelledby="ver-p-03-titulo">
+            <p class="panel__etiqueta">P-03</p>
+            <h2 id="ver-p-03-titulo">María López</h2>
+            <dl class="ficha">
+              <div><dt>Correo</dt><dd>maria.lopez@correo.mx</dd></div>
+              <div><dt>Registro</dt><dd>20/11/26</dd></div>
+              <div><dt>Avatar</dt><dd>Ixchel</dd></div>
+              <div><dt>Rol del avatar</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <p class="participacion__zona">Zona actual: <strong>El Castillo</strong></p>
+              <p class="permiso permiso--si">Acceso permitido por el rol Visitante</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-p-03">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-p-03" aria-labelledby="editar-p-03-titulo">
+            <p class="panel__etiqueta">P-03</p>
+            <h2 id="editar-p-03-titulo">Editar participante</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre *</span>
+                <input class="campo__control" type="text" value="María López" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Correo electrónico *</span>
+                <input class="campo__control" type="email" value="maria.lopez@correo.mx" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Fecha de registro</span>
+                <input class="campo__control" type="text" value="20/11/26" readonly>
+                <span class="campo__ayuda">Campo de interfaz: se genera al guardar el alta.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Avatar asociado *</span>
+                <select class="campo__control" required><option value="">Selecciona un avatar</option><option value="Ixchel" selected>Ixchel (actual)</option><option value="Itzamná">Itzamná (disponible)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol</span>
+                <input class="campo__control" type="text" value="Visitante" readonly>
+                <span class="campo__ayuda">El rol pertenece al avatar; se cambia en Avatares.</span>
+              </label>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-p-03" aria-labelledby="eliminar-p-03-titulo">
+            <p class="panel__etiqueta">P-03</p>
+            <h2 id="eliminar-p-03-titulo">Eliminar participante</h2>
+            <p><strong>¿Eliminar el registro «María López»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: participa en la visita en curso de «El Castillo y la Gran Plaza». Finalízala antes de eliminar su registro; su avatar Ixchel quedará libre para otra asignación.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-p-04" aria-labelledby="ver-p-04-titulo">
+            <p class="panel__etiqueta">P-04</p>
+            <h2 id="ver-p-04-titulo">Juan Ramírez</h2>
+            <dl class="ficha">
+              <div><dt>Correo</dt><dd>juan.ramirez@correo.mx</dd></div>
+              <div><dt>Registro</dt><dd>20/11/26</dd></div>
+              <div><dt>Avatar</dt><dd>Chaac</dd></div>
+              <div><dt>Rol del avatar</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <p class="participacion__zona">Zona actual: <strong>Gran Plaza</strong></p>
+              <p class="permiso permiso--si">Acceso permitido por el rol Visitante</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-p-04">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-p-04" aria-labelledby="editar-p-04-titulo">
+            <p class="panel__etiqueta">P-04</p>
+            <h2 id="editar-p-04-titulo">Editar participante</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre *</span>
+                <input class="campo__control" type="text" value="Juan Ramírez" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Correo electrónico *</span>
+                <input class="campo__control" type="email" value="juan.ramirez@correo.mx" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Fecha de registro</span>
+                <input class="campo__control" type="text" value="20/11/26" readonly>
+                <span class="campo__ayuda">Campo de interfaz: se genera al guardar el alta.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Avatar asociado *</span>
+                <select class="campo__control" required><option value="">Selecciona un avatar</option><option value="Chaac" selected>Chaac (actual)</option><option value="Itzamná">Itzamná (disponible)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol</span>
+                <input class="campo__control" type="text" value="Visitante" readonly>
+                <span class="campo__ayuda">El rol pertenece al avatar; se cambia en Avatares.</span>
+              </label>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-p-04" aria-labelledby="eliminar-p-04-titulo">
+            <p class="panel__etiqueta">P-04</p>
+            <h2 id="eliminar-p-04-titulo">Eliminar participante</h2>
+            <p><strong>¿Eliminar el registro «Juan Ramírez»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: participa en la visita en curso de «El Castillo y la Gran Plaza». Finalízala antes de eliminar su registro; su avatar Chaac quedará libre para otra asignación.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-p-05" aria-labelledby="ver-p-05-titulo">
+            <p class="panel__etiqueta">P-05</p>
+            <h2 id="ver-p-05-titulo">Carla Pérez</h2>
+            <dl class="ficha">
+              <div><dt>Correo</dt><dd>carla.perez@correo.mx</dd></div>
+              <div><dt>Registro</dt><dd>21/11/26</dd></div>
+              <div><dt>Avatar</dt><dd>Itzel</dd></div>
+              <div><dt>Rol del avatar</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <p class="participacion__zona">Zona actual: <strong>Juego de Pelota</strong></p>
+              <p class="permiso permiso--si">Acceso permitido por el rol Visitante</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-p-05">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-p-05" aria-labelledby="editar-p-05-titulo">
+            <p class="panel__etiqueta">P-05</p>
+            <h2 id="editar-p-05-titulo">Editar participante</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre *</span>
+                <input class="campo__control" type="text" value="Carla Pérez" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Correo electrónico *</span>
+                <input class="campo__control" type="email" value="carla.perez@correo.mx" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Fecha de registro</span>
+                <input class="campo__control" type="text" value="21/11/26" readonly>
+                <span class="campo__ayuda">Campo de interfaz: se genera al guardar el alta.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Avatar asociado *</span>
+                <select class="campo__control" required><option value="">Selecciona un avatar</option><option value="Itzel" selected>Itzel (actual)</option><option value="Itzamná">Itzamná (disponible)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol</span>
+                <input class="campo__control" type="text" value="Visitante" readonly>
+                <span class="campo__ayuda">El rol pertenece al avatar; se cambia en Avatares.</span>
+              </label>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-p-05" aria-labelledby="eliminar-p-05-titulo">
+            <p class="panel__etiqueta">P-05</p>
+            <h2 id="eliminar-p-05-titulo">Eliminar participante</h2>
+            <p><strong>¿Eliminar el registro «Carla Pérez»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: participa en la visita en curso de «El Castillo y la Gran Plaza». Finalízala antes de eliminar su registro; su avatar Itzel quedará libre para otra asignación.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="ver-p-06" aria-labelledby="ver-p-06-titulo">
+            <p class="panel__etiqueta">P-06</p>
+            <h2 id="ver-p-06-titulo">Jose Jose</h2>
+            <dl class="ficha">
+              <div><dt>Correo</dt><dd>jose.jose@correo.mx</dd></div>
+              <div><dt>Registro</dt><dd>22/11/26</dd></div>
+              <div><dt>Avatar</dt><dd>Kan</dd></div>
+              <div><dt>Rol del avatar</dt><dd><span class="insignia insignia--jade">Visitante</span></dd></div>
+            </dl>
+            <div class="participacion">
+              <h3 class="participacion__titulo">Visita en curso</h3>
+              <p class="participacion__recorrido">El Castillo y la Gran Plaza · grupal</p>
+              <p class="participacion__zona">Zona actual: <strong>Plataforma de Venus</strong></p>
+              <p class="permiso permiso--si">Acceso permitido por el rol Visitante</p>
+            </div>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#editar-p-06">Editar</a>
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="editar-p-06" aria-labelledby="editar-p-06-titulo">
+            <p class="panel__etiqueta">P-06</p>
+            <h2 id="editar-p-06-titulo">Editar participante</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre *</span>
+                <input class="campo__control" type="text" value="Jose Jose" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Correo electrónico *</span>
+                <input class="campo__control" type="email" value="jose.jose@correo.mx" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Fecha de registro</span>
+                <input class="campo__control" type="text" value="22/11/26" readonly>
+                <span class="campo__ayuda">Campo de interfaz: se genera al guardar el alta.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Avatar asociado *</span>
+                <select class="campo__control" required><option value="">Selecciona un avatar</option><option value="Kan" selected>Kan (actual)</option><option value="Itzamná">Itzamná (disponible)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol</span>
+                <input class="campo__control" type="text" value="Visitante" readonly>
+                <span class="campo__ayuda">El rol pertenece al avatar; se cambia en Avatares.</span>
+              </label>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="eliminar-p-06" aria-labelledby="eliminar-p-06-titulo">
+            <p class="panel__etiqueta">P-06</p>
+            <h2 id="eliminar-p-06-titulo">Eliminar participante</h2>
+            <p><strong>¿Eliminar el registro «Jose Jose»?</strong></p>
+            <p class="aviso aviso--bloqueo">No se puede eliminar: participa en la visita en curso de «El Castillo y la Gran Plaza». Finalízala antes de eliminar su registro; su avatar Kan quedará libre para otra asignación.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver</a>
+            </div>
+          </section>
+          <section class="panel" id="nuevo" aria-labelledby="nuevo-titulo">
+            <p class="panel__etiqueta">Alta</p>
+            <h2 id="nuevo-titulo">Nuevo participante</h2>
+            <form class="formulario" action="#guardado">
+              <label class="campo">
+                <span class="campo__etiqueta">Nombre *</span>
+                <input class="campo__control" type="text" value="" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Correo electrónico *</span>
+                <input class="campo__control" type="email" value="" autocomplete="off" required>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Fecha de registro</span>
+                <input class="campo__control" type="text" value="Se asigna al registrar" readonly>
+                <span class="campo__ayuda">Campo de interfaz: se genera al guardar el alta.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Avatar asociado *</span>
+                <select class="campo__control" required><option value="" selected>Selecciona un avatar</option><option value="Itzamná">Itzamná (disponible)</option></select>
+                <span class="campo__ayuda">Cada participante controla exactamente un avatar.</span>
+              </label>
+              <label class="campo">
+                <span class="campo__etiqueta">Rol</span>
+                <input class="campo__control" type="text" value="Según el avatar asociado" readonly>
+                <span class="campo__ayuda">El rol pertenece al avatar; se cambia en Avatares.</span>
+              </label>
+              <p class="formulario__nota">* Campo obligatorio</p>
+              <div class="panel__acciones">
+                <a class="boton boton--contorno" href="#registros">Cancelar</a>
+                <button class="boton boton--primario" type="submit">Guardar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel" id="guardado" aria-labelledby="guardado-titulo">
+            <p class="panel__etiqueta">Confirmación</p>
+            <h2 id="guardado-titulo">Guardado de demostración</h2>
+            <p class="aviso aviso--exito">El formulario se envió en modo de demostración. Los datos de ejemplo se conservan sin cambios.</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver al listado</a>
+            </div>
+          </section>
+          <section class="panel" id="buscar" aria-labelledby="buscar-titulo">
+            <p class="panel__etiqueta">Búsqueda</p>
+            <h2 id="buscar-titulo">Búsqueda de demostración</h2>
+            <p>El buscador forma parte del diseño. La versión estática muestra todos los registros de ejemplo; una búsqueda sin coincidencias mostraría «No se encontraron registros».</p>
+            <div class="panel__acciones">
+              <a class="boton boton--contorno" href="#registros">Volver al listado</a>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <a class="marca" href="../index.html">
+            <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <rect class="logo__fondo" width="40" height="40" rx="10"/>
+              <g class="logo__piramide">
+                <rect x="17" y="9" width="6" height="5" rx="1"/>
+                <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+                <rect x="9" y="22" width="22" height="8" rx="1"/>
+              </g>
+            </svg>
+            <span>Chichén Itzá Virtual</span>
+          </a>
+          <p>Recorridos virtuales por el sitio arqueológico, de forma individual o en grupo.</p>
+        </div>
+        <nav aria-labelledby="pie-explora">
+          <h2 class="pie__titulo" id="pie-explora">Explora</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="../recorridos.html">Recorridos</a></li>
+            <li><a href="../como-funciona.html">Cómo funciona</a></li>
+            <li><a href="../acerca.html">Acerca de</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-cuenta">
+          <h2 class="pie__titulo" id="pie-cuenta">Tu cuenta</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="../login.html">Iniciar sesión</a></li>
+            <li><a href="../registro.html">Registrarse</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-agencia">
+          <h2 class="pie__titulo" id="pie-agencia">Agencia</h2>
+          <ul class="pie__lista" role="list">
+            <li><a href="participantes.html">Administración (demo)</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__nota">Proyecto académico · Sistemas Distribuidos, UDLAP · 2026</p>
+    </div>
+  </footer>
+</body>
+</html>
