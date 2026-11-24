@@ -99,3 +99,15 @@
   --transicion-rapida: 150ms ease;
   --transicion-media: 250ms ease;
 }
+
+/* ---------- Ticket #4: apariencias de avatar ----------
+ * Tamaños de las ilustraciones de img/apariencias/ (ver .apariencia en componentes.css).
+ * Los colores de esas ilustraciones están copiados de los tokens de arriba dentro de
+ * cada SVG: si cambia la paleta, hay que actualizarlos a mano (el <img> no hereda CSS). */
+:root {
+  --apariencia-mini: 2rem;      /* 32 px: tablas, listas, marcadores del mapa */
+  --apariencia-mediana: 3rem;   /* 48 px: tarjetas y encabezados del panel */
+  --apariencia-grande: 10rem;   /* 160 px: vista previa del selector */
+  --apariencia-aro: var(--color-superficie);
+  --apariencia-aro-borde: var(--color-borde);
+}

@@ -482,3 +482,37 @@
 .paneles:has(> .panel:target) > .panel-default:not(:target) {
   display: none;
 }
+
+/* ---------- Ticket #4: apariencias de avatar ----------
+ * Ilustraciones en img/apariencias/*.svg, siempre con <img>:
+ *   <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
+ * Tamaños: --mini (32 px), sin modificador (48 px), --grande (160 px).
+ * alt: nombre de la apariencia si la imagen es el contenido; alt="" si al lado
+ * ya está escrito el nombre. Guía completa en docs/apariencias.html. */
+.apariencia {
+  display: block;
+  flex: none;
+  width: var(--apariencia-mediana);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--apariencia-aro), 0 0 0 3px var(--apariencia-aro-borde);
+}
+
+.apariencia--mini {
+  width: var(--apariencia-mini);
+  box-shadow: 0 0 0 1px var(--apariencia-aro-borde);
+}
+
+.apariencia--grande {
+  width: var(--apariencia-grande);
+  box-shadow: 0 0 0 4px var(--apariencia-aro), 0 0 0 5px var(--apariencia-aro-borde), var(--sombra-md);
+}
+
+/* Apariencia + texto en línea (celda de tabla, fila de lista) */
+.con-apariencia {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  gap: var(--espacio-3);
+}
