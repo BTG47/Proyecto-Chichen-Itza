@@ -1,0 +1,597 @@
+{
+  "fecha": "2026-11-24T18:00:16.939Z",
+  "navegador": "153.0.8010.12",
+  "paginas": {
+    "index.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 21,
+        "sinFocoVisible": []
+      }
+    },
+    "recorridos.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 20,
+        "sinFocoVisible": []
+      }
+    },
+    "como-funciona.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 22,
+        "sinFocoVisible": []
+      }
+    },
+    "acerca.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 17,
+        "sinFocoVisible": []
+      }
+    },
+    "login.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 7,
+        "sinFocoVisible": []
+      }
+    },
+    "registro.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 9,
+        "sinFocoVisible": []
+      }
+    },
+    "dashboard.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 14,
+        "sinFocoVisible": []
+      }
+    },
+    "mi-avatar.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 12,
+        "sinFocoVisible": []
+      }
+    },
+    "mi-perfil.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 11,
+        "sinFocoVisible": []
+      }
+    },
+    "recorrido.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 29,
+        "sinFocoVisible": []
+      }
+    },
+    "admin/participantes.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 38,
+        "sinFocoVisible": []
+      }
+    },
+    "admin/avatares.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 41,
+        "sinFocoVisible": []
+      }
+    },
+    "admin/roles.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 26,
+        "sinFocoVisible": []
+      }
+    },
+    "admin/zonas.html": {
+      "375": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "768": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": []
+      },
+      "1280": {
+        "desborde": 0,
+        "culpables": [],
+        "imagenesRotas": [],
+        "sinLabel": [],
+        "h1": 1,
+        "saltos": 0,
+        "errores": [],
+        "tabulables": 57,
+        "sinFocoVisible": []
+      }
+    }
+  },
+  "capturas": [
+    {
+      "archivo": "01-inicio-1280.png",
+      "destino": "index.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "01-inicio-375.png",
+      "destino": "index.html",
+      "ancho": 375
+    },
+    {
+      "archivo": "02-recorridos-1280.png",
+      "destino": "recorridos.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "03-recorridos-detalle-1280.png",
+      "destino": "recorridos.html#castillo-gran-plaza",
+      "ancho": 1280
+    },
+    {
+      "archivo": "04-como-funciona-1280.png",
+      "destino": "como-funciona.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "05-acerca-1280.png",
+      "destino": "acerca.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "06-login-1280.png",
+      "destino": "login.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "06-login-375.png",
+      "destino": "login.html",
+      "ancho": 375
+    },
+    {
+      "archivo": "07-registro-1280.png",
+      "destino": "registro.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "08-registro-error-simulado-1280.png",
+      "destino": "registro.html#error",
+      "ancho": 1280
+    },
+    {
+      "archivo": "09-dashboard-1280.png",
+      "destino": "dashboard.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "09-dashboard-375.png",
+      "destino": "dashboard.html",
+      "ancho": 375
+    },
+    {
+      "archivo": "10-mi-avatar-1280.png",
+      "destino": "mi-avatar.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "11-mi-perfil-1280.png",
+      "destino": "mi-perfil.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "12-visita-zona-actual-1280.png",
+      "destino": "recorrido.html#zona-actual",
+      "ancho": 1280
+    },
+    {
+      "archivo": "12-visita-zona-actual-768.png",
+      "destino": "recorrido.html#zona-actual",
+      "ancho": 768
+    },
+    {
+      "archivo": "12-visita-zona-actual-375.png",
+      "destino": "recorrido.html#zona-actual",
+      "ancho": 375
+    },
+    {
+      "archivo": "13-visita-ficha-pelota-1280.png",
+      "destino": "recorrido.html#ficha-pelota",
+      "ancho": 1280
+    },
+    {
+      "archivo": "14-visita-zona-bloqueada-1280.png",
+      "destino": "recorrido.html#ficha-columnas",
+      "ancho": 1280
+    },
+    {
+      "archivo": "15-visita-vista-general-1280.png",
+      "destino": "recorrido.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "16-admin-participantes-1280.png",
+      "destino": "admin/participantes.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "16-admin-participantes-375.png",
+      "destino": "admin/participantes.html",
+      "ancho": 375
+    },
+    {
+      "archivo": "17-admin-participantes-nuevo-1280.png",
+      "destino": "admin/participantes.html#nuevo",
+      "ancho": 1280
+    },
+    {
+      "archivo": "18-admin-participantes-ver-1280.png",
+      "destino": "admin/participantes.html#ver-p-01",
+      "ancho": 1280
+    },
+    {
+      "archivo": "19-admin-participantes-eliminar-1280.png",
+      "destino": "admin/participantes.html#eliminar-p-01",
+      "ancho": 1280
+    },
+    {
+      "archivo": "20-admin-avatares-1280.png",
+      "destino": "admin/avatares.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "21-admin-avatares-nuevo-1280.png",
+      "destino": "admin/avatares.html#nuevo",
+      "ancho": 1280
+    },
+    {
+      "archivo": "22-admin-roles-1280.png",
+      "destino": "admin/roles.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "23-admin-roles-nuevo-1280.png",
+      "destino": "admin/roles.html#nuevo",
+      "ancho": 1280
+    },
+    {
+      "archivo": "24-admin-zonas-1280.png",
+      "destino": "admin/zonas.html",
+      "ancho": 1280
+    },
+    {
+      "archivo": "25-admin-zonas-nuevo-1280.png",
+      "destino": "admin/zonas.html#nuevo",
+      "ancho": 1280
+    }
+  ]
+}
