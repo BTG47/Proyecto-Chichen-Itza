@@ -147,3 +147,30 @@
   --color-progreso-fondo: var(--color-naranja-claro);
   --color-progreso: var(--color-naranja);
 }
+
+/* ---------- Ticket #10: visita (recorrido.html) ---------- */
+:root {
+  /* Camino de zonas */
+  --visita-papel: #fbf8f1;            /* fondo de los nodos */
+  --visita-crema: #fffaf0;            /* bloque y marcas del guía */
+  --visita-pendiente: #c9bea9;        /* nodos y tramos sin visitar */
+  --visita-oro: var(--ilus-venus);    /* acento del guía */
+  --visita-ficha: #2a231b;            /* piedra oscura de la ficha de zona */
+  --visita-ficha-texto: var(--ilus-sol);
+  --visita-alerta-clara: #f4a99f;     /* alerta sobre la ficha oscura */
+  --visita-mapa: #dce4c8;             /* vista general esquemática (Persona 3) */
+  --visita-mapa-mancha: #b9c99d;
+  --visita-barra: var(--color-jade-profundo);
+  --visita-barra-texto: var(--color-jade-claro);
+
+  /* Monumentos (símbolos SVG en línea de recorrido.html) */
+  --mon-suelo: #6d7955;
+  --mon-contorno: #725e43;
+  --mon-piedra: #a88e63;
+  --mon-piedra-luz: #b79b6d;
+  --mon-sombra: #927a55;
+  --mon-medio: #c5ab7d;
+  --mon-claro: #d4bd90;
+  --mon-luz: #ead7af;
+  --mon-detalle: #8c704a;
+}
