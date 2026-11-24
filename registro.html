@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear cuenta | Chichén Itzá Virtual</title>
+  <meta name="description" content="Regístrate para unirte a visitas virtuales individuales o grupales a Chichén Itzá.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/publico.css">
+  <link rel="stylesheet" href="css/acceso.css">
+</head>
+<body class="acceso">
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <rect class="logo__fondo" width="40" height="40" rx="10"/>
+          <g class="logo__piramide">
+            <rect x="17" y="9" width="6" height="5" rx="1"/>
+            <rect x="13" y="15.5" width="14" height="5" rx="1"/>
+            <rect x="9" y="22" width="22" height="8" rx="1"/>
+          </g>
+        </svg>
+        <span>Chichén Itzá Virtual</span>
+      </a>
+      <p class="acceso__cabecera-enlace">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </div>
+  </header>
+
+  <main class="acceso__centrada" id="contenido">
+    <!-- #error muestra el estado de ejemplo «Las contraseñas no coinciden» (SIMULADO, D24). -->
+    <div class="acceso__tarjeta" id="error">
+      <p class="aviso-demo acceso__aviso-error">
+        <strong>Estado de ejemplo (simulado).</strong>
+        Así se marca el error cuando las contraseñas no coinciden.
+        <a href="registro.html">Ver el formulario sin error</a>
+      </p>
+
+      <h1 class="acceso__titulo">Crear cuenta</h1>
+      <p class="acceso__entrada">Regístrate para unirte a recorridos individuales o grupales.</p>
+
+      <!-- Sesión SIMULADA (D25, ADR-0001): validación nativa del navegador y envío
+           al dashboard de la participante demo. Sin name, ningún dato viaja en la URL. -->
+      <form action="dashboard.html" method="get">
+        <div class="campo">
+          <label class="campo__etiqueta" for="registro-nombre">Nombre completo</label>
+          <input class="campo__control" type="text" id="registro-nombre" autocomplete="name" placeholder="Ana López Martínez" required>
+        </div>
+        <div class="campo">
+          <label class="campo__etiqueta" for="registro-correo">Correo electrónico</label>
+          <input class="campo__control" type="email" id="registro-correo" autocomplete="email" placeholder="ana.lopez@correo.mx" aria-describedby="registro-correo-ayuda" required>
+          <span class="campo__ayuda" id="registro-correo-ayuda">Lo usarás para iniciar sesión.</span>
+        </div>
+        <div class="acceso__pareja">
+          <div class="campo">
+            <label class="campo__etiqueta" for="registro-contrasena">Contraseña</label>
+            <input class="campo__control" type="password" id="registro-contrasena" autocomplete="new-password" minlength="8" aria-describedby="registro-contrasena-ayuda" required>
+            <span class="campo__ayuda" id="registro-contrasena-ayuda">Mínimo 8 caracteres.</span>
+          </div>
+          <div class="campo acceso__confirmacion">
+            <label class="campo__etiqueta" for="registro-confirmacion">Confirmar contraseña</label>
+            <input class="campo__control" type="password" id="registro-confirmacion" autocomplete="new-password" minlength="8" required>
+            <span class="campo__error acceso__error">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.5 15.2 14H.8Z"/><rect x="7.2" y="6" width="1.6" height="4.4" rx=".6"/><circle cx="8" cy="12" r=".9"/></svg>
+              Las contraseñas no coinciden.
+            </span>
+          </div>
+        </div>
+        <button class="boton boton--primario boton--grande acceso__enviar" type="submit">Registrarme</button>
+      </form>
+
+      <p class="acceso__nota">
+        Al registrarte recibes un avatar inicial con el rol <strong>Visitante</strong>; podrás personalizar su apariencia.
+      </p>
+
+      <p class="aviso-demo">
+        <strong>Registro de demostración.</strong>
+        No se crea ninguna cuenta: al registrarte entras al panel de la participante demo, Ana López Martínez.
+        <a href="#error">Ver el ejemplo de error</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>
