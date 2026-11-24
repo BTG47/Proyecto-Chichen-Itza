@@ -1,0 +1,1085 @@
+/*
+ * PROTOTIPO · Variante B «Ruta / línea de tiempo» (ticket #9). Desechable.
+ * La visita como un sacbé vertical: cada zona es una etapa (<details>) sobre el camino.
+ * Acciones simuladas con :target; «cambiar de zona» mueve el marcador de Ana con :has().
+ */
+:root {
+  --ruta-oscuro: var(--color-jade-profundo);
+  --ruta-camino: var(--ilus-sacbe);
+  --ruta-camino-junta: var(--ilus-piedra);
+  --ruta-camino-borde: var(--ilus-piedra-borde);
+  --ruta-visitada: var(--color-jade);
+  --ruta-actual: var(--color-naranja);
+  --ruta-actual-halo: rgb(176 88 28 / .35);
+  --ruta-pendiente: var(--color-texto-secundario);
+  --ruta-bloqueada: var(--color-restringido);
+  --ruta-bloqueada-claro: var(--color-restringido-claro);
+  --ruta-ayuda: var(--color-error);
+  --ruta-ayuda-claro: var(--color-error-claro);
+  --ruta-inactivo: #9a9186;
+  --ruta-resalte: #ffd166;
+  --ruta-mosaico: rgb(255 255 255 / .07);
+
+  /* Geometría del camino */
+  --carril: 6rem;          /* espacio a la izquierda de las tarjetas */
+  --camino-x: 2.75rem;     /* centro del sacbé desde el borde del carril */
+  --camino-ancho: 1.75rem;
+  --hito: 2.6rem;
+  --hito-actual: 3.6rem;
+  --ramal-sangria: 3rem;
+}
+
+body.ruta-visita {
+  padding-bottom: 5.5rem; /* deja libre la barra del prototipo */
+}
+
+/* ---------- Barra de la visita ---------- */
+.visita-barra {
+  background: var(--ruta-oscuro);
+  border-bottom: 1px solid var(--color-borde-invertido);
+  color: var(--color-texto-invertido);
+}
+
+.visita-barra__contenido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-3) var(--espacio-5);
+  min-height: 4rem;
+  padding-block: var(--espacio-2);
+}
+
+.visita-barra__marca,
+.visita-barra__marca:hover {
+  color: var(--color-texto-invertido);
+}
+
+.visita-barra .logo__fondo { fill: var(--ruta-actual); }
+
+.visita-barra__servidor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  margin: 0 0 0 auto;
+  color: var(--color-jade-claro);
+  font-size: var(--texto-sm);
+}
+
+.visita-barra__salir {
+  border-color: rgb(255 255 255 / .45);
+  color: var(--color-texto-invertido);
+  padding-inline: var(--espacio-4);
+}
+
+.visita-barra__salir:hover {
+  background: rgb(255 255 255 / .1);
+  color: var(--color-texto-invertido);
+}
+
+/* ---------- Cabecera del viaje ---------- */
+.viaje {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 2.4rem, var(--ruta-mosaico) 2.4rem 2.5rem),
+    linear-gradient(160deg, var(--color-jade-oscuro), var(--ruta-oscuro) 70%);
+  color: var(--color-texto-invertido);
+}
+
+.viaje__contenido {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
+  gap: var(--espacio-6);
+  align-items: center;
+  padding-block: var(--espacio-6);
+}
+
+.viaje__antetitulo {
+  margin: 0 0 var(--espacio-2);
+  color: var(--ruta-resalte);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.viaje h1 {
+  margin: 0 0 var(--espacio-4);
+  color: var(--color-texto-invertido);
+}
+
+.viaje__yo {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-4);
+  border: 1px solid var(--color-borde-invertido);
+  border-radius: var(--radio-lg);
+  background: var(--ruta-mosaico);
+}
+
+.viaje__yo p {
+  margin: 0;
+  font-size: var(--texto-sm);
+  color: var(--color-jade-claro);
+}
+
+.viaje__yo strong {
+  color: var(--color-texto-invertido);
+}
+
+.viaje__yo a {
+  color: var(--ruta-resalte);
+}
+
+.viaje__avatar {
+  --apariencia-aro: var(--ruta-actual);
+  --apariencia-aro-borde: var(--ruta-resalte);
+}
+
+/* Tablero de estadísticas: progreso y tiempo protagonistas */
+.tablero {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  gap: var(--espacio-3);
+  margin: 0;
+}
+
+.tablero__item {
+  padding: var(--espacio-3) var(--espacio-4);
+  border: 1px solid var(--color-borde-invertido);
+  border-radius: var(--radio-lg);
+  background: var(--ruta-mosaico);
+}
+
+.tablero__item dt {
+  color: var(--color-jade-claro);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.tablero__item dd {
+  margin: var(--espacio-1) 0 0;
+}
+
+.tablero__cifra {
+  display: block;
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-fuerte);
+  line-height: 1.05;
+}
+
+.tablero__cifra small {
+  font-size: var(--texto-base);
+  font-weight: var(--peso-normal);
+  color: var(--color-jade-claro);
+}
+
+.tablero__cifra--chica {
+  display: inline;
+  font-size: var(--texto-xl);
+}
+
+.tablero__nota {
+  display: block;
+  color: var(--color-jade-claro);
+  font-size: var(--texto-xs);
+}
+
+.tablero__item--progreso {
+  grid-row: span 2;
+  text-align: center;
+}
+
+.tablero__item--progreso dd {
+  display: grid;
+  place-items: center;
+  margin-top: var(--espacio-2);
+}
+
+.tablero__anillo,
+.tablero__item--progreso .tablero__cifra {
+  grid-area: 1 / 1;
+}
+
+.tablero__anillo {
+  width: 8.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(var(--ruta-actual) var(--avance), rgb(255 255 255 / .14) 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - .9rem), #000 calc(100% - .85rem));
+  mask: radial-gradient(farthest-side, transparent calc(100% - .9rem), #000 calc(100% - .85rem));
+}
+
+.tablero__item--progreso .tablero__cifra {
+  font-size: 2.3rem;
+}
+
+.tablero__item--progreso .tablero__nota {
+  margin-top: var(--espacio-2);
+  font-size: var(--texto-sm);
+}
+
+.tablero__item--tiempo {
+  grid-column: span 3;
+}
+
+.tablero__barra {
+  display: block;
+  height: .7rem;
+  margin-block: var(--espacio-2);
+  border-radius: var(--radio-pildora);
+  background: rgb(255 255 255 / .14);
+  overflow: hidden;
+}
+
+.tablero__barra span {
+  display: block;
+  width: var(--avance);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--ruta-resalte), var(--ruta-actual));
+}
+
+/* ---------- Cuerpo: camino + costado ---------- */
+.recorrido-cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 22rem;
+  gap: var(--espacio-6);
+  align-items: start;
+  padding-block: var(--espacio-6);
+}
+
+.camino__cabecera h2 {
+  margin: 0 0 var(--espacio-1);
+}
+
+.camino__cabecera p {
+  margin: 0 0 var(--espacio-3);
+  color: var(--color-texto-secundario);
+}
+
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2) var(--espacio-4);
+  margin: 0 0 var(--espacio-5);
+  padding: 0;
+  list-style: none;
+  font-size: var(--texto-sm);
+  color: var(--color-texto-secundario);
+}
+
+.leyenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+}
+
+.leyenda__muestra {
+  width: .9rem;
+  height: .9rem;
+  border-radius: 50%;
+}
+
+.leyenda__muestra--visitada { background: var(--ruta-visitada); }
+.leyenda__muestra--actual { background: var(--ruta-actual); box-shadow: 0 0 0 3px var(--ruta-actual-halo); }
+.leyenda__muestra--pendiente { border: 2px dashed var(--ruta-pendiente); background: var(--color-superficie); }
+.leyenda__muestra--bloqueada { border-radius: 3px; background: repeating-linear-gradient(45deg, var(--ruta-bloqueada) 0 3px, var(--ruta-bloqueada-claro) 3px 6px); }
+
+/* ---------- El sacbé ---------- */
+.sacbe {
+  margin: 0;
+  padding: 0 0 0 var(--carril);
+  list-style: none;
+}
+
+.sacbe > li {
+  position: relative;
+  padding-bottom: var(--espacio-5);
+}
+
+/* Tramo de camino de cada etapa */
+.sacbe > li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--camino-x) - var(--carril) - var(--camino-ancho) / 2);
+  width: var(--camino-ancho);
+  border-inline: 2px dashed var(--ruta-camino-borde);
+  background: var(--ruta-camino);
+  opacity: .7;
+}
+
+/* Tramos ya caminados: losas de piedra y huellas */
+.sacbe > .etapa--visitada::before {
+  border-style: solid;
+  background:
+    radial-gradient(circle, var(--ruta-visitada) 3px, transparent 3.5px) 30% 0 / 50% 1.3rem repeat-y,
+    radial-gradient(circle, var(--ruta-visitada) 3px, transparent 3.5px) 70% .65rem / 50% 1.3rem repeat-y,
+    repeating-linear-gradient(to bottom, var(--ruta-camino) 0 1.6rem, var(--ruta-camino-junta) 1.6rem 1.75rem);
+  opacity: 1;
+}
+
+.sacbe__inicio,
+.sacbe__meta {
+  min-height: 3rem;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-fuerte);
+  color: var(--color-texto-secundario);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.sacbe > .sacbe__inicio::before {
+  top: 1.3rem;
+  border-style: solid;
+  background: repeating-linear-gradient(to bottom, var(--ruta-camino) 0 1.6rem, var(--ruta-camino-junta) 1.6rem 1.75rem);
+  opacity: 1;
+}
+
+.sacbe__inicio span,
+.sacbe__meta span {
+  display: inline-block;
+  padding-top: .45rem;
+}
+
+.sacbe__inicio::after,
+.sacbe__meta::after {
+  content: "";
+  position: absolute;
+  top: .35rem;
+  left: calc(var(--camino-x) - var(--carril) - 1.1rem);
+  width: 2.2rem;
+  height: 1.2rem;
+  border-radius: var(--radio-sm);
+  background: var(--ruta-camino-borde);
+}
+
+.sacbe > .sacbe__meta::before {
+  bottom: auto;
+  height: .5rem;
+}
+
+.sacbe__meta::after {
+  background: repeating-linear-gradient(90deg, var(--color-tinta) 0 .55rem, var(--color-superficie) .55rem 1.1rem);
+  box-shadow: 0 0 0 2px var(--color-tinta);
+}
+
+/* Tarjeta de cada etapa */
+.etapa__detalles {
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-sm);
+  transition: box-shadow var(--transicion-media);
+}
+
+.etapa__detalles:hover {
+  box-shadow: var(--sombra-md);
+}
+
+.etapa__resumen {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-4);
+  border-radius: inherit;
+  cursor: pointer;
+  list-style: none;
+}
+
+.etapa__resumen::-webkit-details-marker { display: none; }
+
+.etapa__resumen:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+/* Conector entre el camino y la tarjeta */
+.etapa__resumen::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: calc(var(--carril) - var(--camino-x) - var(--hito) / 2);
+  border-top: 2px dashed var(--ruta-camino-borde);
+}
+
+/* Hito sobre el camino */
+.etapa__hito {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: calc(var(--camino-x) - var(--carril) - var(--hito) / 2 - 1px);
+  display: grid;
+  place-items: center;
+  width: var(--hito);
+  height: var(--hito);
+  margin-top: calc(var(--hito) / -2);
+  border: 3px solid var(--color-superficie);
+  border-radius: 50%;
+  background: var(--ruta-visitada);
+  box-shadow: var(--sombra-md);
+  color: var(--color-texto-invertido);
+  font-weight: var(--peso-fuerte);
+}
+
+.etapa--pendiente .etapa__hito {
+  border: 2px dashed var(--ruta-pendiente);
+  background: var(--color-superficie);
+  color: var(--ruta-pendiente);
+}
+
+.etapa__miniatura {
+  width: 6.5rem;
+  aspect-ratio: 400 / 260;
+  border-radius: var(--radio-md);
+  background: linear-gradient(var(--ilus-cielo-alto), var(--ilus-cielo-bajo));
+}
+
+.etapa--pendiente .etapa__miniatura {
+  filter: grayscale(.7);
+  opacity: .8;
+}
+
+.etapa__textos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espacio-1);
+  min-width: 0;
+}
+
+.etapa__numero {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--color-texto-secundario);
+}
+
+.etapa--visitada .etapa__estado { color: var(--ruta-visitada); }
+.etapa--actual .etapa__estado { color: var(--ruta-actual); }
+
+.etapa__nombre {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--interlineado-titulos);
+}
+
+/* Chevron de abrir/cerrar */
+.etapa__abrir {
+  width: .75rem;
+  height: .75rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translate(-25%, -25%);
+  transition: transform var(--transicion-media);
+  color: var(--color-texto-secundario);
+}
+
+details[open] > summary .etapa__abrir {
+  transform: rotate(225deg);
+}
+
+.etapa__ficha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  padding: 0 var(--espacio-4) var(--espacio-4);
+}
+
+.etapa__ficha p {
+  margin: 0;
+}
+
+.etapa__dato {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-secundario);
+}
+
+/* Participantes sobre su etapa */
+.etapa__gente {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-1) var(--espacio-2);
+  margin-top: var(--espacio-1);
+}
+
+.persona {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .15rem .6rem .15rem .15rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-pildora);
+  background: var(--color-superficie-suave);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  white-space: nowrap;
+}
+
+.persona .apariencia--mini {
+  width: 1.6rem;
+}
+
+.persona--ana {
+  border-color: var(--ruta-actual);
+  background: var(--color-naranja-claro);
+  color: var(--color-naranja-oscuro);
+  font-weight: var(--peso-fuerte);
+}
+
+.persona--guia {
+  border-color: var(--ruta-visitada);
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+}
+
+.persona--ayuda {
+  border-color: var(--ruta-ayuda);
+  background: var(--ruta-ayuda-claro);
+  color: var(--ruta-ayuda);
+}
+
+.persona--inactiva {
+  color: var(--color-texto-secundario);
+  border-style: dashed;
+}
+
+.persona--inactiva img {
+  filter: grayscale(1);
+  opacity: .6;
+}
+
+/* Marcadores de Ana que solo aparecen al «cambiar de zona» */
+.persona--ana-fantasma {
+  display: none;
+  border-color: var(--ruta-actual);
+  background: var(--color-naranja-claro);
+  color: var(--color-naranja-oscuro);
+  font-weight: var(--peso-fuerte);
+}
+
+/* ---------- Etapa actual: ampliada ---------- */
+.etapa--actual {
+  --hito: var(--hito-actual);
+}
+
+.etapa--actual .etapa__detalles {
+  border: 2px solid var(--ruta-actual);
+  box-shadow: var(--sombra-lg);
+}
+
+.etapa--actual .etapa__resumen {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding-block: var(--espacio-4);
+}
+
+.etapa--actual .etapa__nombre {
+  font-size: var(--texto-3xl);
+}
+
+.etapa--actual .etapa__hito {
+  top: 2.2rem;
+  margin-top: 0;
+  border-color: var(--ruta-actual);
+  background: var(--color-superficie);
+  box-shadow: 0 0 0 6px var(--ruta-actual-halo), var(--sombra-md);
+  animation: latido 2.2s ease-in-out infinite;
+}
+
+.etapa--actual .etapa__resumen::before {
+  top: calc(2.2rem + var(--hito) / 2);
+  border-top: 3px solid var(--ruta-actual);
+}
+
+.etapa__hito img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+@keyframes latido {
+  50% { box-shadow: 0 0 0 12px rgb(176 88 28 / .08), var(--sombra-md); }
+}
+
+.escena {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radio-md);
+  background:
+    radial-gradient(circle at 78% 22%, var(--ilus-sol) 0 2.2rem, transparent 2.3rem),
+    linear-gradient(var(--ilus-cielo-alto), var(--ilus-cielo-bajo) 75%, var(--ilus-pasto) 75%);
+}
+
+.escena__monumento {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 13rem;
+  margin-inline: auto;
+}
+
+.etapa__guia {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  width: 100%;
+  padding: var(--espacio-2) var(--espacio-3);
+  border-left: 4px solid var(--ruta-visitada);
+  border-radius: var(--radio-sm);
+  background: var(--color-jade-claro);
+  color: var(--color-jade-profundo);
+}
+
+.etapa__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+/* ---------- Desvío bloqueado: Grupo de las Mil Columnas ---------- */
+.ramal {
+  position: relative;
+  margin: var(--espacio-4) 0 0 var(--ramal-sangria);
+}
+
+/* Camino del desvío, rayado y con barrera */
+.ramal::before {
+  content: "";
+  position: absolute;
+  top: 2.2rem;
+  right: 100%;
+  width: calc(var(--carril) - var(--camino-x) - var(--camino-ancho) / 2 + var(--ramal-sangria));
+  height: 1.1rem;
+  border-block: 2px solid var(--ruta-bloqueada);
+  background: repeating-linear-gradient(45deg, var(--ruta-bloqueada-claro) 0 6px, var(--ruta-camino-junta) 6px 12px);
+}
+
+.ramal::after {
+  content: "";
+  position: absolute;
+  top: 1.65rem;
+  right: calc(100% + 1rem);
+  width: .45rem;
+  height: 2.2rem;
+  border-radius: 2px;
+  background: repeating-linear-gradient(var(--ruta-bloqueada) 0 .35rem, var(--ruta-resalte) .35rem .7rem);
+}
+
+.ramal__detalles {
+  border: 2px dashed var(--ruta-bloqueada);
+  border-radius: var(--radio-lg);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 10px, rgb(59 47 37 / .04) 10px 20px),
+    var(--ruta-bloqueada-claro);
+}
+
+.ramal__resumen {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-4);
+  cursor: pointer;
+  list-style: none;
+}
+
+.ramal__resumen::-webkit-details-marker { display: none; }
+
+.ramal__resumen:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+.ramal__miniatura {
+  width: 5rem;
+  aspect-ratio: 400 / 260;
+  border-radius: var(--radio-md);
+  background: linear-gradient(var(--ilus-cielo-alto), var(--ilus-cielo-bajo));
+  filter: grayscale(.85);
+}
+
+.ramal .etapa__nombre {
+  font-size: var(--texto-lg);
+}
+
+.ramal__aviso {
+  padding: var(--espacio-2) var(--espacio-3);
+  border-radius: var(--radio-sm);
+  background: var(--ruta-bloqueada);
+  color: var(--color-texto-invertido);
+  font-size: var(--texto-sm);
+}
+
+/* ---------- Costado: grupo y acciones ---------- */
+.costado {
+  position: sticky;
+  top: var(--espacio-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+}
+
+.costado__bloque {
+  padding: var(--espacio-4);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-sm);
+}
+
+.costado__bloque h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  margin: 0 0 var(--espacio-3);
+  font-size: var(--texto-xl);
+}
+
+.costado__cuenta {
+  padding: 0 .55rem;
+  border-radius: var(--radio-pildora);
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+  font-family: var(--fuente-cuerpo);
+  font-size: var(--texto-sm);
+}
+
+.grupo,
+.acciones,
+.acciones__zonas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grupo__fila {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--espacio-3);
+  padding: var(--espacio-2) var(--espacio-1);
+  font-size: var(--texto-sm);
+  line-height: 1.35;
+}
+
+.grupo__fila + .grupo__fila {
+  border-top: 1px solid var(--color-borde);
+}
+
+.grupo__fila small {
+  color: var(--color-texto-secundario);
+}
+
+.grupo__fila--tu {
+  margin-inline: calc(var(--espacio-2) * -1);
+  padding-inline: var(--espacio-3);
+  border-radius: var(--radio-md);
+  background: var(--color-naranja-claro);
+}
+
+.grupo__fila--guia .apariencia {
+  box-shadow: 0 0 0 2px var(--ruta-visitada);
+}
+
+.grupo__fila--ayuda small {
+  color: var(--ruta-ayuda);
+  font-weight: var(--peso-medio);
+}
+
+.grupo__fila--inactivo {
+  color: var(--color-texto-secundario);
+}
+
+.grupo__fila--inactivo img {
+  filter: grayscale(1);
+  opacity: .6;
+}
+
+.grupo__rol {
+  padding: 0 .45rem;
+  font-size: var(--texto-xs);
+}
+
+.punto {
+  display: inline-block;
+  width: .65rem;
+  height: .65rem;
+  border-radius: 50%;
+  flex: none;
+}
+
+.punto--conectado {
+  background: var(--color-conectado);
+  box-shadow: 0 0 0 3px var(--color-conectado-halo);
+}
+
+.punto--ayuda {
+  background: var(--ruta-ayuda);
+  box-shadow: 0 0 0 3px var(--ruta-ayuda-claro);
+}
+
+.punto--inactivo {
+  background: var(--ruta-inactivo);
+}
+
+.acciones {
+  display: grid;
+  gap: var(--espacio-2);
+}
+
+.accion {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  min-height: var(--tactil-minimo);
+  padding: var(--espacio-2) var(--espacio-3);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  background: var(--color-superficie-suave);
+  color: var(--color-tinta);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+  transition: border-color var(--transicion-rapida), background-color var(--transicion-rapida);
+}
+
+.accion::-webkit-details-marker { display: none; }
+
+.accion:hover {
+  border-color: var(--ruta-visitada);
+  background: var(--color-jade-claro);
+  color: var(--color-tinta);
+}
+
+.accion__icono {
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: var(--color-jade-claro);
+  color: var(--color-jade-oscuro);
+  font-weight: var(--peso-fuerte);
+}
+
+.accion--ayuda {
+  border-color: var(--ruta-actual);
+  background: var(--color-naranja-claro);
+}
+
+.accion--ayuda .accion__icono {
+  background: var(--ruta-actual);
+  color: var(--color-texto-invertido);
+}
+
+.accion--salir {
+  color: var(--ruta-ayuda);
+}
+
+.accion--salir .accion__icono {
+  background: var(--ruta-ayuda-claro);
+  color: var(--ruta-ayuda);
+}
+
+.acciones__zonas {
+  display: grid;
+  gap: var(--espacio-1);
+  padding: var(--espacio-2) 0 0 var(--espacio-6);
+}
+
+.acciones__zonas a {
+  display: block;
+  padding: var(--espacio-1) 0;
+}
+
+/* ---------- Resultados de acciones (:target) ---------- */
+.aviso {
+  position: fixed;
+  z-index: 900;
+  left: 50%;
+  bottom: 5rem;
+  display: none;
+  width: min(34rem, calc(100% - 2rem));
+  margin: 0;
+  padding: var(--espacio-4) var(--espacio-5);
+  border-left: 6px solid var(--ruta-visitada);
+  border-radius: var(--radio-lg);
+  background: var(--color-tinta);
+  color: var(--color-texto-invertido);
+  box-shadow: var(--sombra-lg);
+  transform: translateX(-50%);
+}
+
+.aviso:target {
+  display: block;
+  animation: aparece var(--transicion-media);
+}
+
+.aviso--ayuda {
+  border-left-color: var(--ruta-actual);
+}
+
+.aviso__demo {
+  display: inline-block;
+  margin-top: var(--espacio-1);
+  padding: .05rem .5rem;
+  border-radius: var(--radio-pildora);
+  background: var(--color-naranja-claro);
+  color: var(--color-naranja-oscuro);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+}
+
+.aviso__cerrar {
+  margin-left: var(--espacio-2);
+  color: var(--ruta-resalte);
+  font-weight: var(--peso-medio);
+}
+
+.aviso__cerrar:hover {
+  color: var(--color-texto-invertido);
+}
+
+@keyframes aparece {
+  from { opacity: 0; transform: translate(-50%, 1rem); }
+}
+
+/* «Cambiar de zona» simulado: el marcador de Ana viaja a otra etapa */
+body:has(#ir-plaza:target) #etapa-plaza .persona--ana-fantasma,
+body:has(#ir-castillo:target) #etapa-castillo .persona--ana-fantasma,
+body:has(#ir-venus:target) #etapa-venus .persona--ana-fantasma {
+  display: inline-flex;
+}
+
+body:has(.aviso[id^="ir-"]:target) .persona--ana {
+  display: none;
+}
+
+body:has(#ir-plaza:target) #etapa-plaza .etapa__detalles,
+body:has(#ir-castillo:target) #etapa-castillo .etapa__detalles,
+body:has(#ir-venus:target) #etapa-venus .etapa__detalles {
+  outline: 3px solid var(--ruta-actual);
+  outline-offset: 3px;
+}
+
+/* «Consultar información» lleva a la etapa actual */
+.etapa:target .etapa__detalles {
+  outline: 3px solid var(--ruta-resalte);
+  outline-offset: 3px;
+}
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 68rem) {
+  .viaje__contenido,
+  .recorrido-cuerpo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .costado {
+    position: static;
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --carril: 3.4rem;
+    --camino-x: 1.3rem;
+    --camino-ancho: 1.1rem;
+    --hito: 2.1rem;
+    --hito-actual: 2.6rem;
+    --ramal-sangria: 1rem;
+  }
+
+  .visita-barra__servidor {
+    order: 3;
+    width: 100%;
+    margin: 0;
+  }
+
+  .visita-barra__salir {
+    margin-left: auto;
+  }
+
+  .tablero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tablero__item--progreso,
+  .tablero__item--tiempo {
+    grid-row: auto;
+    grid-column: span 1;
+  }
+
+  .tablero__item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .tablero__anillo {
+    width: 6.5rem;
+  }
+
+  .tablero__item--progreso .tablero__cifra {
+    font-size: var(--texto-2xl);
+  }
+
+  .tablero__item--tiempo .tablero__cifra {
+    font-size: var(--texto-2xl);
+  }
+
+  .etapa__miniatura,
+  .ramal__miniatura {
+    display: none;
+  }
+
+  .etapa__resumen,
+  .ramal__resumen {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--espacio-2);
+    padding-inline: var(--espacio-3);
+  }
+
+  .etapa--actual .etapa__nombre {
+    font-size: var(--texto-2xl);
+  }
+
+  .etapa--actual .etapa__hito {
+    top: 1.6rem;
+  }
+
+  .etapa--actual .etapa__resumen::before {
+    top: calc(1.6rem + var(--hito) / 2);
+  }
+
+  .etapa__ficha {
+    padding-inline: var(--espacio-3);
+  }
+
+  .ramal::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .etapa--actual .etapa__hito,
+  .aviso:target {
+    animation: none;
+  }
+
+  .etapa__abrir,
+  .etapa__detalles,
+  .accion {
+    transition: none;
+  }
+}
