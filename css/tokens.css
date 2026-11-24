@@ -36,6 +36,9 @@
   --color-exito: var(--color-jade);
   --color-foco: #a14b14;
 
+  /* Velos sobre ilustraciones */
+  --color-velo: rgb(18 40 30 / .86);
+
   /* Ilustraciones */
   --ilus-cielo-alto: #f0b06d;
   --ilus-cielo-bajo: #f8dfb4;
