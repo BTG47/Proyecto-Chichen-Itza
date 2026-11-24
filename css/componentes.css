@@ -498,6 +498,8 @@
   height: .9em;
   flex: none;
   fill: currentColor;
+}
+
 /* ---------- Ticket #4: apariencias de avatar ----------
  * Ilustraciones en img/apariencias/*.svg, siempre con <img>:
  *   <img class="apariencia apariencia--mini" src="img/apariencias/quetzal.svg" alt="">
