@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="t">
+  <title id="t">Jaguar de jade</title>
+  <!-- Apariencia de avatar (D16). Colores copiados de css/tokens.css (sin los guiones iniciales):
+       fondo ilus-cielo-bajo; cara color-jade, color-jade-oscuro,
+       color-jade-profundo y color-jade-claro; ojos ilus-cielo-alto. -->
+  <defs><clipPath id="c"><circle cx="64" cy="64" r="64"/></clipPath></defs>
+  <g clip-path="url(#c)">
+    <rect width="128" height="128" fill="#f8dfb4"/>
+    <path d="M14 128 Q22 102 64 100 Q106 102 114 128Z" fill="#195447"/>
+    <circle cx="32" cy="36" r="15" fill="#1f6f5c"/>
+    <circle cx="96" cy="36" r="15" fill="#1f6f5c"/>
+    <circle cx="33" cy="37" r="7.5" fill="#e3efe9"/>
+    <circle cx="95" cy="37" r="7.5" fill="#e3efe9"/>
+    <ellipse cx="64" cy="66" rx="42" ry="38" fill="#1f6f5c"/>
+    <g fill="#195447">
+      <circle cx="64" cy="40" r="5"/>
+      <circle cx="50" cy="38" r="3.5"/>
+      <circle cx="78" cy="38" r="3.5"/>
+      <circle cx="30" cy="64" r="4"/>
+      <circle cx="98" cy="64" r="4"/>
+      <circle cx="33" cy="78" r="3"/>
+      <circle cx="95" cy="78" r="3"/>
+    </g>
+    <path d="M38 62 Q46 54 56 62 Q46 70 38 62Z" fill="#f0b06d"/>
+    <path d="M90 62 Q82 54 72 62 Q82 70 90 62Z" fill="#f0b06d"/>
+    <ellipse cx="47" cy="62" rx="2.2" ry="4.6" fill="#123d33"/>
+    <ellipse cx="81" cy="62" rx="2.2" ry="4.6" fill="#123d33"/>
+    <circle cx="54" cy="85" r="13" fill="#e3efe9"/>
+    <circle cx="74" cy="85" r="13" fill="#e3efe9"/>
+    <path d="M55 71 h18 q2 0 .5 2 l-7.5 8 q-2 2 -4 0 l-7.5 -8 q-1.5 -2 .5 -2Z" fill="#123d33"/>
+    <path d="M64 82 v6 M64 88 q-5 5 -11 2 M64 88 q5 5 11 2" fill="none" stroke="#123d33" stroke-width="2.6" stroke-linecap="round"/>
+    <g fill="#195447">
+      <circle cx="50" cy="84" r="1.5"/>
+      <circle cx="46" cy="89" r="1.5"/>
+      <circle cx="78" cy="84" r="1.5"/>
+      <circle cx="82" cy="89" r="1.5"/>
+    </g>
+  </g>
+</svg>
