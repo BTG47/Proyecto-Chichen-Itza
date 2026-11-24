@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apariencias de avatar (referencia) | Chichén Itzá Virtual</title>
+  <meta name="description" content="Hoja de referencia de las cuatro apariencias de avatar y de cómo usarlas en el sitio.">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+  <style>
+    /* Solo para esta hoja de referencia (no es una página del sitio, ver D20). */
+    .ref { padding-block: var(--espacio-6) var(--espacio-8); }
+    .ref section { margin-top: var(--espacio-7); }
+    .ref__nota { color: var(--color-texto-secundario); max-width: 46rem; }
+    .ref__rejilla {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+      gap: var(--espacio-5);
+      margin: 0;
+      padding: 0;
+    }
+    .ref__ficha { align-items: center; text-align: center; }
+    .ref__ficha .apariencia--grande { margin-block: var(--espacio-3) var(--espacio-4); }
+    .ref__tamanos { display: flex; align-items: center; justify-content: center; gap: var(--espacio-4); }
+    .ref__archivo { font-size: var(--texto-xs); color: var(--color-texto-secundario); }
+    .ref pre {
+      overflow-x: auto;
+      padding: var(--espacio-4);
+      border: 1px solid var(--color-borde);
+      border-radius: var(--radio-md);
+      background: var(--color-superficie);
+      font-size: var(--texto-sm);
+    }
+    .ref code { font-size: .95em; }
+  </style>
+</head>
+<body>
+  <main id="contenido" class="contenedor ref">
+    <p><a href="../index.html">← Volver al inicio</a></p>
+    <h1>Apariencias de avatar</h1>
+    <p class="ref__nota">
+      Hoja de referencia del ticket #4 (D10, D16). Reúne las cuatro apariencias para revisarlas y explica
+      cómo usarlas en el panel del participante, la administración de avatares y la visita.
+      No forma parte de la navegación del sitio.
+    </p>
+
+    <section aria-labelledby="catalogo-titulo">
+      <h2 id="catalogo-titulo">Las cuatro apariencias</h2>
+      <p class="ref__nota">Cada ficha muestra el tamaño grande (160 px), el mediano (48 px) y la miniatura (32 px).</p>
+      <ul class="ref__rejilla" role="list">
+        <li class="tarjeta ref__ficha">
+          <h3>Jaguar de jade</h3>
+          <img class="apariencia apariencia--grande" src="../img/apariencias/jaguar-jade.svg" alt="Jaguar de jade">
+          <div class="ref__tamanos">
+            <img class="apariencia" src="../img/apariencias/jaguar-jade.svg" alt="">
+            <img class="apariencia apariencia--mini" src="../img/apariencias/jaguar-jade.svg" alt="">
+          </div>
+          <p class="ref__archivo"><code>img/apariencias/jaguar-jade.svg</code></p>
+        </li>
+        <li class="tarjeta ref__ficha">
+          <h3>Quetzal</h3>
+          <img class="apariencia apariencia--grande" src="../img/apariencias/quetzal.svg" alt="Quetzal">
+          <div class="ref__tamanos">
+            <img class="apariencia" src="../img/apariencias/quetzal.svg" alt="">
+            <img class="apariencia apariencia--mini" src="../img/apariencias/quetzal.svg" alt="">
+          </div>
+          <p class="ref__archivo"><code>img/apariencias/quetzal.svg</code></p>
+        </li>
+        <li class="tarjeta ref__ficha">
+          <h3>Serpiente emplumada</h3>
+          <img class="apariencia apariencia--grande" src="../img/apariencias/serpiente-emplumada.svg" alt="Serpiente emplumada">
+          <div class="ref__tamanos">
+            <img class="apariencia" src="../img/apariencias/serpiente-emplumada.svg" alt="">
+            <img class="apariencia apariencia--mini" src="../img/apariencias/serpiente-emplumada.svg" alt="">
+          </div>
+          <p class="ref__archivo"><code>img/apariencias/serpiente-emplumada.svg</code></p>
+        </li>
+        <li class="tarjeta ref__ficha">
+          <h3>Búho</h3>
+          <img class="apariencia apariencia--grande" src="../img/apariencias/buho.svg" alt="Búho">
+          <div class="ref__tamanos">
+            <img class="apariencia" src="../img/apariencias/buho.svg" alt="">
+            <img class="apariencia apariencia--mini" src="../img/apariencias/buho.svg" alt="">
+          </div>
+          <p class="ref__archivo"><code>img/apariencias/buho.svg</code></p>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="demo-titulo">
+      <h2 id="demo-titulo">Datos de demostración (D2, D30)</h2>
+      <p class="ref__nota">
+        Asignación propuesta para la visita en curso de «El Castillo y la Gran Plaza».
+        Ejemplo de miniatura en tabla: la apariencia es decorativa (<code>alt=""</code>) porque su nombre ya está escrito.
+      </p>
+      <div class="tabla-contenedor">
+        <table class="tabla">
+          <caption class="visualmente-oculto">Apariencia de cada participante de la visita</caption>
+          <thead>
+            <tr><th scope="col">Participante</th><th scope="col">Avatar</th><th scope="col">Rol</th><th scope="col">Apariencia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/jaguar-jade.svg" alt="">Ana López Martínez</span></td>
+              <td>Balam</td><td>Visitante</td><td>Jaguar de jade</td>
+            </tr>
+            <tr>
+              <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/serpiente-emplumada.svg" alt="">Carlos KarKerKar</span></td>
+              <td>Jaguar</td><td>Guía</td><td>Serpiente emplumada</td>
+            </tr>
+            <tr>
+              <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/quetzal.svg" alt="">María López</span></td>
+              <td>—</td><td>Visitante</td><td>Quetzal</td>
+            </tr>
+            <tr>
+              <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/buho.svg" alt="">Juan Ramírez</span></td>
+              <td>—</td><td>Visitante</td><td>Búho</td>
+            </tr>
+            <tr>
+              <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/jaguar-jade.svg" alt="">Carla Pérez</span></td>
+              <td>—</td><td>Visitante</td><td>Jaguar de jade</td>
+            </tr>
+            <tr>
+              <td><span class="con-apariencia"><img class="apariencia apariencia--mini" src="../img/apariencias/quetzal.svg" alt="">Jose Jose</span></td>
+              <td>—</td><td>Visitante</td><td>Quetzal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="uso-titulo">
+      <h2 id="uso-titulo">Cómo usarlas</h2>
+      <p class="ref__nota">
+        Siempre con <code>&lt;img&gt;</code> y la clase <code>.apariencia</code> (definida en <code>css/componentes.css</code>).
+        Las rutas son relativas: desde la raíz, <code>img/apariencias/…</code>; desde <code>admin/</code>, <code>../img/apariencias/…</code>.
+      </p>
+
+      <h3>Tamaños</h3>
+      <pre><code>&lt;img class="apariencia apariencia--mini" …&gt;    &lt;!-- 32 px: tablas, listas, mapa --&gt;
+&lt;img class="apariencia" …&gt;                     &lt;!-- 48 px: tarjetas del panel --&gt;
+&lt;img class="apariencia apariencia--grande" …&gt;  &lt;!-- 160 px: vista previa --&gt;</code></pre>
+
+      <h3>Texto alternativo</h3>
+      <pre><code>&lt;!-- La imagen es el contenido: alt con el nombre de la apariencia --&gt;
+&lt;img class="apariencia apariencia--grande" src="img/apariencias/buho.svg" alt="Búho"&gt;
+
+&lt;!-- Junto a un texto que ya la nombra o identifica: decorativa --&gt;
+&lt;span class="con-apariencia"&gt;
+  &lt;img class="apariencia apariencia--mini" src="img/apariencias/buho.svg" alt=""&gt;
+  Juan Ramírez
+&lt;/span&gt;
+
+&lt;!-- Sola en una celda o marcador, sin texto al lado: alt con quién es --&gt;
+&lt;img class="apariencia apariencia--mini" src="img/apariencias/buho.svg" alt="Juan Ramírez (búho)"&gt;</code></pre>
+
+      <h3>Selector «Cambiar apariencia» (D16)</h3>
+      <p class="ref__nota">
+        Cada opción es un radio oculto con su <code>&lt;label&gt;</code>; la imagen va dentro de la etiqueta con <code>alt=""</code>
+        porque el nombre ya está escrito en ella. La vista previa grande se muestra con <code>:has(:checked)</code>.
+      </p>
+      <pre><code>&lt;input class="visualmente-oculto" type="radio" name="apariencia" id="ap-quetzal" value="quetzal"&gt;
+&lt;label for="ap-quetzal"&gt;
+  &lt;img class="apariencia" src="img/apariencias/quetzal.svg" alt=""&gt; Quetzal
+&lt;/label&gt;</code></pre>
+
+      <h3>Por qué <code>&lt;img&gt;</code> y no <code>&lt;use&gt;</code></h3>
+      <p class="ref__nota">
+        El sitio se abre como <code>file://</code>, sin servidor ni JavaScript. Chromium no dibuja
+        <code>&lt;use href="img/archivo.svg#id"&gt;</code> con un archivo externo en <code>file://</code>, y copiar el SVG
+        en línea en cada página repetiría cientos de líneas. Con <code>&lt;img&gt;</code> cada apariencia vive en un solo
+        archivo; a cambio, la página no puede pintar el SVG con las variables CSS, así que sus colores son copias
+        de los valores de <code>css/tokens.css</code> (anotadas en un comentario dentro de cada archivo).
+        El tamaño, el aro y la sombra sí salen de los tokens.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
